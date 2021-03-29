@@ -1,21 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {NativeRouter, Switch, Route} from 'react-router-native';
+import AuthProvider from './contexts/AuthContext';
+import StyleProvider from './contexts/StyleContext';
+import PublicRoute from './routes/PublicRoute';
+import PrivateRoute from './routes/PrivateRoute';
+import LoginPage from './pages/LoginPage';
+import LogoutPage from './components/pages/LogoutPage';
+import HomePage from './components/pages/HomePage';
+import UserPage from './components/pages/UserPage';
+import AssetPage from './components/pages/AssetPage';
+import GroupPage from './components/pages/GroupPage';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+    return (
+        <AuthProvider>
+            <StyleProvider>
+                <NativeRouter>
+                    <Switch>
+                        <PublicRoute path='/login' component={LoginPage}/>
+                        <PrivateRoute path='/logout' component={LogoutPage}/>
+                        <PrivateRoute exact path={['/', '/home']} component={HomePage}/>
+                        <PrivateRoute path='/users' component={UserPage}/>
+                        <PrivateRoute path='/assets' component={AssetPage}/>
+                        <PrivateRoute path='/groups' component={GroupPage}/>
+                    </Switch>
+                </NativeRouter>
+            </StyleProvider>
+        </AuthProvider>
+    );
+};
+
+export default App;
