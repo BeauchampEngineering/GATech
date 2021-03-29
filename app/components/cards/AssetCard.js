@@ -7,6 +7,10 @@ const AssetCard = ({asset, onShow, onClose}) => {
     const {card, modal, page, button} = useStyles();
     const [show, setShow] = useState(false);
 
+    useEffect(() => {
+        // grab data from server
+    }, []);
+
     const handleClose = () => {
         setShow(false);
         onClose();

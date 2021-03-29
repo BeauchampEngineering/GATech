@@ -7,6 +7,10 @@ const UserCard = ({user, onShow, onClose}) => {
     const {card, modal, page} = useStyles();
     const [show, setShow] = useState(false);
 
+    useEffect(() => {
+        // grab data from server
+    }, []);
+
     const handleClose = () => {
         setShow(false);
         onClose();
