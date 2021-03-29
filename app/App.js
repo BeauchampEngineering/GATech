@@ -4,7 +4,7 @@ import AuthProvider from './contexts/AuthContext';
 import StyleProvider from './contexts/StyleContext';
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './components/pages/LoginPage';
 import LogoutPage from './components/pages/LogoutPage';
 import HomePage from './components/pages/HomePage';
 import UserPage from './components/pages/UserPage';

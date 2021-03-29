@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import {View, Text} from 'react-native';
-import {useStyles} from '../contexts/StyleContext';
+import {useStyles} from '../../contexts/StyleContext';
 import LoginForm from '../forms/LoginForm';
 
 const LoginPage = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {useStyles} from '../contexts/StyleContext';
+import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
 
 const HomePage = () => {

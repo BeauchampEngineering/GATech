@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Pressable} from 'react-native';
 import {Icon} from 'react-native-elements';
-import {useStyles} from '../contexts/StyleContext';
+import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
 import UserCard from '../cards/UserCard';
 
