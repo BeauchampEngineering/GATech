@@ -9,7 +9,7 @@ const UserPage = () => {
 
     const {page, input, pane, button} = useStyles();
     const [opacity, setOpacity] = useState(1);
-    const [search, onChangeSearch] = useState('');
+    const [search, setSearch] = useState('');
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const UserPage = () => {
     }, []);
 
     const handleCancel = () => {
-        onChangeSearch('');
+        setSearch('');
     }
 
     const renderUsers = () => {
@@ -53,7 +53,7 @@ const UserPage = () => {
                         style={input.box}
                         value={search}
                         placeholder='Search'
-                        onChangeText={onChangeSearch}
+                        onChangeText={setSearch}
                     />
                     <Pressable onPress={handleCancel}>
                         <Icon
