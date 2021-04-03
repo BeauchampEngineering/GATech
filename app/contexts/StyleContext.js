@@ -10,18 +10,6 @@ export const useStyles = ()  => {
 
 const StyleProvider = ({children}) => {
 
-    const logo = StyleSheet.create({
-        container: {
-            marginTop: 250,
-            alignItems: 'center',
-            justifyContent: 'center'
-        },
-        text: {
-            color: 'blue',
-            fontSize: 50
-        }
-    });
-
     const button = StyleSheet.create({
         fill: {
             padding: 2,
@@ -144,8 +132,7 @@ const StyleProvider = ({children}) => {
         pane,
         card,
         bar,
-        form,
-        logo
+        form
     };
 
     return (
