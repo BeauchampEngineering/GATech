@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Pressable} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Pressable, FlatList} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
@@ -9,7 +9,7 @@ const AssetPage = () => {
 
     const {page, input, pane, button} = useStyles();
     const [opacity, setOpacity] = useState(1);
-    const [search, onChangeSearch] = useState('');
+    const [search, setSearch] = useState('');
     const [assets, setAssets] = useState([]);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const AssetPage = () => {
     }, []);
 
     const handleCancel = () => {
-        onChangeSearch('');
+        setSearch('');
     }
 
     const handleQR = () => {
@@ -57,7 +57,7 @@ const AssetPage = () => {
                         style={input.box}
                         value={search}
                         placeholder='Search'
-                        onChangeText={onChangeSearch}
+                        onChangeText={setSearch}
                     />
                     <Pressable onPress={handleCancel}>
                         <Icon
@@ -73,7 +73,7 @@ const AssetPage = () => {
                     <Text style={button.text}>QR</Text>
                 </TouchableOpacity>
             </View>
-            <View style={pane.container}>
+            <View style={pane.horizontal}>
                 {renderAssets()}
             </View>
             <NavBar selected='assets'/>
