@@ -63,7 +63,7 @@ const UserPage = () => {
                     </Pressable>
                 </View>
             </View>
-            <View style={pane.container}>
+            <View style={pane.horizontal}>
                 {renderUsers()}
             </View>
             <NavBar selected='users'/>

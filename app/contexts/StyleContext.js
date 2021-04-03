@@ -55,6 +55,7 @@ const StyleProvider = ({children}) => {
             flex: 1,
             flexDirection: 'column',
             justifyContent: 'center',
+            alignItems: 'center',
             marginTop: 50,
             marginLeft: 25,
             marginRight: 25
@@ -62,11 +63,14 @@ const StyleProvider = ({children}) => {
     });
 
     const pane = StyleSheet.create({
-        container: {
+        horizontal: {
             flex: 1,
             flexDirection: 'row',
             flexWrap: 'wrap',
-            justifyContent: 'space-between',
+            justifyContent: 'space-between'
+        },
+        vertical: {
+            flex: 1
         }
     })
 
@@ -81,10 +85,14 @@ const StyleProvider = ({children}) => {
         container: {
             paddingTop: 10
         },
-        border: {
+        roundBorder: {
             padding: 17,
             borderWidth: 2,
             borderRadius: 7,
+            borderColor: 'black'
+        },
+        lineBorder: {
+            borderTopWidth: 2,
             borderColor: 'black'
         }
     });

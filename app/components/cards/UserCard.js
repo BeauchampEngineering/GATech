@@ -21,7 +21,7 @@ const UserCard = ({user, onShow, onClose}) => {
         <View>
             <View style={card.container}>
                 <Pressable onPress={handleShow}>
-                    <View style={card.border}>
+                    <View style={card.roundBorder}>
                         <Text style={card.title}>{user.firstName}</Text>
                         <Text style={card.body}>{user.lastName}</Text>
                     </View>

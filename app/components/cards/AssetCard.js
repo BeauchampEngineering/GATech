@@ -25,7 +25,7 @@ const AssetCard = ({asset, onShow, onClose}) => {
         <View>
             <View style={card.container}>
                 <Pressable onPress={handleShow}>
-                    <View style={card.border}>
+                    <View style={card.roundBorder}>
                         <Text style={card.title}>{asset.name}</Text>
                         <Text style={card.body}>{asset.description}</Text>
                     </View>

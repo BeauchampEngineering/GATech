@@ -1,14 +1,49 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
+import GroupCard from '../cards/GroupCard';
 
 const GroupPage = () => {
 
-    const {page} = useStyles();
+    const {page, pane} = useStyles();
+    const [groups, setGroups] = useState([]);
+
+    useEffect(() => {
+        // grab groups from server
+        /*
+            group = {
+                id:
+                members:
+                lastMessage:
+            }
+        */
+       const lst = [];
+       for(let i = 0; i < 10; i++) {
+           lst.push({
+               id: i,
+               members: 'Kanye, Cudi, Frank',
+               lastMessage: 'I miss the old Kanye'
+           });
+       }
+       setGroups(lst);
+    }, []);
+
+    const renderGroups = () => {
+        return groups.map(group => {
+            const {id, members, lastMessage} = group;
+            return <GroupCard 
+                        key={id}
+                        group={{members, lastMessage}}
+                    />
+        });
+    };
 
     return (
         <View style={page.container}>
+            <View style={pane.vertical}>
+                {renderGroups()}
+            </View>
             <NavBar selected='groups'/>
         </View>
     );
