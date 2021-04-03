@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {View, Text} from 'react-native';
 import {useStyles} from '../../contexts/StyleContext';
 import LoginForm from '../forms/LoginForm';
 
 const LoginPage = () => {
 
-    const {logo} = useStyles();
+    const {page} = useStyles();
 
     return (
-        <View style={logo.container}>
-            <Text style={logo.text}>PM</Text>
+        <View style={page.container}>
+            <Text style={page.title}>PM</Text>
             <LoginForm/>
         </View>
     );
