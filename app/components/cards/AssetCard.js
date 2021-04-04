@@ -18,7 +18,7 @@ const AssetCard = ({asset, onShow, onClose}) => {
     };
 
     const handleFault = () => {
-        // fault asset
+        // fault the asset
     }
 
     return (
