@@ -63,7 +63,7 @@ const AssetPage = () => {
                 <View style={header.container}>
                     <Pressable onPress={handleCancel}>
                         <Icon
-                            name='x-circle'
+                            name='chevron-left'
                             type='feather'
                         />
                     </Pressable>
