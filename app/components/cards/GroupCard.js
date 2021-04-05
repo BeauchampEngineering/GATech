@@ -57,7 +57,7 @@ const GroupCard = ({group}) => {
 
     return (
         <View>
-            <View style={card.container}>
+            <View>
                 <Pressable onPress={handleShow}>
                     <View style={card.border}>
                         <Text style={card.title}>{group.members}</Text>

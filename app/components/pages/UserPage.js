@@ -7,8 +7,9 @@ import UserCard from '../cards/UserCard';
 
 const UserPage = () => {
 
-    const {page, input} = useStyles();
+    const {page, input, header} = useStyles();
     const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -25,6 +26,7 @@ const UserPage = () => {
     }, []);
 
     const handleCancel = () => {
+        setShow(false);
         setSearch('');
     }
 
@@ -34,26 +36,40 @@ const UserPage = () => {
 
     return (
         <View style={page.container}>
-            <View style={input.container}>
-                <View style={input.border}>
-                    <TextInput
-                        style={input.box}
-                        value={search}
-                        placeholder='Search'
-                        onChangeText={setSearch}
-                    />
+            {!show &&
+                <View style={header.container}>
+                    <View style={header.right}>
+                        <Pressable onPress={() => setShow(true)}>
+                            <Icon
+                                name='search'
+                                type='feather'
+                            />
+                        </Pressable>
+                    </View>
+                </View>
+            }
+            {show && 
+                <View style={header.container}>
                     <Pressable onPress={handleCancel}>
                         <Icon
                             name='x-circle'
                             type='feather'
                         />
                     </Pressable>
+                    <View style={input.container}>
+                        <TextInput
+                            value={search}
+                            placeholder='Search'
+                            onChangeText={setSearch}
+                        />
+                    </View>
                 </View>
-            </View>
+            }
             <FlatList
                 data={users}
                 renderItem={renderUser}
                 keyExtractor={user => user.id.toString()}
+                showsVerticalScrollIndicator={false}
             />
             <NavBar selected='users'/>
         </View>

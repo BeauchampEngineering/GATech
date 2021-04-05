@@ -1,14 +1,15 @@
 import React, {useContext} from 'react';
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 const StyleContext = React.createContext();
 
 export const useStyles = ()  => {
     return useContext(StyleContext);
-}
-
+}; 
 
 const StyleProvider = ({children}) => {
+
+    const {width, height} = Dimensions.get('window');
 
     const button = StyleSheet.create({
         fill: {
@@ -25,6 +26,7 @@ const StyleProvider = ({children}) => {
 
     const form = StyleSheet.create({
         container: {
+            position: 'absolute',
             alignItems: 'center',
             justifyContent: 'center'
         }
@@ -32,18 +34,11 @@ const StyleProvider = ({children}) => {
 
     const input = StyleSheet.create({
         container: {
+            flex: 1,
             flexDirection: 'row',
             justifyContent: 'space-between',
-            paddingBottom: 10
-        },
-        border: {
-            flexDirection: 'row',
-            width: 200,
-            borderBottomWidth: 2,
+            borderWidth: 2,
             borderColor: 'black'
-        },
-        box: {
-            flex: 1
         }
     });
 
@@ -54,19 +49,12 @@ const StyleProvider = ({children}) => {
         container: {
             flex: 1,
             flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 50,
-            marginLeft: 25,
-            marginRight: 25
+            marginTop: height * 0.07,
+            marginLeft: width * 0.07,
+            marginRight: width * 0.07,
+            marginBottom: height * 0.03
         }
     });
-
-    const pane = StyleSheet.create({
-        vertical: {
-            flex: 1
-        }
-    })
 
     const card = StyleSheet.create({
         title: {
@@ -76,26 +64,33 @@ const StyleProvider = ({children}) => {
         body: {
             fontSize: 10
         },
-        container: {
-            paddingTop: 10
-        },
         border: {
             borderTopWidth: 2,
-            borderBottomWidth: 2,
+            padding: 5,
             borderColor: 'black'
         }
     });
 
-    const bar = StyleSheet.create({
+    const header = StyleSheet.create({
         container: {
-            flex: 1,
             flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            bottom: 30,
-            paddingTop: 10,
+            justifyContent: 'space-between',
+            padding: 10
+        },
+        right: {
+            marginLeft: 'auto'
+        },
+        left: {
+            marginRight: 'auto'
+        }
+    });
+
+    const footer = StyleSheet.create({
+        container: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 'auto',
+            padding: 10,
             borderTopColor: 'black',
             borderTopWidth: 2
         }
@@ -105,10 +100,10 @@ const StyleProvider = ({children}) => {
         button,
         page,
         input,
-        pane,
         card,
-        bar,
-        form
+        form,
+        header,
+        footer
     };
 
     return (
