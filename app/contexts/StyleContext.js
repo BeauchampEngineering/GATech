@@ -75,10 +75,10 @@ const StyleProvider = ({children}) => {
         container: {
             flexDirection: 'row',
             justifyContent: 'space-between',
-            padding: height * 0.02
+            paddingBottom: height * 0.02
         },
         right: {
-            marginLeft: 'auto'
+            marginLeft: 'auto',
         },
         left: {
             marginRight: 'auto'
@@ -90,7 +90,8 @@ const StyleProvider = ({children}) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             marginTop: 'auto',
-            padding: height * 0.02,
+            paddingTop: height * 0.02,
+            paddingBottom: height * 0.02,
             borderTopColor: 'black',
             borderTopWidth: 2
         }
