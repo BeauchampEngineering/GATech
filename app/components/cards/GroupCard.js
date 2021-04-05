@@ -12,7 +12,6 @@ import {
 import {Icon} from 'react-native-elements';
 import {useAuth} from '../../contexts/AuthContext';
 import {useStyles} from '../../contexts/StyleContext';
-import {Icon} from 'react-native-elements';
 
 let currentId = 10;
 

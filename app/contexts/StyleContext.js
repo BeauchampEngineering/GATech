@@ -72,7 +72,6 @@ const StyleProvider = ({children}) => {
         title: {
             fontSize: 15,
             fontWeight: 'bold',
-            paddingBottom: height * .05
         },
         body: {
             fontSize: 10
