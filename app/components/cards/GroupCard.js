@@ -9,13 +9,14 @@ import {
 } from 'react-native';
 import {useAuth} from '../../contexts/AuthContext';
 import {useStyles} from '../../contexts/StyleContext';
+import {Icon} from 'react-native-elements';
 
 let currentId = 10;
 
 const GroupCard = ({group}) => {
     
     const {currentUser} = useAuth();
-    const {card, page, input, button} = useStyles();
+    const {card, page, input, button, header} = useStyles();
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
@@ -70,9 +71,16 @@ const GroupCard = ({group}) => {
                 onRequestClose={handleClose}
             >
                 <View style={page.container}>
+                    
+                <View style={header.container}>
                     <TouchableOpacity onPress={handleClose}>
-                        <Text>{'<'}</Text>
+                            <Icon
+                            name='arrow-left'
+                            type='feather'
+                        
+                    />
                     </TouchableOpacity>
+                </View>
                     <View>
                         {renderMessages()}
                     </View>

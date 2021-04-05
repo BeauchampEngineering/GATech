@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Modal, Pressable} from 'react-native';
 import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
+import {Icon} from 'react-native-elements';
 
 const UserCard = ({user}) => {
 
-    const {card, page} = useStyles();
+    const {card, page, header} = useStyles();
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
@@ -32,9 +33,15 @@ const UserCard = ({user}) => {
             >
                 <View style={page.container}>
                     <View>
-                        <TouchableOpacity onPress={handleClose}>
-                            <Text>{'<'}</Text>
-                        </TouchableOpacity>
+                        <View style={header.container}>
+                    <TouchableOpacity onPress={handleClose}>
+                            <Icon
+                            name='arrow-left'
+                            type='feather'
+                        
+                    />
+                    </TouchableOpacity>
+                </View>
                         <Text style={page.title}>{user.firstName}</Text>
                         <Text>{user.lastName}</Text>
                     </View>

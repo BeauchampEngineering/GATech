@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Modal, Pressable} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Modal, Pressable, ImageBackground} from 'react-native';
 import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
+import {Icon} from 'react-native-elements';
 
 const AssetCard = ({asset}) => {
 
-    const {card, page} = useStyles();
+    const {card, page, header} = useStyles();
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
@@ -31,10 +32,18 @@ const AssetCard = ({asset}) => {
                 onRequestClose={handleClose}
             >
                 <View style={page.container}>
+                <View style={header.container}>
                     <TouchableOpacity onPress={handleClose}>
-                        <Text>{'<'}</Text>
+                        {/*<Text>{'<'}</Text>*/}
+                            <Icon
+                            name='arrow-left'
+                            type='feather'
+                        
+                    />
                     </TouchableOpacity>
+                </View>
                     <Text style={page.title}>{asset.name}</Text>
+                        <ImageBackground source ={require('../../assets/machine.jpg')} style ={page.containeri}></ImageBackground>   
                     <Text>{asset.description}</Text>
                     <NavBar selected='assets'/>
                 </View>
