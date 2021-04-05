@@ -6,10 +6,10 @@ import {useStyles} from '../../contexts/StyleContext';
 
 const NavBar = ({selected}) => {
 
-    const {footer} = useStyles();
+    const {navbar} = useStyles();
 
     return (
-            <View style={footer.container}>
+            <View style={navbar.container}>
                 <Link to='/home' component={TouchableOpacity}>
                     <Icon
                         name='home'

@@ -88,6 +88,7 @@ const StyleProvider = ({children}) => {
         container: {
             flexDirection: 'row',
             justifyContent: 'space-between',
+            marginBottom: 'auto',
             paddingBottom: height * 0.02
         },
         right: {
@@ -99,6 +100,22 @@ const StyleProvider = ({children}) => {
     });
 
     const footer = StyleSheet.create({
+        container: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 'auto',
+            paddingTop: height * 0.02,
+            paddingBottom: height * 0.02
+        },
+        right: {
+            marginLeft: 'auto',
+        },
+        left: {
+            marginRight: 'auto'
+        }
+    });
+
+    const navbar = StyleSheet.create({
         container: {
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -117,7 +134,8 @@ const StyleProvider = ({children}) => {
         card,
         form,
         header,
-        footer
+        footer,
+        navbar
     };
 
     return (
