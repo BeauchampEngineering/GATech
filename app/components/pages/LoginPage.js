@@ -12,7 +12,7 @@ const LoginPage = () => {
     return (
         <View style={newpage.container}>
             <View style = {newpage.subContainer}>
-                <Text style={newpage.title}>Portal Manager</Text>
+                <Text style={newpage.title}>PM</Text>
             </View>
             <LoginForm/>
         </View>

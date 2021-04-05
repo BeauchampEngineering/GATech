@@ -5,8 +5,11 @@ import {
     Modal, 
     Pressable, 
     TouchableOpacity, 
-    Text, 
+    Text,
+    KeyboardAvoidingView,
+    FlatList 
 } from 'react-native';
+import {Icon} from 'react-native-elements';
 import {useAuth} from '../../contexts/AuthContext';
 import {useStyles} from '../../contexts/StyleContext';
 
@@ -15,7 +18,7 @@ let currentId = 10;
 const GroupCard = ({group}) => {
     
     const {currentUser} = useAuth();
-    const {card, page, input, button} = useStyles();
+    const {card, page, input, header, button, footer} = useStyles();
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
@@ -40,19 +43,16 @@ const GroupCard = ({group}) => {
         setMessage('');
     }
 
-    const renderMessages = () => {
-        return messages.map(m => {
+    const renderMessage = ({item}) => {
 
-            const {id, origin, content} = m;
-            const adjust = currentUser.id === origin ? 'right' : 'left';
-            //use this to set the style
+        const adjust = currentUser.id === item.origin ? 'right' : 'left';
 
-            return (
-                <View key={id}>
-                    <Text>{content}</Text>
-                </View>
-            )
-        })
+
+        return (
+            <View>
+                <Text>{item.content}</Text>
+            </View>
+        );
     }
 
     return (
@@ -70,28 +70,41 @@ const GroupCard = ({group}) => {
                 onRequestClose={handleClose}
             >
                 <View style={page.container}>
-                    <TouchableOpacity onPress={handleClose}>
-                        <Text>{'<'}</Text>
-                    </TouchableOpacity>
-                    <View>
-                        {renderMessages()}
-                    </View>
-                    <View style={input.container}>
-                        <View style={input.border}>
-                            <TextInput
-                                value={message}
-                                style={input.box}
-                                placeholder='Type here'
-                                onChangeText={setMessage}
-                            />
+                    <KeyboardAvoidingView 
+                        behavior='height' 
+                        style={{flex: 1}}
+                        keyboardVerticalOffset={40}
+                    >
+                        <View style={header.container}>
+                            <View style={header.left}>
+                                <Icon
+                                    name='chevron-left'
+                                    type='feather'
+                                    onPress={handleClose}
+                                />
+                            </View>
                         </View>
-                        <TouchableOpacity
-                            style={button.fill}
-                            onPress={sendMessage}
-                        >
-                            <Text style={button.text}>Send</Text>
-                        </TouchableOpacity>
-                    </View>
+                        <FlatList
+                            data={messages}
+                            renderItem={renderMessage}
+                            keyExtractor={message => message.id.toString()}
+                            showsVerticalScrollIndicator={false}
+                        />
+                        <View style={footer.container}>
+                            <View style={input.container}>
+                                <TextInput
+                                    value={message}
+                                    placeholder='Type here'
+                                    onChangeText={setMessage}
+                                />
+                                <Icon
+                                    name='send'
+                                    type='feather'
+                                    onPress={sendMessage}
+                                />
+                            </View>
+                        </View>
+                    </KeyboardAvoidingView>
                 </View>
             </Modal>
         </View>
