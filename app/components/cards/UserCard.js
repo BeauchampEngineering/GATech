@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Modal, Pressable} from 'react-native';
 import {useStyles} from '../../contexts/StyleContext';
+import NavBar from '../bars/NavBar';
 
 const UserCard = ({user}) => {
 
@@ -37,6 +38,7 @@ const UserCard = ({user}) => {
                         <Text style={page.title}>{user.firstName}</Text>
                         <Text>{user.lastName}</Text>
                     </View>
+                    <NavBar selected='users'/>
                 </View>
             </Modal>
         </View>

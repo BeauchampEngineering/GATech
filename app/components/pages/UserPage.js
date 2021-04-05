@@ -7,7 +7,7 @@ import UserCard from '../cards/UserCard';
 
 const UserPage = () => {
 
-    const {page, input, pane, button} = useStyles();
+    const {page, input} = useStyles();
     const [search, setSearch] = useState('');
     const [users, setUsers] = useState([]);
 
