@@ -26,7 +26,6 @@ const StyleProvider = ({children}) => {
 
     const form = StyleSheet.create({
         container: {
-            position: 'absolute',
             alignItems: 'center',
             justifyContent: 'center'
         }
