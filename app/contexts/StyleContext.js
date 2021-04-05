@@ -44,7 +44,8 @@ const StyleProvider = ({children}) => {
 
     const page = StyleSheet.create({
         title: {
-            fontSize: 50
+            fontSize: 50,
+            paddingBottom: height * .05
         },
         container: {
             flex: 1,
@@ -53,13 +54,25 @@ const StyleProvider = ({children}) => {
             marginLeft: width * 0.07,
             marginRight: width * 0.07,
             marginBottom: height * 0.03
+        },
+        containeri: {
+            position: 'relative',
+            flexDirection: 'column',
+            marginTop: height * 0.01,
+            marginLeft: width * 0.2,
+            marginRight: width * 0.2,
+            marginBottom: height * .01,
+            width: width * .3,
+            height: height * .3,
+            
         }
     });
 
     const card = StyleSheet.create({
         title: {
             fontSize: 15,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            paddingBottom: height * .05
         },
         body: {
             fontSize: 10
