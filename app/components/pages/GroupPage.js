@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, TextInput, Pressable} from 'react-native';
+import {View, TextInput, Pressable, FlatList} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
@@ -7,7 +7,7 @@ import GroupCard from '../cards/GroupCard';
 
 const GroupPage = () => {
 
-    const {page, pane, input} = useStyles();
+    const {page, input} = useStyles();
     const [search, setSearch] = useState('');
     const [groups, setGroups] = useState([]);
 
@@ -33,14 +33,8 @@ const GroupPage = () => {
 
     const handleCancel = () => setSearch('');
 
-    const renderGroups = () => {
-        return groups.map(group => {
-            const {id, members, lastMessage} = group;
-            return <GroupCard 
-                        key={id}
-                        group={{members, lastMessage}}
-                    />
-        });
+    const renderGroup = ({item}) => {
+        return <GroupCard group={item}/>
     };
 
     return (
@@ -61,9 +55,11 @@ const GroupPage = () => {
                     </Pressable>
                 </View>
             </View>
-            <View style={pane.vertical}>
-                {renderGroups()}
-            </View>
+            <FlatList
+                data={groups}
+                renderItem={renderGroup}
+                keyExtractor={group => group.id.toString()}
+            />
             <NavBar selected='groups'/>
         </View>
     );

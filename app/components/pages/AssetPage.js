@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Pressable, FlatList} from 'react-native';
+import {
+    View, 
+    Text, 
+    TextInput, 
+    TouchableOpacity, 
+    Pressable, 
+    FlatList
+} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
@@ -8,7 +15,6 @@ import AssetCard from '../cards/AssetCard';
 const AssetPage = () => {
 
     const {page, input, pane, button} = useStyles();
-    const [opacity, setOpacity] = useState(1);
     const [search, setSearch] = useState('');
     const [assets, setAssets] = useState([]);
 
@@ -33,24 +39,12 @@ const AssetPage = () => {
         // QR
     }
 
-    const renderAssets = () => {
-
-        const handleShow = () => setOpacity(0.1);
-        const handleClose = () => setOpacity(1);
-
-        return assets.map(asset => {
-            const {id, name, description} = asset;
-            return <AssetCard 
-                        key={id} 
-                        asset={{name, description}} 
-                        onShow={handleShow}
-                        onClose={handleClose}
-                    />
-        });
-    }
+    const renderAsset = ({item}) => {
+        return <AssetCard asset={item}/>
+    };
 
     return (
-        <View style={page.container} opacity={opacity}>
+        <View style={page.container}>
             <View style={input.container}>
                 <View style={input.border}>
                     <TextInput
@@ -73,9 +67,11 @@ const AssetPage = () => {
                     <Text style={button.text}>QR</Text>
                 </TouchableOpacity>
             </View>
-            <View style={pane.horizontal}>
-                {renderAssets()}
-            </View>
+            <FlatList
+                data={assets}
+                renderItem={renderAsset}
+                keyExtractor={asset => asset.id.toString()}
+            />
             <NavBar selected='assets'/>
         </View>
     )
