@@ -36,6 +36,7 @@ const StyleProvider = ({children}) => {
             flex: 1,
             flexDirection: 'row',
             justifyContent: 'space-between',
+            borderRadius: width * 0.05,
             borderWidth: 2,
             borderColor: 'black'
         }
@@ -63,7 +64,7 @@ const StyleProvider = ({children}) => {
         body: {
             fontSize: 10
         },
-        border: {
+        container: {
             borderTopWidth: 2,
             padding: 5,
             borderColor: 'black'
@@ -74,7 +75,7 @@ const StyleProvider = ({children}) => {
         container: {
             flexDirection: 'row',
             justifyContent: 'space-between',
-            padding: 10
+            padding: height * 0.02
         },
         right: {
             marginLeft: 'auto'
@@ -89,7 +90,7 @@ const StyleProvider = ({children}) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             marginTop: 'auto',
-            padding: 10,
+            padding: height * 0.02,
             borderTopColor: 'black',
             borderTopWidth: 2
         }

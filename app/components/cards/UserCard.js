@@ -20,7 +20,7 @@ const UserCard = ({user}) => {
         <View>
             <View>
                 <Pressable onPress={handleShow}>
-                    <View style={card.border}>
+                    <View style={card.container}>
                         <Text style={card.title}>{user.firstName}</Text>
                         <Text style={card.body}>{user.lastName}</Text>
                     </View>

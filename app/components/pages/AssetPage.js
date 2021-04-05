@@ -3,8 +3,6 @@ import {
     View, 
     Text, 
     TextInput, 
-    TouchableOpacity, 
-    Pressable, 
     FlatList
 } from 'react-native';
 import {Icon} from 'react-native-elements';
@@ -22,7 +20,7 @@ const AssetPage = () => {
     useEffect(() => {
         // get assets from server
         const lst = []
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 20; i++) {
             lst.push({
                 id: i,
                 name: 'Pizza',
@@ -50,23 +48,21 @@ const AssetPage = () => {
             {!show &&
                 <View style={header.container}>
                     <View style={header.right}>
-                        <Pressable onPress={() => setShow(true)}>
-                            <Icon
-                                name='search'
-                                type='feather'
-                            />
-                        </Pressable>
+                        <Icon
+                            name='search'
+                            type='feather'
+                            onPress={() => setShow(true)}
+                        />
                     </View>
                 </View>
             }
             {show && 
                 <View style={header.container}>
-                    <Pressable onPress={handleCancel}>
-                        <Icon
-                            name='x-circle'
-                            type='feather'
-                        />
-                    </Pressable>
+                    <Icon
+                        name='chevron-left'
+                        type='feather'
+                        onPress={handleCancel}
+                    />
                     <View style={input.container}>
                         <TextInput
                             value={search}

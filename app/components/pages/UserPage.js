@@ -15,7 +15,7 @@ const UserPage = () => {
     useEffect(() => {
         // get assets from server
         const lst = []
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 20; i++) {
             lst.push({
                 id: i,
                 firstName: 'Kanye',
@@ -39,23 +39,23 @@ const UserPage = () => {
             {!show &&
                 <View style={header.container}>
                     <View style={header.right}>
-                        <Pressable onPress={() => setShow(true)}>
-                            <Icon
-                                name='search'
-                                type='feather'
-                            />
-                        </Pressable>
+                        <Icon
+                            name='search'
+                            type='feather'
+                            onPress={() => setShow(true)}
+                        />
                     </View>
                 </View>
             }
             {show && 
                 <View style={header.container}>
-                    <Pressable onPress={handleCancel}>
+                    <View style={header.left}>
                         <Icon
-                            name='x-circle'
-                            type='feather'
-                        />
-                    </Pressable>
+                        name='chevron-left'
+                        type='feather'
+                        onPress={handleCancel}
+                    />
+                    </View>
                     <View style={input.container}>
                         <TextInput
                             value={search}
