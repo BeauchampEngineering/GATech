@@ -22,7 +22,7 @@ const GroupPage = () => {
             }
         */
        const lst = [];
-       for(let i = 0; i < 10; i++) {
+       for(let i = 0; i < 20; i++) {
            lst.push({
                id: i,
                members: 'Kanye, Cudi, Frank',
@@ -46,23 +46,21 @@ const GroupPage = () => {
             {!show &&
                 <View style={header.container}>
                     <View style={header.right}>
-                        <Pressable onPress={() => setShow(true)}>
                             <Icon
                                 name='search'
                                 type='feather'
+                                onPress={() => setShow(true)}
                             />
-                        </Pressable>
                     </View>
                 </View>
             }
             {show && 
                 <View style={header.container}>
-                    <Pressable onPress={handleCancel}>
                         <Icon
                             name='chevron-left'
                             type='feather'
+                            onPress={handleCancel}
                         />
-                    </Pressable>
                     <View style={input.container}>
                         <TextInput
                             value={search}

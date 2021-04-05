@@ -20,7 +20,7 @@ const AssetCard = ({asset}) => {
         <View>
             <View>
                 <Pressable onPress={handleShow}>
-                    <View style={card.border}>
+                    <View style={card.container}>
                         <Text style={card.title}>{asset.name}</Text>
                         <Text style={card.body}>{asset.description}</Text>
                     </View>
