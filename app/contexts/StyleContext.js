@@ -63,12 +63,6 @@ const StyleProvider = ({children}) => {
     });
 
     const pane = StyleSheet.create({
-        horizontal: {
-            flex: 1,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between'
-        },
         vertical: {
             flex: 1
         }
@@ -85,35 +79,10 @@ const StyleProvider = ({children}) => {
         container: {
             paddingTop: 10
         },
-        roundBorder: {
-            padding: 17,
-            borderWidth: 2,
-            borderRadius: 7,
-            borderColor: 'black'
-        },
-        lineBorder: {
+        border: {
             borderTopWidth: 2,
+            borderBottomWidth: 2,
             borderColor: 'black'
-        }
-    });
-
-    const modal = StyleSheet.create({
-        title: {
-            fontSize: 50
-        },
-        body: {
-            fontSize: 20
-        },
-        fill: {
-            backgroundColor: 'white',
-            borderWidth: 2,
-            borderRadius: 7,
-            borderColor: 'black'
-        },
-        container: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
         }
     });
 
@@ -136,7 +105,6 @@ const StyleProvider = ({children}) => {
         button,
         page,
         input,
-        modal,
         pane,
         card,
         bar,

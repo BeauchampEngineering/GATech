@@ -15,7 +15,7 @@ let currentId = 10;
 const GroupCard = ({group}) => {
     
     const {currentUser} = useAuth();
-    const {card, modal, input, button} = useStyles();
+    const {card, page, input, button} = useStyles();
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
@@ -59,7 +59,7 @@ const GroupCard = ({group}) => {
         <View>
             <View style={card.container}>
                 <Pressable onPress={handleShow}>
-                    <View style={card.lineBorder}>
+                    <View style={card.border}>
                         <Text style={card.title}>{group.members}</Text>
                         <Text style={card.body}>{group.lastMessage}</Text>
                     </View>
@@ -69,7 +69,7 @@ const GroupCard = ({group}) => {
                 visible={show}
                 onRequestClose={handleClose}
             >
-                <View style={modal.container}>
+                <View style={page.container}>
                     <TouchableOpacity onPress={handleClose}>
                         <Text>{'<'}</Text>
                     </TouchableOpacity>
