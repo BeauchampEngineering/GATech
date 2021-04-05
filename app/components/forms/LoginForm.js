@@ -4,6 +4,8 @@ import {useHistory} from 'react-router-native';
 import {useAuth} from '../../contexts/AuthContext';
 import {useStyles} from '../../contexts/StyleContext';
 
+import {StyleSheet} from 'react-native';
+
 const LoginForm = () => {
 
     const {loginUser} = useAuth();
@@ -24,33 +26,107 @@ const LoginForm = () => {
 
     return (
         <View style={form.container}>
-            <View style={input.container}>
-                <View style={input.border}>
+            <View style={newInput.container}>
+                <View style={newInput.border}>
                     <TextInput
-                        style={input.box}
+                        style={newInput.box}
                         value={email}
-                        placeholder='Email'
+                        placeholder='  Email'
                         onChangeText={onChangeEmail}
                     />
                 </View>
             </View>
-            <View style={input.container}>
-                <View style={input.border}>
+            <View style={newInput.container}>
+                <View style={newInput.border}>
                     <TextInput
-                        style={input.box}
+                        style={newInput.box}
                         value={password}
                         secureTextEntry={true}
-                        placeholder='Password'
+                        placeholder='  Password'
                         onChangeText={onChangePassword}
                     />
                 </View>
             </View>
-            <TouchableOpacity style={button.fill} onPress={handlePress}>
-                <Text style={button.text}>Log in</Text>
+            <View style = {newbutton.buttonContainer}>
+            <TouchableOpacity style={newbutton.fill} onPress={handlePress}>
+                <Text style={newbutton.text}>Log in</Text>
             </TouchableOpacity> 
+            </View>
+            <View style = {otherbutton.buttonContainer}>
+                <TouchableOpacity style={otherbutton.fill} onPress={handlePress}>
+                    <Text style={otherbutton.text}>Forgot Password?</Text>
+                </TouchableOpacity> 
+                <TouchableOpacity style={otherbutton.fill} onPress={handlePress}>
+                    <Text style={otherbutton.text}>Back</Text>
+                </TouchableOpacity> 
+            </View>
         </View>
     );
 
 }
+const newInput = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingBottom: 5
+    },
+    border: {
+        width: "90%",
+        height: 56,
+        borderRadius: 4,
+        position: "relative",
+        backgroundColor: "white",
+        borderColor: 'lightgrey',
+        borderWidth: 2,
+        
+    },
+    box: {
+        flex: 1
+    }
+})
+
+const newbutton = StyleSheet.create({
+    buttonContainer: {
+        alignSelf: 'stretch',
+        paddingTop: 10,
+        paddingBottom: 34
+    },
+        
+    fill: {
+        padding: 13,
+        borderRadius: 7,
+        backgroundColor: '#1e90ff',
+        height: 45,
+
+    },
+    text: {
+        color: 'white',
+        alignItems: "center",
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+
+});
+
+const otherbutton = StyleSheet.create({ 
+    buttonContainer: {
+        alignSelf: 'stretch',
+ 
+    },
+    text: {
+        color: '#1e90ff',
+        alignItems: "center",
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+    fill: {
+        padding: 0,
+        borderRadius: 7,
+        backgroundColor: 'white',
+        height: 30
+    },
+});
 
 export default LoginForm;
