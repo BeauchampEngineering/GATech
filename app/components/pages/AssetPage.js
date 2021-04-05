@@ -14,8 +14,9 @@ import AssetCard from '../cards/AssetCard';
 
 const AssetPage = () => {
 
-    const {page, input, pane, button} = useStyles();
+    const {page, input, header} = useStyles();
     const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
     const [assets, setAssets] = useState([]);
 
     useEffect(() => {
@@ -32,6 +33,7 @@ const AssetPage = () => {
     }, []);
 
     const handleCancel = () => {
+        setShow(false);
         setSearch('');
     }
 
@@ -45,32 +47,40 @@ const AssetPage = () => {
 
     return (
         <View style={page.container}>
-            <View style={input.container}>
-                <View style={input.border}>
-                    <TextInput
-                        style={input.box}
-                        value={search}
-                        placeholder='Search'
-                        onChangeText={setSearch}
-                    />
+            {!show &&
+                <View style={header.container}>
+                    <View style={header.right}>
+                        <Pressable onPress={() => setShow(true)}>
+                            <Icon
+                                name='search'
+                                type='feather'
+                            />
+                        </Pressable>
+                    </View>
+                </View>
+            }
+            {show && 
+                <View style={header.container}>
                     <Pressable onPress={handleCancel}>
                         <Icon
                             name='x-circle'
                             type='feather'
                         />
                     </Pressable>
+                    <View style={input.container}>
+                        <TextInput
+                            value={search}
+                            placeholder='Search'
+                            onChangeText={setSearch}
+                        />
+                    </View>
                 </View>
-                <TouchableOpacity 
-                    style={button.fill}
-                    onPress={handleQR}
-                >
-                    <Text style={button.text}>QR</Text>
-                </TouchableOpacity>
-            </View>
+            }
             <FlatList
                 data={assets}
                 renderItem={renderAsset}
                 keyExtractor={asset => asset.id.toString()}
+                showsVerticalScrollIndicator={false}
             />
             <NavBar selected='assets'/>
         </View>

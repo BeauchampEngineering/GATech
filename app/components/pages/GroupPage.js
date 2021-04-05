@@ -7,8 +7,9 @@ import GroupCard from '../cards/GroupCard';
 
 const GroupPage = () => {
 
-    const {page, input} = useStyles();
+    const {page, header, input} = useStyles();
     const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
@@ -31,7 +32,10 @@ const GroupPage = () => {
        setGroups(lst);
     }, []);
 
-    const handleCancel = () => setSearch('');
+    const handleCancel = () => {
+        setShow(false);
+        setSearch('');
+    }
 
     const renderGroup = ({item}) => {
         return <GroupCard group={item}/>
@@ -39,26 +43,40 @@ const GroupPage = () => {
 
     return (
         <View style={page.container}>
-            <View style={input.container}>
-                <View style={input.border}>
-                    <TextInput
-                        style={input.box}
-                        value={search}
-                        placeholder='Search'
-                        onChangeText={setSearch}
-                    />
+            {!show &&
+                <View style={header.container}>
+                    <View style={header.right}>
+                        <Pressable onPress={() => setShow(true)}>
+                            <Icon
+                                name='search'
+                                type='feather'
+                            />
+                        </Pressable>
+                    </View>
+                </View>
+            }
+            {show && 
+                <View style={header.container}>
                     <Pressable onPress={handleCancel}>
                         <Icon
                             name='x-circle'
                             type='feather'
                         />
                     </Pressable>
+                    <View style={input.container}>
+                        <TextInput
+                            value={search}
+                            placeholder='Search'
+                            onChangeText={setSearch}
+                        />
+                    </View>
                 </View>
-            </View>
+            }
             <FlatList
                 data={groups}
                 renderItem={renderGroup}
                 keyExtractor={group => group.id.toString()}
+                showsVerticalScrollIndicator={false}
             />
             <NavBar selected='groups'/>
         </View>
