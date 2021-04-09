@@ -1,4 +1,6 @@
 import React from 'react'
+import './HomePage.css'
+
 import Container from 'react-bootstrap/Container'
 import NavBar from '../bars/NavBar'
 import Sidebar from '../sidebar/Sidebar'
@@ -11,10 +13,14 @@ const HomePage = () => {
       <NavBar />
       <BasicNavBar />
       <h1>Home Page</h1>
-      <Sidebar />
-      <Post />
-      <Post />
-      <Post />
+      <div className='SidebarPostCollectionContainer'>
+        <Sidebar className='Sidebar' />
+        <div className='PostCollection'>
+          <Post />
+          <Post />
+          <Post />
+        </div>
+      </div>
     </Container>
   )
 }
