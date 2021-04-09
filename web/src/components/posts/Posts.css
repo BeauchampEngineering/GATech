@@ -1,0 +1,110 @@
+.Post {
+  width: 50%;
+  /* border: 2px solid green; */
+  border-radius: 1%;
+  position: relative;
+  padding: 1rem 0.5rem;
+  margin: 0 auto 1rem;
+
+  /* elevation effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Post .PostHeader {
+  display: flex;
+  align-items: center;
+}
+
+.Post .PostHeader .Avatar {
+  width: 30px;
+  height: 30px;
+}
+
+.Post .PostHeader,
+.Post p {
+  padding: 0% 2%;
+}
+
+.Post .PostHeader .PostHeaderText h5,
+.Post .PostHeader .PostHeaderText h6 {
+  margin: 0 0 0 0.5rem;
+  padding: 0;
+}
+
+.Post .PostHeader .PostHeaderText h5 {
+  font-size: 0.9rem;
+}
+
+.Post .PostHeader .PostHeaderText h6 {
+  font-size: 0.7rem;
+  font-weight: normal;
+  margin-top: 3px;
+}
+
+.Post p {
+  margin-top: 0.5rem;
+}
+
+.Post img {
+  width: 100%;
+}
+
+.Post .Reactions {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.3rem 0rem;
+  margin: 0.4rem 0rem;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+
+.Post .Reactions .ReactionSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.2rem;
+  width: 100%;
+}
+
+.Post .Reactions .ReactionSection:hover {
+  background-color: #f0f2f5;
+  border-radius: 5px;
+}
+
+.Post .Reactions .ReactionSection h6 {
+  margin: 0 0 0 0.3rem;
+  color: gray;
+}
+
+.Post .Comments {
+  display: flex;
+  width: 100%;
+}
+
+.Post .Comments .Avatar {
+  margin-left: 1rem;
+  width: 30px;
+  height: 30px;
+}
+
+.Post .Comments .CommentsInput {
+  margin-left: 0.5rem;
+  background-color: #f0f2f5;
+  padding: 0.1rem 0.5rem;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.Post .Comments .CommentsInput input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: inherit;
+  width: 100%;
+}
+
+.Post .Comments .CommentsInput input:hover,
+.Post .Comments .CommentsInput input:focus {
+  outline: none;
+}

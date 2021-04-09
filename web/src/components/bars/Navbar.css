@@ -26,10 +26,16 @@
 }
 
 .NavbarLeft .SearchFields input {
-  border-width: 0;
-  border: 0;
-  border: none;
-  background-color: #f0f2f5;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: inherit;
+}
+
+.NavbarLeft .SearchFields input:hover,
+.NavbarLeft .SearchFields input:focus {
+  outline: none;
 }
 
 .NavbarCenter {
