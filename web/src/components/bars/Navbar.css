@@ -1,0 +1,85 @@
+.Navbar {
+  display: flex;
+  background-color: #ffffff;
+  justify-content: space-between;
+}
+
+.MuiSvgIcon-root {
+  color: gray;
+}
+
+.Navbar img {
+  width: 35px;
+}
+
+.NavbarLeft {
+  display: flex;
+  align-items: center;
+  margin-left: 1%;
+}
+
+.NavbarLeft .SearchFields {
+  background-color: #f0f2f5;
+  padding: 10px;
+  border-radius: 25px;
+  margin-left: 5px;
+}
+
+.NavbarLeft .SearchFields input {
+  border-width: 0;
+  border: 0;
+  border: none;
+  background-color: #f0f2f5;
+}
+
+.NavbarCenter {
+  display: flex;
+  align-items: center;
+}
+
+.NavbarCenter .IconDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0.2rem;
+  width: 6rem;
+}
+
+.NavbarCenter .IconDivActive {
+  border-bottom: 2px solid #1877f2;
+}
+
+.NavbarCenter .IconDiv:hover {
+  background-color: #f2f2f2;
+  border-radius: 5%;
+}
+
+.NavbarCenter .MuiSvgIcon-root {
+}
+
+.NavbarRight {
+  display: flex;
+  align-items: center;
+}
+
+.NavbarRight .UserStatus {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.NavbarRight .UserStatus .Avatar {
+  width: 30px;
+  height: 30px;
+}
+
+.NavbarRight .UserStatus h6 {
+  margin-left: 5px;
+  padding: 0;
+  margin: 0px 5px;
+}
+
+.NavbarRight .IconButtons .MuiSvgIcon-root {
+  margin: 0px 5px;
+}

@@ -1,14 +1,16 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import NavBar from '../bars/NavBar';
+import React from 'react'
+import Container from 'react-bootstrap/Container'
+import NavBar from '../bars/NavBar'
+import BasicNavBar from '../bars/BasicNavBar'
 
 const GroupPage = () => {
-    return (
-        <Container>
-            <NavBar/>
-            <h1>Groups</h1>
-        </Container>
-    )
+  return (
+    <Container fluid>
+      <NavBar />
+      <BasicNavBar />
+      <h1>Groups</h1>
+    </Container>
+  )
 }
 
-export default GroupPage;
+export default GroupPage
