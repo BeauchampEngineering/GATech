@@ -7,7 +7,7 @@ const Posts = () => {
   return (
     <div className='Post'>
       <div className='PostHeader'>
-        <Avatar />
+        <Avatar className='Avatar' />
         <div className='PostHeaderText'>
           <h5>Edward Jahoda</h5>
           <h6>2:30 PM EST</h6>
