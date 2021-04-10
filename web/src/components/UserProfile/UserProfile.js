@@ -5,6 +5,11 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline'
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline'
 import SearchIcon from '@material-ui/icons/Search'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
+import Button from 'react-bootstrap/Button'
+
+import GradeIcon from '@material-ui/icons/Grade'
+import HouseIcon from '@material-ui/icons/House'
+import HomeIcon from '@material-ui/icons/Home'
 
 const UserProfile = () => {
   return (
@@ -44,6 +49,40 @@ const UserProfile = () => {
           <div className='IconDiv'>
             <MoreHorizIcon />
           </div>
+        </div>
+      </div>
+
+      <div id='FriendRequest'>
+        <h5>Aarun Sent you a friend request</h5>
+        <div id='FriendButtons'>
+          <Button>Confirm Request</Button>
+          <Button variant='light'>Delete Request</Button>
+        </div>
+      </div>
+
+      <div id='Intro'>
+        <div id='IntroContent'>
+          <h5>Intro</h5>
+          <ul>
+            <div className='IntroListItem'>
+              <GradeIcon />
+              <li>
+                Studies at <b>Georgia Tech</b>
+              </li>
+            </div>
+            <div className='IntroListItem'>
+              <HouseIcon />
+              <li>
+                Lives in <b>Atlanta, GA</b>
+              </li>
+            </div>
+            <div className='IntroListItem'>
+              <HomeIcon />
+              <li>
+                From <b>Maryland</b>
+              </li>
+            </div>
+          </ul>
         </div>
       </div>
     </div>
