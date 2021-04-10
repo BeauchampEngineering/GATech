@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import UserProfile from '../UserProfile/UserProfile'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
@@ -48,6 +49,7 @@ const UserPage = () => {
         <Button onClick={handleSearch}>Search</Button>
       </Form>
       <UserModal show={show} onClose={handleClose} />
+      <UserProfile />
     </Container>
   )
 }

@@ -1,0 +1,100 @@
+.ProfilePage {
+  width: 65%;
+  border: 2px solid black;
+  position: relative;
+  margin: 0 auto;
+}
+
+.ProfilePage .Heading {
+  width: 100%;
+}
+
+.ProfilePage .Heading img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+}
+
+.ProfilePage .Heading .Avatar {
+  width: 130px;
+  height: 130px;
+  margin: -15% auto 0;
+}
+
+.ProfilePage .Heading h3 {
+  width: fit-content;
+  margin: 0.8rem auto;
+}
+
+.AboutBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-top: 1px solid gray;
+  padding: 0.4rem 0;
+}
+
+.AboutBar ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.AboutBar ul li {
+  padding: 0.4rem 0.8rem;
+  margin: 0 0.1rem;
+  font-size: 0.8rem;
+  color: grey;
+  border-radius: 3px;
+}
+
+.AboutBar ul li:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+
+.AboutBar #respond {
+  display: flex;
+  align-items: center;
+  background-color: #e7f3ff;
+  padding: 0 0.5rem 0 0;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.AboutBar #respond:hover {
+  cursor: pointer;
+}
+
+.AboutBar #respond .IconDiv {
+  background-color: inherit;
+}
+
+.AboutBar #respond .IconDiv .MuiSvgIcon-root {
+  color: #1877f2;
+}
+
+.AboutBar #respond h6 {
+  color: #1877f2;
+  padding: 0;
+  margin: 0;
+}
+
+.AboutBar .AboutActions {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.AboutBar .AboutActions .IconDiv {
+  padding: 0.2rem 0.4rem;
+  margin: 0.15rem;
+  border-radius: 3px;
+  background-color: #e4e6eb;
+}
+
+.AboutBar .AboutActions .IconDiv:hover {
+  cursor: pointer;
+}
