@@ -1,10 +1,25 @@
 import './Login.css'
-import React from 'react'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container'
-import LoginForm from '../forms/LoginForm'
 import Button from 'react-bootstrap/Button'
+import { useHistory } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 
 const LoginPage = () => {
+  const { loginUser } = useAuth()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const history = useHistory()
+
+  const handleClick = async () => {
+    try {
+      await loginUser(email, password)
+      history.push('/')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <Container fluid id='LoginContainer'>
       <div id='Information'>
@@ -17,9 +32,17 @@ const LoginPage = () => {
             className='input'
             type='text'
             placeholder='Email or Phone Number'
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <input className='input' type='text' placeholder='Password' />
-          <Button id='LoginButton'>Log In</Button>
+          <input
+            className='input'
+            type='text'
+            placeholder='Password'
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button id='LoginButton' onClick={handleClick}>
+            Log In
+          </Button>
           <a>Forgot Password?</a>
           <div id='Line'></div>
           <Button id='NewAccount' variant='success'>
