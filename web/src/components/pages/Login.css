@@ -1,0 +1,88 @@
+#LoginContainer {
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 70%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#LoginContainer #Information {
+  width: 28%;
+  margin: 0 4%;
+  /* shift it up slightly above center */
+  padding-bottom: 8%;
+}
+
+#LoginContainer #Information h3 {
+  color: #1877f2;
+  font-weight: bold;
+  font-size: 2.8rem;
+}
+
+#LoginContainer #Information h4 {
+  font-weight: normal;
+  font-size: 1.2rem;
+}
+
+/* Actual form to login in */
+#LoginContainer #LoginFormContainer {
+  width: 28%;
+  margin: 0 4%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#LoginContainer #LoginFormContainer #LoginForm {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-color: white;
+  padding: 15px 10px;
+}
+
+#LoginContainer #LoginFormContainer #LoginForm .input {
+  padding: 7px 8px;
+  border-radius: 4px;
+  margin: 4px 3px;
+  border: hidden;
+  border: 1px solid #d1d1d1;
+}
+
+#LoginContainer #LoginFormContainer #LoginForm .input:focus {
+  border: 1px solid #166fe5;
+  outline: none;
+}
+
+#LoginContainer #LoginFormContainer #LoginForm #LoginButton {
+  margin: 10px 0px;
+}
+
+#LoginContainer #LoginFormContainer #LoginForm a {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #166fe5;
+  cursor: pointer;
+}
+#LoginContainer #LoginFormContainer #LoginForm #Line {
+  border-top: 1px solid #c1c1c1;
+  margin-top: 10px;
+}
+
+#LoginContainer #LoginFormContainer #LoginForm #NewAccount {
+  width: 60%;
+  margin-left: 20%;
+  font-size: small;
+  font-weight: bold;
+  padding: 5px 0px;
+  margin-top: 15px;
+}
+
+/* Text below Login Form */
+#LoginContainer #LoginText p {
+  margin: 5% 0 0 0;
+  font-size: 0.65rem;
+  text-align: center;
+}
