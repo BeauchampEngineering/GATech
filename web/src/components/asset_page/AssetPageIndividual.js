@@ -4,24 +4,28 @@ import MaintenanceEntry from '../maintenance_entry/MaintenanceEntry'
 const AssetPageIndividual = ({ title, lastModified, imageSrc }) => {
   const maintenanceEntries = [
     {
+      key: 1,
       employee: 'Craig',
       date: '4/10/2021',
       description:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam sunt deserunt quibusdam doloribus ut totam quisquam fugit repellat! Rem, aperiam? Autem nulla in sapiente, ab omnis asperiores laudantium facere molestiae?',
     },
     {
+      key: 2,
       employee: 'Himanish',
       date: '4/10/2021',
       description:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam sunt deserunt quibusdam doloribus ut totam quisquam fugit repellat! Rem, aperiam? Autem nulla in sapiente, ab omnis asperiores laudantium facere molestiae?',
     },
     {
+      key: 3,
       employee: 'Ryan',
       date: '4/10/2021',
       description:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam sunt deserunt quibusdam doloribus ut totam quisquam fugit repellat! Rem, aperiam? Autem nulla in sapiente, ab omnis asperiores laudantium facere molestiae?',
     },
     {
+      key: 4,
       employee: 'Aarun',
       date: '4/10/2021',
       description:
@@ -42,6 +46,7 @@ const AssetPageIndividual = ({ title, lastModified, imageSrc }) => {
 
         {maintenanceEntries.map((values) => (
           <MaintenanceEntry
+            key={values.key}
             employee={values.employee}
             date={values.date}
             description={values.description}
