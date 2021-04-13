@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import AssetDisplay from '../asset_display/AssetDisplay'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
@@ -35,7 +36,10 @@ const AssetPage = () => {
     <Container fluid>
       <NavBar />
       <BasicNavBar />
-      <h1>Assets</h1>
+
+      <AssetDisplay />
+
+      {/* <h1>Assets</h1>
       <Button style={{ float: 'right' }} onClick={handleShow}>
         +
       </Button>
@@ -47,7 +51,7 @@ const AssetPage = () => {
         />
         <Button onClick={handleSearch}>Search</Button>
       </Form>
-      <AssetModal show={show} onClose={handleClose} />
+      <AssetModal show={show} onClose={handleClose} /> */}
     </Container>
   )
 }
