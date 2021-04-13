@@ -1,0 +1,36 @@
+#IndividualContainer {
+  margin: 0;
+  padding: 5px 20px 20px;
+  background-color: #f0f2f5;
+}
+
+#IndividualContainer #ContentContainer {
+  width: 80%;
+  margin: auto;
+}
+
+#IndividualContainer #IndividualTextHeading {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#IndividualContainer #IndividualTextHeading h3 {
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+}
+
+#IndividualContainer #ImageContainer {
+  height: 300px;
+  width: 400px;
+  margin: 10px auto 20px;
+}
+
+#IndividualContainer #ImageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 5px;
+}
