@@ -1,4 +1,5 @@
 import './AssetPageIndividual.css'
+import Navbar from '../bars/NavBar'
 import MaintenanceEntry from '../maintenance_entry/MaintenanceEntry'
 
 const AssetPageIndividual = ({ title, lastModified, imageSrc }) => {
@@ -35,6 +36,7 @@ const AssetPageIndividual = ({ title, lastModified, imageSrc }) => {
 
   return (
     <div id='IndividualContainer'>
+      <Navbar />
       <div id='ContentContainer'>
         <div id='IndividualTextHeading'>
           <h2>{title}</h2>
