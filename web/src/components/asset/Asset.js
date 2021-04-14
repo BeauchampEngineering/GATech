@@ -1,8 +1,20 @@
 import './Asset.css'
 import AssetPageIndividual from '../asset_page/AssetPageIndividual'
 import { Link } from 'react-router-dom'
+import Badge from 'react-bootstrap/Badge'
 
-const Asset = ({ name, lastModified }) => {
+const badgeColor = (category) => {
+  switch (category) {
+    case 'Food':
+      return 'primary'
+    case 'Manufacturing':
+      return 'danger'
+    default:
+      return 'primary'
+  }
+}
+
+const Asset = ({ name, lastModified, categories }) => {
   return (
     <Link to={`/assets/${name.toLowerCase()}`}>
       <div id='Asset'>
@@ -11,6 +23,9 @@ const Asset = ({ name, lastModified }) => {
           alt='mountain'
         />
         <h4>{name}</h4>
+        {categories.map((category) => (
+          <Badge variant={badgeColor(category)}>{category}</Badge>
+        ))}
         <h5>{lastModified}</h5>
       </div>
     </Link>
