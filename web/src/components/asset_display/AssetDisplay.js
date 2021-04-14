@@ -68,10 +68,21 @@ const assets = [
 
 const AssetDisplay = () => {
   const [searchText, setsearchText] = useState('')
+  const [filter, setfilter] = useState(null)
 
   const searchChanged = (e) => {
     setsearchText(e.target.value)
     console.log(e.target.value)
+  }
+
+  const categoryChanged = (e) => {
+    e === null ? setfilter(null) : setfilter(e.label)
+  }
+
+  function categoryFilterFunction(e) {
+    if (!filter || e.categories.includes(filter)) {
+      return e
+    }
   }
 
   const categoryOptions = [
@@ -89,12 +100,14 @@ const AssetDisplay = () => {
         placeholder='Categories'
         isClearable
         className='Selector'
+        onChange={categoryChanged}
       />
       <div id='AssetContainer'>
         {assets
           .filter((asset) =>
             asset.name.toLowerCase().includes(searchText.toLowerCase())
           )
+          .filter(categoryFilterFunction)
           .map((asset) => (
             <Asset
               key={asset.id}

@@ -23,8 +23,10 @@ const Asset = ({ name, lastModified, categories }) => {
           alt='mountain'
         />
         <h4>{name}</h4>
-        {categories.map((category) => (
-          <Badge variant={badgeColor(category)}>{category}</Badge>
+        {categories.map((category, i) => (
+          <Badge key={i} variant={badgeColor(category)}>
+            {category}
+          </Badge>
         ))}
         <h5>{lastModified}</h5>
       </div>
