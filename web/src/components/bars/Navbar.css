@@ -5,7 +5,7 @@
 }
 
 .MuiSvgIcon-root {
-  color: gray;
+  color: var(--icon-color);
 }
 
 .Navbar img {
@@ -19,7 +19,7 @@
 }
 
 .NavbarLeft .SearchFields {
-  background-color: #f0f2f5;
+  background-color: var(--background-color);
   padding: 10px;
   border-radius: 25px;
   margin-left: 5px;
@@ -53,15 +53,12 @@
 }
 
 .NavbarCenter .IconDivActive {
-  border-bottom: 2px solid #1877f2;
+  border-bottom: 2px solid var(--dark-accent);
 }
 
 .NavbarCenter .IconDiv:hover {
-  background-color: #f2f2f2;
+  background-color: var(--hover-color);
   border-radius: 5%;
-}
-
-.NavbarCenter .MuiSvgIcon-root {
 }
 
 .NavbarRight {

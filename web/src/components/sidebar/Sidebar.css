@@ -19,7 +19,7 @@
 
 .Sidebar ul .ListItem:hover {
   cursor: pointer;
-  background-color: #cccccc;
+  background-color: var(--hover-color);
 }
 
 .Sidebar ul .ListItem .Avatar {
