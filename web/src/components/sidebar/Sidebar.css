@@ -18,7 +18,8 @@
 }
 
 .Sidebar ul .ListItem:hover {
-  background-color: rebeccapurple;
+  cursor: pointer;
+  background-color: #cccccc;
 }
 
 .Sidebar ul .ListItem .Avatar {
