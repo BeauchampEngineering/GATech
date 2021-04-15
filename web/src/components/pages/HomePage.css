@@ -1,5 +1,6 @@
 #HomePageContainer {
   background-color: var(--background-color);
+  padding: 0;
 }
 
 .SidebarPostCollectionContainer {

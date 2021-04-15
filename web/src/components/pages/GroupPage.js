@@ -5,7 +5,7 @@ import BasicNavBar from '../bars/BasicNavBar'
 
 const GroupPage = () => {
   return (
-    <Container fluid>
+    <Container fluid className='PageContainer'>
       <NavBar />
       <BasicNavBar />
       <h1>Groups</h1>

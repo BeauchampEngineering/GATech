@@ -21,7 +21,7 @@ const LoginPage = () => {
   }
 
   return (
-    <Container fluid id='LoginContainer'>
+    <Container fluid id='LoginContainer' className='PageContainer'>
       <div id='Information'>
         <h3>facebook</h3>
         <h4>Connect with friends and the world around you on Facebook.</h4>

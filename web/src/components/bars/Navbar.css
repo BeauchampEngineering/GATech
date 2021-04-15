@@ -1,6 +1,6 @@
 .Navbar {
   display: flex;
-  background-color: #ffffff;
+  background-color: var(--card-color);
   justify-content: space-between;
 }
 
