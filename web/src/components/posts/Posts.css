@@ -5,7 +5,7 @@
   position: relative;
   padding: 1rem 0.5rem;
   margin: 0 auto 1rem;
-
+  background-color: var(--card-color);
   /* elevation effect */
   box-shadow: 0 4px 8px var(--shadow-color);
 }

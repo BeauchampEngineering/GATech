@@ -1,3 +1,7 @@
+#HomePageContainer {
+  background-color: var(--background-color);
+}
+
 .SidebarPostCollectionContainer {
   display: grid;
   grid-template-columns: 25% 50% auto;

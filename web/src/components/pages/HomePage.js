@@ -9,7 +9,7 @@ import BasicNavBar from '../bars/BasicNavBar'
 
 const HomePage = () => {
   return (
-    <Container fluid>
+    <Container fluid id='HomePageContainer'>
       <NavBar />
       <BasicNavBar />
       <h1>Home Page</h1>
