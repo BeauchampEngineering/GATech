@@ -1,6 +1,9 @@
 .Sidebar {
-  width: 78%;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  width: 19%;
   height: fit-content;
+  position: fixed;
 }
 
 .Sidebar ul {
@@ -19,7 +22,8 @@
 
 .Sidebar ul .ListItem:hover {
   cursor: pointer;
-  background-color: var(--hover-color);
+  background-color: var(--second-accent);
+  /* background-color: pink; */
 }
 
 .Sidebar ul .ListItem .Avatar {

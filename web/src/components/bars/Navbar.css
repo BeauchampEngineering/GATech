@@ -3,6 +3,11 @@
   background-color: var(--card-color);
   justify-content: space-between;
   box-shadow: 0px 4px 8px var(--shadow-color);
+  width: 100%;
+  z-index: 10;
+  height: fit-content;
+  position: sticky;
+  top: 0;
 }
 
 .MuiSvgIcon-root {
@@ -17,6 +22,7 @@
   display: flex;
   align-items: center;
   margin-left: 1%;
+  cursor: pointer;
 }
 
 .NavbarLeft .SearchFields {
@@ -42,6 +48,7 @@
 .NavbarCenter {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .NavbarCenter .IconDiv {
@@ -65,6 +72,7 @@
 .NavbarRight {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .NavbarRight .UserStatus {

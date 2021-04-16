@@ -12,7 +12,6 @@ const HomePage = () => {
     <Container fluid className='PageContainer'>
       <NavBar />
       <BasicNavBar />
-      <h1>Home Page</h1>
       <div className='SidebarPostCollectionContainer'>
         <Sidebar className='Sidebar' />
         <div className='PostCollection'>
