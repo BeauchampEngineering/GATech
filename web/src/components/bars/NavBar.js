@@ -1,6 +1,6 @@
 import React from 'react'
 import './Navbar.css'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search'
 import HomeIcon from '@material-ui/icons/Home'
 import GroupIcon from '@material-ui/icons/Group'
@@ -14,13 +14,16 @@ import MessageIcon from '@material-ui/icons/Message'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle'
 
-const iconSize = 'medium'
+const iconSize = 'default'
 
 const NavBar = () => {
+  const history = useHistory()
+
   return (
     <div className='Navbar'>
       <div className='NavbarLeft'>
         <img src='https://cdn3.iconfinder.com/data/icons/capsocial-round/500/facebook-512.png' />
+
         <div className='SearchFields'>
           <SearchIcon />
           <input type='text' placeholder='Search Facebook' />
@@ -28,19 +31,23 @@ const NavBar = () => {
       </div>
 
       <div className='NavbarCenter'>
-        <div className='IconDiv IconDivActive'>
+        <div
+          className='IconDiv IconDivActive'
+          onClick={() => history.push('/home')}
+        >
           <HomeIcon fontSize={iconSize} />
         </div>
-        <div className='IconDiv'>
+
+        <div className='IconDiv' onClick={() => history.push('/users')}>
           <GroupIcon fontSize={iconSize} />
         </div>
-        <div className='IconDiv'>
+        <div className='IconDiv' onClick={() => history.push('/assets')}>
           <OndemandVideoIcon fontSize={iconSize} />
         </div>
-        <div className='IconDiv'>
+        <div className='IconDiv' onClick={() => history.push('/groups')}>
           <StorefrontIcon fontSize={iconSize} />
         </div>
-        <div className='IconDiv'>
+        <div className='IconDiv' onClick={() => history.push('/logout')}>
           <SupervisedUserCircleIcon fontSize={iconSize} />
         </div>
       </div>
