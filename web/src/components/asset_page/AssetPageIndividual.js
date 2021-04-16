@@ -1,6 +1,7 @@
 import './AssetPageIndividual.css'
 import Navbar from '../bars/NavBar'
 import MaintenanceEntry from '../maintenance_entry/MaintenanceEntry'
+import Container from 'react-bootstrap/Container'
 
 const AssetPageIndividual = ({ title, lastModified, imageSrc }) => {
   const maintenanceEntries = [
@@ -35,7 +36,7 @@ const AssetPageIndividual = ({ title, lastModified, imageSrc }) => {
   ]
 
   return (
-    <div id='IndividualContainer'>
+    <div id='IndividualContainer' className='PageContainer'>
       <Navbar />
       <div id='ContentContainer'>
         <div id='IndividualTextHeading'>
