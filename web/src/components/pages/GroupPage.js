@@ -7,7 +7,7 @@ const GroupPage = () => {
   return (
     <Container fluid className='PageContainer'>
       <NavBar />
-      <BasicNavBar />
+      {/* <BasicNavBar /> */}
       <h1>Groups</h1>
     </Container>
   )

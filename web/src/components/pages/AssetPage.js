@@ -35,7 +35,7 @@ const AssetPage = () => {
   return (
     <Container fluid className='PageContainer'>
       <NavBar />
-      <BasicNavBar />
+      {/* <BasicNavBar /> */}
 
       <AssetDisplay />
 

@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <Container fluid className='PageContainer'>
       <NavBar />
-      <BasicNavBar />
+      {/* <BasicNavBar /> */}
       <div className='SidebarPostCollectionContainer'>
         <Sidebar className='Sidebar' />
         <div className='PostCollection'>
