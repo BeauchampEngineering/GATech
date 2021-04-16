@@ -14,6 +14,8 @@ import MessageIcon from '@material-ui/icons/Message'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle'
 
+const iconSize = 'medium'
+
 const NavBar = () => {
   return (
     <div className='Navbar'>
@@ -27,19 +29,19 @@ const NavBar = () => {
 
       <div className='NavbarCenter'>
         <div className='IconDiv IconDivActive'>
-          <HomeIcon fontSize='large' />
+          <HomeIcon fontSize={iconSize} />
         </div>
         <div className='IconDiv'>
-          <GroupIcon fontSize='large' />
+          <GroupIcon fontSize={iconSize} />
         </div>
         <div className='IconDiv'>
-          <OndemandVideoIcon fontSize='large' />
+          <OndemandVideoIcon fontSize={iconSize} />
         </div>
         <div className='IconDiv'>
-          <StorefrontIcon fontSize='large' />
+          <StorefrontIcon fontSize={iconSize} />
         </div>
         <div className='IconDiv'>
-          <SupervisedUserCircleIcon fontSize='large' />
+          <SupervisedUserCircleIcon fontSize={iconSize} />
         </div>
       </div>
 
