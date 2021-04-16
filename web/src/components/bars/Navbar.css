@@ -1,26 +1,34 @@
 .Navbar {
   display: flex;
-  background-color: #ffffff;
+  background-color: var(--card-color);
   justify-content: space-between;
+  box-shadow: 0px 4px 8px var(--shadow-color);
+  width: 100%;
+  z-index: 10;
+  height: fit-content;
+  position: sticky;
+  top: 0;
+  padding: 0.11rem 0;
 }
 
 .MuiSvgIcon-root {
-  color: gray;
+  color: var(--icon-color);
 }
 
 .Navbar img {
-  width: 35px;
+  width: 30px;
 }
 
 .NavbarLeft {
   display: flex;
   align-items: center;
   margin-left: 1%;
+  cursor: pointer;
 }
 
 .NavbarLeft .SearchFields {
-  background-color: #f0f2f5;
-  padding: 10px;
+  background-color: var(--background-color);
+  padding: 3px 10px;
   border-radius: 25px;
   margin-left: 5px;
 }
@@ -31,6 +39,9 @@
   border-left-style: hidden;
   border-bottom-style: hidden;
   background-color: inherit;
+  font-size: 0.8rem;
+  height: fit-content;
+  width: 150px;
 }
 
 .NavbarLeft .SearchFields input:hover,
@@ -41,6 +52,7 @@
 .NavbarCenter {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .NavbarCenter .IconDiv {
@@ -53,20 +65,18 @@
 }
 
 .NavbarCenter .IconDivActive {
-  border-bottom: 2px solid #1877f2;
+  border-bottom: 2px solid var(--dark-accent);
 }
 
 .NavbarCenter .IconDiv:hover {
-  background-color: #f2f2f2;
+  background-color: var(--hover-color);
   border-radius: 5%;
-}
-
-.NavbarCenter .MuiSvgIcon-root {
 }
 
 .NavbarRight {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .NavbarRight .UserStatus {

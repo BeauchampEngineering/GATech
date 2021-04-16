@@ -33,7 +33,7 @@ const AssetPage = () => {
   }
 
   return (
-    <Container fluid>
+    <Container fluid className='PageContainer'>
       <NavBar />
       <BasicNavBar />
 

@@ -5,9 +5,9 @@
   position: relative;
   padding: 1rem 0.5rem;
   margin: 0 auto 1rem;
-
+  background-color: var(--card-color);
   /* elevation effect */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .Post .PostHeader {
@@ -54,8 +54,8 @@
   justify-content: space-around;
   padding: 0.3rem 0rem;
   margin: 0.4rem 0rem;
-  border-top: 1px solid #cccccc;
-  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid var(--second-accent);
+  border-bottom: 1px solid var(--second-accent);
 }
 
 .Post .Reactions .ReactionSection {
@@ -63,17 +63,19 @@
   justify-content: center;
   align-items: center;
   margin: 0 0.2rem;
+  padding: 0.1rem 0;
   width: 100%;
 }
 
 .Post .Reactions .ReactionSection:hover {
-  background-color: #f0f2f5;
+  background-color: var(--hover-color);
+  cursor: pointer;
   border-radius: 5px;
 }
 
 .Post .Reactions .ReactionSection h6 {
   margin: 0 0 0 0.3rem;
-  color: gray;
+  color: var(--icon-color);
 }
 
 .Post .Comments {
@@ -89,7 +91,7 @@
 
 .Post .Comments .CommentsInput {
   margin-left: 0.5rem;
-  background-color: #f0f2f5;
+  background-color: var(--background-color);
   padding: 0.1rem 0.5rem;
   border-radius: 20px;
   width: 100%;

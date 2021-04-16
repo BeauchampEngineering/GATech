@@ -91,7 +91,7 @@ const AssetDisplay = () => {
   ]
 
   return (
-    <div id='Container'>
+    <div id='AssetDisplayContainer'>
       <div id='SearchBarContainer'>
         <input type='text' placeholder='Search' onChange={searchChanged} />
       </div>

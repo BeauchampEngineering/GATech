@@ -33,7 +33,7 @@ const UserPage = () => {
   }
 
   return (
-    <Container fluid>
+    <Container fluid className='PageContainer'>
       <NavBar />
       <BasicNavBar />
       <h1>Users</h1>
