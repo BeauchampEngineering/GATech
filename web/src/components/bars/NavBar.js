@@ -1,6 +1,6 @@
 import React from 'react'
 import './Navbar.css'
-import { useHistory } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search'
 import HomeIcon from '@material-ui/icons/Home'
 import GroupIcon from '@material-ui/icons/Group'
@@ -31,25 +31,43 @@ const NavBar = () => {
       </div>
 
       <div className='NavbarCenter'>
-        <div
-          className='IconDiv IconDivActive'
-          onClick={() => history.push('/home')}
+        <NavLink
+          to='/'
+          exact
+          activeClassName='IconDivActive'
+          className='IconDiv'
         >
           <HomeIcon fontSize={iconSize} />
-        </div>
+        </NavLink>
 
-        <div className='IconDiv' onClick={() => history.push('/users')}>
+        <NavLink
+          to='/users'
+          activeClassName='IconDivActive'
+          className='IconDiv'
+        >
           <GroupIcon fontSize={iconSize} />
-        </div>
-        <div className='IconDiv' onClick={() => history.push('/assets')}>
+        </NavLink>
+        <NavLink
+          to='/assets'
+          activeClassName='IconDivActive'
+          className='IconDiv'
+        >
           <OndemandVideoIcon fontSize={iconSize} />
-        </div>
-        <div className='IconDiv' onClick={() => history.push('/groups')}>
+        </NavLink>
+        <NavLink
+          to='/groups'
+          activeClassName='IconDivActive'
+          className='IconDiv'
+        >
           <StorefrontIcon fontSize={iconSize} />
-        </div>
-        <div className='IconDiv' onClick={() => history.push('/logout')}>
+        </NavLink>
+        <NavLink
+          to='/logout'
+          activeClassName='IconDivActive'
+          className='IconDiv'
+        >
           <SupervisedUserCircleIcon fontSize={iconSize} />
-        </div>
+        </NavLink>
       </div>
 
       <div className='NavbarRight'>
