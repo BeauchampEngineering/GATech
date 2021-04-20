@@ -1,0 +1,12 @@
+:root {
+  --background-color: #f0f2f5;
+  --dark-accent: #1877f2;
+  --light-accent: #166fe5;
+  --extra-light-accent: #e7f3ff;
+  --second-accent: #c1c1c1;
+  --second-accent-dark: gray;
+  --card-color: white;
+  --icon-color: gray;
+  --hover-color: #f2f2f2;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}

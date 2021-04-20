@@ -1,0 +1,158 @@
+.ProfilePage {
+  width: 55%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.ProfilePage .Heading {
+  width: 100%;
+}
+
+.ProfilePage .Heading img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.ProfilePage .Heading .Avatar {
+  width: 130px;
+  height: 130px;
+  margin: -15% auto 0;
+}
+
+.ProfilePage .Heading h3 {
+  width: fit-content;
+  margin: 0.8rem auto;
+}
+
+.AboutBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--second-accent);
+  padding: 0.4rem 0;
+}
+
+.AboutBar ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.AboutBar ul li {
+  padding: 0.4rem 0.6rem;
+  margin: 0 0.1rem;
+  font-size: 0.8rem;
+  color: var(--second-accent-dark);
+  border-radius: 3px;
+}
+
+.AboutBar ul li:hover {
+  background-color: var(--hover-color);
+  cursor: pointer;
+}
+
+.AboutBar #respond {
+  display: flex;
+  align-items: center;
+  background-color: var(--extra-light-accent);
+  padding: 0 0.5rem 0 0;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.AboutBar #respond:hover {
+  cursor: pointer;
+}
+
+.AboutBar #respond .IconDiv {
+  background-color: inherit;
+}
+
+.AboutBar #respond .IconDiv .MuiSvgIcon-root {
+  color: var(--dark-accent);
+}
+
+.AboutBar #respond h6 {
+  color: var(--dark-accent);
+  padding: 0;
+  margin: 0;
+}
+
+.AboutBar .AboutActions {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.AboutBar .AboutActions .IconDiv {
+  padding: 0.2rem 0.4rem;
+  margin: 0.15rem;
+  border-radius: 3px;
+  background-color: #e4e6eb;
+}
+
+.AboutBar .AboutActions .IconDiv:hover {
+  cursor: pointer;
+}
+
+/* Overall Bottom Theme */
+
+/* Friend Request Bar */
+
+.ProfilePage #FriendRequest {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0.5rem;
+  margin-top: 1rem;
+  box-shadow: 0px 4px 8px var(--shadow-color);
+}
+
+.ProfilePage #FriendRequest h5 {
+  margin: 0;
+  padding: 0;
+}
+
+.ProfilePage #FriendRequest #FriendButtons {
+  display: flex;
+  align-items: center;
+}
+
+.ProfilePage #FriendRequest #FriendButtons Button {
+  font-size: 0.64rem;
+  font-weight: bold;
+  margin: 0 0.4rem;
+}
+
+/* Intro Section */
+#Intro {
+  width: 40%;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px var(--shadow-color);
+}
+
+#IntroContent {
+  margin-left: 1rem;
+}
+
+#Intro ul {
+  list-style-type: none;
+  width: fit-content;
+  padding: 0;
+}
+
+#Intro ul .IntroListItem {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0;
+  margin: 0.1rem 0;
+  font-size: 0.9rem;
+}
+
+#Intro ul .IntroListItem li {
+  margin-left: 0.4rem;
+}

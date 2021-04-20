@@ -1,0 +1,14 @@
+.SidebarPostCollectionContainer {
+  display: grid;
+  grid-template-columns: 25% 50% auto;
+  grid-template-rows: 100%;
+}
+
+.Sidebar {
+  grid-column-start: 1;
+}
+
+.PostCollection {
+  grid-column-start: 2;
+  margin-top: 1rem;
+}

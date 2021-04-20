@@ -1,0 +1,101 @@
+.Navbar {
+  display: flex;
+  background-color: var(--card-color);
+  justify-content: space-between;
+  box-shadow: 0px 4px 8px var(--shadow-color);
+  width: 100%;
+  z-index: 10;
+  height: fit-content;
+  position: sticky;
+  top: 0;
+  padding: 0.11rem 0;
+}
+
+.MuiSvgIcon-root {
+  color: var(--icon-color);
+}
+
+.Navbar img {
+  width: 30px;
+}
+
+.NavbarLeft {
+  display: flex;
+  align-items: center;
+  margin-left: 1%;
+  cursor: pointer;
+}
+
+.NavbarLeft .SearchFields {
+  background-color: var(--background-color);
+  padding: 3px 10px;
+  border-radius: 25px;
+  margin-left: 5px;
+}
+
+.NavbarLeft .SearchFields input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: inherit;
+  font-size: 0.8rem;
+  height: fit-content;
+  width: 150px;
+}
+
+.NavbarLeft .SearchFields input:hover,
+.NavbarLeft .SearchFields input:focus {
+  outline: none;
+}
+
+.NavbarCenter {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.NavbarCenter .IconDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0.2rem;
+  width: 6rem;
+}
+
+.NavbarCenter .IconDivActive {
+  border-bottom: 2px solid var(--dark-accent);
+}
+
+.NavbarCenter .IconDiv:hover {
+  background-color: var(--hover-color);
+  border-radius: 5%;
+}
+
+.NavbarRight {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.NavbarRight .UserStatus {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.NavbarRight .UserStatus .Avatar {
+  width: 30px;
+  height: 30px;
+}
+
+.NavbarRight .UserStatus h6 {
+  margin-left: 5px;
+  padding: 0;
+  margin: 0px 5px;
+}
+
+.NavbarRight .IconButtons .MuiSvgIcon-root {
+  margin: 0px 5px;
+}
