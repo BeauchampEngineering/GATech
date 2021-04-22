@@ -96,6 +96,11 @@
   margin: 0px 5px;
 }
 
+.IconButtons {
+  display: flex;
+  align-items: center;
+}
+
 .NavbarRight .IconButtons .MuiSvgIcon-root {
   margin: 0px 5px;
 }
