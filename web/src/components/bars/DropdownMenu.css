@@ -5,11 +5,9 @@
 .menu-trigger {
   cursor: pointer;
   border: none;
-  transition: box-shadow 0.4s ease;
   padding: 0px;
   margin: 0px;
   width: fit-content;
-  /* background-color: orange; */
   display: flex;
   align-items: center;
   background-color: transparent;
@@ -24,7 +22,6 @@
   padding: 10px;
   width: fit-content;
   white-space: nowrap;
-
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   opacity: 0;
   visibility: hidden;
@@ -32,10 +29,6 @@
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   display: flex;
   flex-direction: column;
-}
-
-.menu .DropdownLink {
-  /* background-color: rebeccapurple; */
 }
 
 .menu.active {
