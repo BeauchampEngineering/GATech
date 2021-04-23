@@ -15,6 +15,25 @@
   border-radius: 4px 4px 0px 0px;
 }
 
+.FriendCard #ImgAndButton {
+  position: relative;
+}
+
+.FriendCard #CloseIcon {
+  border-radius: 50%;
+  background-color: rgba(60, 60, 60, 0.4);
+  color: white;
+  margin-top: 0;
+  position: absolute;
+  z-index: 1;
+  right: 5px;
+  top: 5px;
+}
+
+.FriendCard #CloseIcon:hover {
+  cursor: pointer;
+}
+
 .FriendCard h6 {
   margin-top: 5px;
 }
