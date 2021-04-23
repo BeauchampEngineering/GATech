@@ -19,8 +19,8 @@ const HomePage = () => {
         <div className='PostCollection'>
           <Post />
           <Post />
-          <Post />
           <SuggestionRow />
+          <Post />
         </div>
       </div>
     </Container>

@@ -2,12 +2,34 @@
   width: 90%;
   margin: auto;
   background-color: var(--card-color);
-  padding: 20px;
+  padding: 5px 20px 10px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
-#SuggestionRow {
+#SuggestionContainer h5 {
+  color: var(--second-accent-dark);
+  font-size: 1rem;
+  padding: 6px 0px;
+}
+
+#SuggestionContainer #SuggestionRow {
   display: flex;
   overflow-x: scroll;
   padding-bottom: 5px;
+}
+
+#SuggestionContainer #SeeAllButton {
+  border: none;
+  background-color: transparent;
+  color: var(--light-accent);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin: 15px auto 0px;
+}
+
+#SuggestionContainer #SeeAllButton:hover {
+  text-decoration: underline;
 }

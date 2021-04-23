@@ -20,7 +20,7 @@ const SuggestionRow = () => {
         <FriendCard />
         <FriendCard />
       </div>
-      <button>See All</button>
+      <button id='SeeAllButton'>See All</button>
     </div>
   )
 }
