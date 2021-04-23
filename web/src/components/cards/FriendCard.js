@@ -3,15 +3,19 @@ import edwardImg from '../../resources/edward.jpg'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import CloseIcon from '@material-ui/icons/Close'
 
-const FriendCard = () => {
+const FriendCard = ({ id, name, img_src, onClose }) => {
+  const temp = () => {
+    console.log('hello world')
+  }
+
   return (
     <div className='FriendCard'>
       <div id='ImgAndButton'>
-        <img src={edwardImg} />
-        <CloseIcon id='CloseIcon' />
+        <img src={img_src} />
+        <CloseIcon id='CloseIcon' onClick={() => onClose(id)} />
       </div>
 
-      <h6>Edward Jahoda</h6>
+      <h6>{name}</h6>
       <button className='AddFriendButton'>
         <div id='ButtonContents'>
           <PersonAddIcon />
@@ -23,3 +27,8 @@ const FriendCard = () => {
 }
 
 export default FriendCard
+
+FriendCard.defaultProps = {
+  img_src: edwardImg,
+  name: 'Edward Jahoda',
+}
