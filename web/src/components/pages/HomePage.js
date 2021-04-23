@@ -7,6 +7,8 @@ import Sidebar from '../sidebar/Sidebar'
 import Post from '../posts/Posts'
 import BasicNavBar from '../bars/BasicNavBar'
 
+import SuggestionRow from '../cards/SuggestionRow'
+
 const HomePage = () => {
   return (
     <Container fluid className='PageContainer'>
@@ -17,6 +19,7 @@ const HomePage = () => {
         <div className='PostCollection'>
           <Post />
           <Post />
+          <SuggestionRow />
           <Post />
         </div>
       </div>
