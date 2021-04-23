@@ -1,0 +1,13 @@
+#SuggestionContainer {
+  width: 90%;
+  margin: auto;
+  background-color: var(--card-color);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#SuggestionRow {
+  display: flex;
+  overflow-x: scroll;
+  padding-bottom: 5px;
+}

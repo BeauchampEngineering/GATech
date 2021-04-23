@@ -1,0 +1,42 @@
+.FriendCard {
+  min-width: 25%;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  text-align: center;
+  margin-right: 4px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  padding-bottom: 10px;
+}
+
+.FriendCard img {
+  width: 100%;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.FriendCard h6 {
+  margin-top: 5px;
+}
+
+.FriendCard .AddFriendButton {
+  background-color: var(--extra-light-accent);
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  color: var(--light-accent);
+  font-size: 0.8rem;
+  padding: 5px 15px;
+}
+
+#ButtonContents {
+  display: flex;
+  align-items: center;
+}
+
+.FriendCard .AddFriendButton .MuiSvgIcon-root {
+  margin: 0 3px 0 0;
+  padding: 0;
+  color: var(--light-accent);
+  font-size: 1rem;
+}
