@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "bcryptjs": "^2.4.3",
+    "mongoose": "^5.12.5"
+  }
+}
