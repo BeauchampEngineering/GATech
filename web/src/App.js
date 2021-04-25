@@ -24,7 +24,7 @@ const App = () => {
           <PrivateRoute exact path={['/', '/home']} component={HomePage} />
           <PrivateRoute path='/home' component={HomePage} />
           <PrivateRoute path='/users' component={UserPage} />
-          <PrivateRoute path='/assets' component={AssetPage} exact />
+          <PrivateRoute exact path='/assets' component={AssetPage} />
           <PrivateRoute path='/assets/:name' component={AssetPageIndividual} />
           <PrivateRoute path='/groups' component={GroupPage} />
         </Switch>

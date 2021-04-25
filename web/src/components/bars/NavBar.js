@@ -1,5 +1,5 @@
 import React from 'react'
-import './Navbar.css'
+import './styles/Navbar.css';
 import { useHistory, NavLink } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search'
 import HomeIcon from '@material-ui/icons/Home'

@@ -6,7 +6,6 @@ import FormControl from 'react-bootstrap/FormControl'
 import Container from 'react-bootstrap/Container'
 import NavBar from '../bars/NavBar'
 import UserModal from '../modals/UserModal'
-import BasicNavBar from '../bars/BasicNavBar'
 
 const UserCard = ({ user }) => {}
 

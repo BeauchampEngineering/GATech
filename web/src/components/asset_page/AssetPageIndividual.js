@@ -1,6 +1,6 @@
 import './AssetPageIndividual.css'
 import Navbar from '../bars/NavBar'
-import MaintenanceEntry from '../maintenance_entry/MaintenanceEntry'
+import MaintenanceEntry from '../cards/MaintenanceCard'
 
 const AssetPageIndividual = ({ title, lastModified, imageSrc }) => {
   const maintenanceEntries = [

@@ -1,6 +1,6 @@
 import './AssetDisplay.css'
 import { useState } from 'react'
-import Asset from '../asset/Asset'
+import AssetCard from '../cards/AssetCard'
 import Select from 'react-select'
 
 const assets = [
@@ -66,18 +66,14 @@ const assets = [
   },
 ]
 
+const categoryOptions = [
+  { value: 'food', label: 'Food' },
+  { value: 'maunfacturing', label: 'Manufacturing' },
+]
+
 const AssetDisplay = () => {
-  const [searchText, setsearchText] = useState('')
-  const [filter, setfilter] = useState(null)
-
-  const searchChanged = (e) => {
-    setsearchText(e.target.value)
-    console.log(e.target.value)
-  }
-
-  const categoryChanged = (e) => {
-    e === null ? setfilter(null) : setfilter(e.label)
-  }
+  const [searchText, setSearchText] = useState('')
+  const [filter, setFilter] = useState(null)
 
   function categoryFilterFunction(e) {
     if (!filter || e.categories.includes(filter)) {
@@ -85,37 +81,33 @@ const AssetDisplay = () => {
     }
   }
 
-  const categoryOptions = [
-    { value: 'food', label: 'Food' },
-    { value: 'maunfacturing', label: 'Manufacturing' },
-  ]
+  const renderAssets = () => {
+      return assets.filter((asset) =>
+        asset.name.toLowerCase().includes(searchText.toLowerCase())
+      ).filter(categoryFilterFunction).map((asset) => (
+        <AssetCard
+          key={asset.id}
+          name={asset.name}
+          lastModified={asset.lastModified}
+          categories={asset.categories}
+        />
+      ));
+  }
 
   return (
     <div id='AssetDisplayContainer'>
       <div id='SearchBarContainer'>
-        <input type='text' placeholder='Search' onChange={searchChanged} />
+        <input type='text' placeholder='Search' onChange={e => setSearchText(e.target.value)} />
       </div>
       <Select
         options={categoryOptions}
         placeholder='Categories'
         isClearable
         className='Selector'
-        onChange={categoryChanged}
+        onChange={e => e === null ? setFilter(null) : setFilter(e.label)}
       />
       <div id='AssetContainer'>
-        {assets
-          .filter((asset) =>
-            asset.name.toLowerCase().includes(searchText.toLowerCase())
-          )
-          .filter(categoryFilterFunction)
-          .map((asset) => (
-            <Asset
-              key={asset.id}
-              name={asset.name}
-              lastModified={asset.lastModified}
-              categories={asset.categories}
-            />
-          ))}
+        {renderAssets()}
       </div>
     </div>
   )
