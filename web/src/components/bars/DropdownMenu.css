@@ -1,0 +1,62 @@
+.MenuContainer {
+  position: relative;
+}
+
+.menu-trigger {
+  cursor: pointer;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
+.menu {
+  background: #ffffff;
+  border-radius: 8px;
+  margin-top: 15px;
+  right: 5px;
+  position: absolute;
+  padding: 10px;
+  width: fit-content;
+  white-space: nowrap;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#ProfileSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+#ProfileSection h5,
+p {
+  margin: 0;
+  padding: 0;
+}
+#ProfileSection h5 {
+  margin-top: 5px;
+}
+
+#ProfileSection p {
+  font-size: 0.75rem;
+}
+
+#ProfileSection .MuiAvatar-root {
+  background-color: darkcyan;
+}

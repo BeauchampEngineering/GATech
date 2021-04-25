@@ -13,6 +13,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import MessageIcon from '@material-ui/icons/Message'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle'
+import DropdownMenu from './DropdownMenu'
 
 const iconSize = 'default'
 
@@ -80,7 +81,7 @@ const NavBar = () => {
           <AddCircleOutlineIcon />
           <MessageIcon />
           <NotificationsIcon />
-          <ArrowDropDownCircleIcon />
+          <DropdownMenu />
         </div>
       </div>
     </div>

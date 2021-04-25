@@ -34,7 +34,6 @@ const AssetCard = ({asset}) => {
                 <View style={page.container}>
                 <View style={header.container}>
                     <TouchableOpacity onPress={handleClose}>
-                        {/*<Text>{'<'}</Text>*/}
                             <Icon
                             name='arrow-left'
                             type='feather'
