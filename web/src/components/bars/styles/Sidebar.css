@@ -1,0 +1,36 @@
+.Sidebar {
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  width: 19%;
+  height: fit-content;
+  position: fixed;
+}
+
+.Sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Sidebar ul .ListItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0.3rem;
+  border-radius: 3px;
+}
+
+.Sidebar ul .ListItem:hover {
+  cursor: pointer;
+  background-color: var(--second-accent);
+  /* background-color: pink; */
+}
+
+.Sidebar ul .ListItem .Avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.Sidebar ul .ListItem li {
+  margin-left: 1rem;
+}

@@ -1,14 +1,15 @@
 import React, {useContext} from 'react';
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 const StyleContext = React.createContext();
 
 export const useStyles = ()  => {
     return useContext(StyleContext);
-}
-
+}; 
 
 const StyleProvider = ({children}) => {
+
+    const {width, height} = Dimensions.get('window');
 
     const button = StyleSheet.create({
         fill: {
@@ -32,93 +33,94 @@ const StyleProvider = ({children}) => {
 
     const input = StyleSheet.create({
         container: {
+            flex: 1,
             flexDirection: 'row',
             justifyContent: 'space-between',
-            paddingBottom: 10
-        },
-        border: {
-            flexDirection: 'row',
-            width: 200,
-            borderBottomWidth: 2,
+            borderRadius: width * 0.05,
+            borderWidth: 2,
             borderColor: 'black'
-        },
-        box: {
-            flex: 1
         }
     });
 
     const page = StyleSheet.create({
         title: {
-            fontSize: 50
+            fontSize: 50,
+            paddingBottom: height * .05
         },
         container: {
             flex: 1,
             flexDirection: 'column',
-            justifyContent: 'center',
-            marginTop: 50,
-            marginLeft: 25,
-            marginRight: 25
+            marginTop: height * 0.07,
+            marginLeft: width * 0.07,
+            marginRight: width * 0.07,
+            marginBottom: height * 0.03
+        },
+        containeri: {
+            position: 'relative',
+            flexDirection: 'column',
+            marginTop: height * 0.01,
+            marginLeft: width * 0.2,
+            marginRight: width * 0.2,
+            marginBottom: height * .01,
+            width: width * .3,
+            height: height * .3,
+            
         }
     });
-
-    const pane = StyleSheet.create({
-        container: {
-            flex: 1,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-        }
-    })
 
     const card = StyleSheet.create({
         title: {
             fontSize: 15,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
         },
         body: {
             fontSize: 10
         },
         container: {
-            paddingTop: 10
-        },
-        border: {
-            padding: 17,
-            borderWidth: 2,
-            borderRadius: 7,
+            borderTopWidth: 2,
+            padding: 5,
             borderColor: 'black'
         }
     });
 
-    const modal = StyleSheet.create({
-        title: {
-            fontSize: 50
-        },
-        body: {
-            fontSize: 20
-        },
-        fill: {
-            backgroundColor: 'white',
-            borderWidth: 2,
-            borderRadius: 7,
-            borderColor: 'black'
-        },
+    const header = StyleSheet.create({
         container: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-        }
-    });
-
-    const bar = StyleSheet.create({
-        container: {
-            flex: 1,
             flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            bottom: 30,
-            paddingTop: 10,
+            justifyContent: 'space-between',
+            marginBottom: 'auto',
+            paddingBottom: height * 0.02
+        },
+        right: {
+            marginLeft: 'auto',
+        },
+        left: {
+            marginRight: 'auto'
+        }
+    });
+
+    const footer = StyleSheet.create({
+        container: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 'auto',
+            paddingTop: height * 0.02,
+            paddingBottom: height * 0.02
+        },
+        right: {
+            marginLeft: 'auto',
+        },
+        left: {
+            marginRight: 'auto'
+        }
+    });
+
+    const navbar = StyleSheet.create({
+        container: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 'auto',
+            paddingTop: height * 0.02,
+            paddingBottom: height * 0.02,
             borderTopColor: 'black',
             borderTopWidth: 2
         }
@@ -128,11 +130,11 @@ const StyleProvider = ({children}) => {
         button,
         page,
         input,
-        modal,
-        pane,
         card,
-        bar,
-        form
+        form,
+        header,
+        footer,
+        navbar
     };
 
     return (

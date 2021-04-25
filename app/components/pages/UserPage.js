@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Pressable} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Pressable, FlatList} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
@@ -7,15 +7,15 @@ import UserCard from '../cards/UserCard';
 
 const UserPage = () => {
 
-    const {page, input, pane, button} = useStyles();
-    const [opacity, setOpacity] = useState(1);
-    const [search, onChangeSearch] = useState('');
+    const {page, input, header} = useStyles();
+    const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
         // get assets from server
         const lst = []
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 20; i++) {
             lst.push({
                 id: i,
                 firstName: 'Kanye',
@@ -26,46 +26,51 @@ const UserPage = () => {
     }, []);
 
     const handleCancel = () => {
-        onChangeSearch('');
+        setShow(false);
+        setSearch('');
     }
 
-    const renderUsers = () => {
-
-        const handleShow = () => setOpacity(0.1);
-        const handleClose = () => setOpacity(1);
-
-        return users.map(user => {
-            const {id, firstName, lastName} = user;
-            return <UserCard 
-                        key={id} 
-                        user={{firstName, lastName}} 
-                        onShow={handleShow}
-                        onClose={handleClose}
-                    />
-        });
-    }
+    const renderUser = ({item}) => {
+        return <UserCard user={item}/>
+    };
 
     return (
-        <View style={page.container} opacity={opacity}>
-            <View style={input.container}>
-                <View style={input.border}>
-                    <TextInput
-                        style={input.box}
-                        value={search}
-                        placeholder='Search'
-                        onChangeText={onChangeSearch}
-                    />
-                    <Pressable onPress={handleCancel}>
+        <View style={page.container}>
+            {!show &&
+                <View style={header.container}>
+                    <View style={header.right}>
                         <Icon
-                            name='x-circle'
+                            name='search'
                             type='feather'
+                            onPress={() => setShow(true)}
                         />
-                    </Pressable>
+                    </View>
                 </View>
-            </View>
-            <View style={pane.container}>
-                {renderUsers()}
-            </View>
+            }
+            {show && 
+                <View style={header.container}>
+                    <View style={header.left}>
+                        <Icon
+                        name='chevron-left'
+                        type='feather'
+                        onPress={handleCancel}
+                    />
+                    </View>
+                    <View style={input.container}>
+                        <TextInput
+                            value={search}
+                            placeholder='Search'
+                            onChangeText={setSearch}
+                        />
+                    </View>
+                </View>
+            }
+            <FlatList
+                data={users}
+                renderItem={renderUser}
+                keyExtractor={user => user.id.toString()}
+                showsVerticalScrollIndicator={false}
+            />
             <NavBar selected='users'/>
         </View>
     )

@@ -1,27 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Modal, Pressable} from 'react-native';
 import {useStyles} from '../../contexts/StyleContext';
+import NavBar from '../bars/NavBar';
+import {Icon} from 'react-native-elements';
 
-const UserCard = ({user, onShow, onClose}) => {
+const UserCard = ({user}) => {
 
-    const {card, modal, page} = useStyles();
+    const {card, page, header} = useStyles();
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
         setShow(false);
-        onClose();
     };
     
     const handleShow = () => {
         setShow(true);
-        onShow();
     };
 
     return (
         <View>
-            <View style={card.container}>
+            <View>
                 <Pressable onPress={handleShow}>
-                    <View style={card.border}>
+                    <View style={card.container}>
                         <Text style={card.title}>{user.firstName}</Text>
                         <Text style={card.body}>{user.lastName}</Text>
                     </View>
@@ -29,17 +29,23 @@ const UserCard = ({user, onShow, onClose}) => {
             </View>
             <Modal
                 visible={show}
-                transparent={true}
                 onRequestClose={handleClose}
             >
-                <View style={modal.container}>
-                    <View style={modal.fill}>
-                        <TouchableOpacity onPress={handleClose}>
-                            <Text>x</Text>
-                        </TouchableOpacity>
-                        <Text style={modal.title}>{user.firstName}</Text>
-                        <Text style={modal.body}>{user.lastName}</Text>
+                <View style={page.container}>
+                    <View>
+                        <View style={header.container}>
+                    <TouchableOpacity onPress={handleClose}>
+                            <Icon
+                            name='arrow-left'
+                            type='feather'
+                        
+                    />
+                    </TouchableOpacity>
+                </View>
+                        <Text style={page.title}>{user.firstName}</Text>
+                        <Text>{user.lastName}</Text>
                     </View>
+                    <NavBar selected='users'/>
                 </View>
             </Modal>
         </View>

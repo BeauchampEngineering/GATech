@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Pressable} from 'react-native';
+import {
+    View, 
+    Text, 
+    TextInput, 
+    FlatList
+} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {useStyles} from '../../contexts/StyleContext';
 import NavBar from '../bars/NavBar';
@@ -7,15 +12,15 @@ import AssetCard from '../cards/AssetCard';
 
 const AssetPage = () => {
 
-    const {page, input, pane, button} = useStyles();
-    const [opacity, setOpacity] = useState(1);
-    const [search, onChangeSearch] = useState('');
+    const {page, input, header} = useStyles();
+    const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
     const [assets, setAssets] = useState([]);
 
     useEffect(() => {
         // get assets from server
         const lst = []
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 20; i++) {
             lst.push({
                 id: i,
                 name: 'Pizza',
@@ -26,56 +31,53 @@ const AssetPage = () => {
     }, []);
 
     const handleCancel = () => {
-        onChangeSearch('');
+        setShow(false);
+        setSearch('');
     }
 
     const handleQR = () => {
         // QR
     }
 
-    const renderAssets = () => {
-
-        const handleShow = () => setOpacity(0.1);
-        const handleClose = () => setOpacity(1);
-
-        return assets.map(asset => {
-            const {id, name, description} = asset;
-            return <AssetCard 
-                        key={id} 
-                        asset={{name, description}} 
-                        onShow={handleShow}
-                        onClose={handleClose}
-                    />
-        });
-    }
+    const renderAsset = ({item}) => {
+        return <AssetCard asset={item}/>
+    };
 
     return (
-        <View style={page.container} opacity={opacity}>
-            <View style={input.container}>
-                <View style={input.border}>
-                    <TextInput
-                        style={input.box}
-                        value={search}
-                        placeholder='Search'
-                        onChangeText={onChangeSearch}
-                    />
-                    <Pressable onPress={handleCancel}>
+        <View style={page.container}>
+            {!show &&
+                <View style={header.container}>
+                    <View style={header.right}>
                         <Icon
-                            name='x-circle'
+                            name='search'
                             type='feather'
+                            onPress={() => setShow(true)}
                         />
-                    </Pressable>
+                    </View>
                 </View>
-                <TouchableOpacity 
-                    style={button.fill}
-                    onPress={handleQR}
-                >
-                    <Text style={button.text}>QR</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={pane.container}>
-                {renderAssets()}
-            </View>
+            }
+            {show && 
+                <View style={header.container}>
+                    <Icon
+                        name='chevron-left'
+                        type='feather'
+                        onPress={handleCancel}
+                    />
+                    <View style={input.container}>
+                        <TextInput
+                            value={search}
+                            placeholder='Search'
+                            onChangeText={setSearch}
+                        />
+                    </View>
+                </View>
+            }
+            <FlatList
+                data={assets}
+                renderItem={renderAsset}
+                keyExtractor={asset => asset.id.toString()}
+                showsVerticalScrollIndicator={false}
+            />
             <NavBar selected='assets'/>
         </View>
     )
