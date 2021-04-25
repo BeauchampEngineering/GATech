@@ -5,6 +5,8 @@ import NavBar from '../bars/NavBar'
 import Sidebar from '../bars/Sidebar'
 import PostCard from '../cards/PostCard'
 
+import SuggestionRow from '../cards/SuggestionRow'
+
 const HomePage = () => {
   return (
     <Container fluid className='PageContainer'>
@@ -14,6 +16,7 @@ const HomePage = () => {
         <div className='PostCollection'>
           <PostCard />
           <PostCard />
+          <SuggestionRow />
           <PostCard />
         </div>
       </div>
