@@ -35,7 +35,7 @@ const AssetPageIndividual = ({ title, lastModified, imageSrc }) => {
   ]
 
   return (
-    <div id='IndividualContainer'>
+    <div id='IndividualContainer' className='PageContainer'>
       <Navbar />
       <div id='ContentContainer'>
         <div id='IndividualTextHeading'>
