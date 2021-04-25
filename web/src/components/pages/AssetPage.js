@@ -6,7 +6,6 @@ import FormControl from 'react-bootstrap/FormControl'
 import Container from 'react-bootstrap/Container'
 import NavBar from '../bars/NavBar'
 import AssetModal from '../modals/AssetModal'
-import BasicNavBar from '../bars/BasicNavBar'
 
 const AssetCard = ({ asset }) => {}
 
@@ -35,7 +34,6 @@ const AssetPage = () => {
   return (
     <Container fluid className='PageContainer'>
       <NavBar />
-      {/* <BasicNavBar /> */}
 
       <AssetDisplay />
 

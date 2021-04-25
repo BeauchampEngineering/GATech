@@ -1,7 +1,11 @@
 import './AssetPageIndividual.css'
 import Navbar from '../bars/NavBar'
+<<<<<<< HEAD
+import MaintenanceEntry from '../cards/MaintenanceCard'
+=======
 import MaintenanceEntry from '../maintenance_entry/MaintenanceEntry'
 import Container from 'react-bootstrap/Container'
+>>>>>>> main
 
 const AssetPageIndividual = ({ title, lastModified, imageSrc }) => {
   const maintenanceEntries = [
