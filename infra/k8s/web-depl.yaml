@@ -1,30 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-depl
+  name: web-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: web
   template:
     metadata:
       labels:
-        app: auth
+        app: web
     spec:
       containers:
-        - name: auth
-          image: aarunsrinivas/auth
+        - name: web
+          image: aarunsrinivas/web
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-srv
+  name: web-srv
 spec:
+  type: ClusterIP
   selector:
-    app: auth
+    app: web
   ports:
-    - name: auth
+    - name: web
       protocol: TCP
-      port: 4000
-      targetPort: 4000
+      port: 3000
+      targetPort: 3000
