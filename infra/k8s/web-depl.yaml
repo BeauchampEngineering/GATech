@@ -21,7 +21,6 @@ kind: Service
 metadata:
   name: web-srv
 spec:
-  type: ClusterIP
   selector:
     app: web
   ports:

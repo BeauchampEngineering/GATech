@@ -1,5 +1,6 @@
 import express, { Router } from 'express'
 import 'express-async-errors'
+import cors from 'cors'
 import mongoose from 'mongoose'
 import User from './models/user'
 import loginRoute from './routes/login'
@@ -9,10 +10,16 @@ import RouteNotFoundError from './errors/route-not-found-error'
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 
 app.use(loginRoute)
 app.use(logoutRoute)
+
+app.get('/auth/test/route', (req, res) => {
+    res.send('test')
+})
+
 app.all('*', async () => {
     throw new RouteNotFoundError()
 })
@@ -32,7 +39,7 @@ const start = async () => {
     }
     const user = User.build({email: 'admin@admin.com', password: 'admin'})
     await user.save()
-    app.listen(3000, () => console.log('Listening on 3000'))
+    app.listen(4000, () => console.log('Listening on 4000'))
 }
 
 start()
