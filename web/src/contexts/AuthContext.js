@@ -20,7 +20,8 @@ const AuthProvider = ({children}) => {
     };
 
     const logoutUser = async () => {
-        // go to server and blacklist user's token
+        const {data} = await axios.get('http://portal-manager.com/auth/logout');
+        console.log(data);
         sessionStorage.setItem('user', null);
         setCurrentUser(null);
     }
