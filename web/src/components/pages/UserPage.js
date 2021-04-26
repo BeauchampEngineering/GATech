@@ -35,7 +35,7 @@ const UserPage = () => {
     <Container fluid className='PageContainer'>
       <NavBar />
       {/* <BasicNavBar /> */}
-      <h1>Users</h1>
+      {/* <h1>Users</h1>
       <Button style={{ float: 'right' }} onClick={handleShow}>
         +
       </Button>
@@ -47,7 +47,7 @@ const UserPage = () => {
         />
         <Button onClick={handleSearch}>Search</Button>
       </Form>
-      <UserModal show={show} onClose={handleClose} />
+      <UserModal show={show} onClose={handleClose} /> */}
       <UserProfile />
     </Container>
   )

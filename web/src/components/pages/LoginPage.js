@@ -23,7 +23,7 @@ const LoginPage = () => {
   return (
     <Container fluid id='LoginContainer' className='PageContainer'>
       <div id='Information'>
-        <h3>facebook</h3>
+        <h3>Portal Manager(??)</h3>
         <h4>Connect with friends and the world around you on Facebook.</h4>
       </div>
       <div id='LoginFormContainer'>
@@ -51,7 +51,7 @@ const LoginPage = () => {
         </div>
         <div id='LoginText'>
           <p>
-            <b>Create a Page</b> for a celebrity, band or business
+            <b>Create a Page</b> for your company, brand or business
           </p>
         </div>
       </div>
