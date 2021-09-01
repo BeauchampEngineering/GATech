@@ -1,24 +1,24 @@
-import './styles/LoginPage.css'
-import React, { useState } from 'react'
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import { useHistory } from 'react-router-dom'
-import { useAuth } from '../../contexts/AuthContext'
+import './styles/LoginPage.css';
+import React, { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 const LoginPage = () => {
-  const { loginUser } = useAuth()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const history = useHistory()
+    const { loginUser } = useAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const history = useHistory();
 
-  const handleClick = async () => {
-    try {
-      await loginUser(email, password)
-      history.push('/')
-    } catch (err) {
-      console.log(err)
-    }
-  }
+    const handleClick = async () => {
+        try {
+            await loginUser(email, password);
+            history.push('/');
+        } catch (err) {
+            console.log(err.response.data);
+        }
+    };
 
   return (
     <Container fluid id='LoginContainer' className='PageContainer'>

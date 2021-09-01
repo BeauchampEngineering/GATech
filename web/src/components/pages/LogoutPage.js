@@ -12,7 +12,7 @@ const LogoutPage = () => {
             await logoutUser();
             history.push('/login');
         } catch(err) {
-            console.log(err);
+            console.log(err.response.data);
         }
     }, []);
 
