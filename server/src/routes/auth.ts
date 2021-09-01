@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express'
 import {body} from 'express-validator'
+import bcrypt from 'bcryptjs'
 import validateRequest from '../middlewares/validate-request'
 import User from '../models/user'
 
@@ -15,11 +16,15 @@ router.post('/auth/login', [
     .withMessage('Password is not empty')
 ], validateRequest, async (req: Request, res: Response) => {
     const {email, password} = req.body
-    const user = await User.findOne({email})
-    if(!user || password != user.password) {
+    const user = await User.findOne({where: {email}})
+    if(!user || !await bcrypt.compare(password, user.passwordHash)) {
         throw new Error('Invalid credentials')
     }
     res.status(200).json(user)
 })
 
-export default router;
+router.get('/auth/logout', (req: Request, res: Response) => {
+    res.status(200).json({message: 'Logged out'})
+})
+
+export default router
