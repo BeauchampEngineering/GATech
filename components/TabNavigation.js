@@ -27,7 +27,7 @@ export default function TabNavigation() {
         <TabView.Item style={{ backgroundColor: 'red', width: '100%' }}>
           <HomeScreen />
         </TabView.Item>
-        <TabView.Item style={{ backgroundColor: 'blue', width: '100%' }}>
+        <TabView.Item style={{ backgroundColor: 'grey', width: '100%' }}>
           <BrowseAssetsScreen />
         </TabView.Item>
         <TabView.Item style={{ backgroundColor: 'green', width: '100%' }}>
