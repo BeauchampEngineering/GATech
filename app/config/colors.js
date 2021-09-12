@@ -5,4 +5,5 @@ export default {
   white: '#000000',
 
   lightGrey: '#E4E5E7',
+  lighterGrey: '#E4E5D0',
 }
