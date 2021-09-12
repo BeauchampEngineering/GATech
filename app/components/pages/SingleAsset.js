@@ -10,26 +10,35 @@ const machineData = {
   image: require('../../assets/machine.jpg'),
 }
 
-const logData = [
+const initialData = [
   {
     id: 1,
     message: 'temporary message',
   },
 ]
 
-const newLogEntry = () => {
-  console.log('new entry')
-}
+// this is temporary - get rid of me
+var idNum = 2
 
 export default function SingleAsset() {
-  const [logData, setLogData] = useState(logData)
+  const [logData, setLogData] = useState(initialData)
   const [modalVisible, setModalVisible] = useState(false)
+
+  const newLogEntry = (message) => {
+    if (message !== '') {
+      setLogData((oldArray) => [...oldArray, { id: 2, message }])
+      idNum += 1
+    }
+  }
 
   return (
     <View style={styles.container}>
       <Text>Single Asset</Text>
       <Button
-        onPress={(params) => {
+        // onPress={(params) => {
+        //   setModalVisible(!modalVisible)
+        // }}
+        onPress={() => {
           setModalVisible(!modalVisible)
         }}
         title='Add Entry'
@@ -37,23 +46,19 @@ export default function SingleAsset() {
         accessibilityLabel='Learn more about this purple button'
       />
 
-      <Modal
-        animationType='slide'
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.')
-          setModalVisible(!modalVisible)
-        }}
-      >
+      <Modal animationType='slide' transparent={true} visible={modalVisible}>
         <LogEntryModal
-          doneAction={() => {
+          doneAction={(messageText) => {
             setModalVisible(false)
+            newLogEntry(messageText)
           }}
+          cancelAction={() => setModalVisible(false)}
         />
       </Modal>
 
-      <LogMessage title='Log Message title' subtitle='log message subtitle' />
+      {logData.map((item) => (
+        <LogMessage title={item.message} subtitle={item.message} />
+      ))}
     </View>
   )
 }
