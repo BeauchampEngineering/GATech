@@ -16,7 +16,6 @@ export default function LogMessage({ title, subtitle }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.lightGrey,
-    top: 50,
     borderRadius: 5,
     elevation: 6,
   },

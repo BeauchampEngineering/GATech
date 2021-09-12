@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, Button, Alert, Modal } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Alert,
+  Modal,
+  Image,
+} from 'react-native'
 import colors from '../../config/colors'
 import LogEntryModal from '../LogEntryModal'
 import LogMessage from '../LogMessage'
@@ -10,12 +18,7 @@ const machineData = {
   image: require('../../assets/machine.jpg'),
 }
 
-const initialData = [
-  {
-    id: 1,
-    message: 'temporary message',
-  },
-]
+const initialData = []
 
 // this is temporary - get rid of me
 var idNum = 2
@@ -33,18 +36,21 @@ export default function SingleAsset() {
 
   return (
     <View style={styles.container}>
-      <Text>Single Asset</Text>
-      <Button
-        // onPress={(params) => {
-        //   setModalVisible(!modalVisible)
-        // }}
-        onPress={() => {
-          setModalVisible(!modalVisible)
-        }}
-        title='Add Entry'
-        color='#841584'
-        accessibilityLabel='Learn more about this purple button'
-      />
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={machineData.image} />
+      </View>
+      <View style={styles.detailsContainer}>
+        <Text style={styles.name}>{machineData.name}</Text>
+        <Text style={styles.date}>{machineData.date}</Text>
+        <Button
+          onPress={() => {
+            setModalVisible(!modalVisible)
+          }}
+          title='Add Entry'
+          color='#841584'
+          accessibilityLabel='Learn more about this purple button'
+        />
+      </View>
 
       <Modal animationType='slide' transparent={true} visible={modalVisible}>
         <LogEntryModal
@@ -55,7 +61,7 @@ export default function SingleAsset() {
           cancelAction={() => setModalVisible(false)}
         />
       </Modal>
-
+      <Text style={styles.previousLogs}>Previous Logs</Text>
       {logData.map((item) => (
         <LogMessage title={item.message} subtitle={item.message} />
       ))}
@@ -65,6 +71,31 @@ export default function SingleAsset() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'blue',
+    flex: 1,
+    paddingHorizontal: 5,
+  },
+  imageContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 40,
+  },
+  image: {
+    width: 300,
+    height: 200,
+    resizeMode: 'center',
+  },
+  detailsContainer: {
+    marginTop: 20,
+  },
+  name: {
+    fontSize: 20,
+  },
+  date: {
+    fontSize: 16,
+  },
+  previousLogs: {
+    fontSize: 20,
+    marginTop: 5,
+    marginBottom: 5,
   },
 })

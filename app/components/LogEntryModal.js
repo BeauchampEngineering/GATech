@@ -14,7 +14,7 @@ export default function LogEntryModal({ doneAction, cancelAction }) {
   const [messageText, setMessageText] = useState('')
   return (
     <View style={styles.container}>
-      <Text>Enter New Log Message</Text>
+      <Text style={styles.header}>Enter New Log Message</Text>
       <TextInput
         placeholder='New Entry'
         multiline={true}
@@ -49,6 +49,11 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     margin: 10,
     borderRadius: 3,
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: 5,
   },
   buttonContainer: {
     flexDirection: 'row',
