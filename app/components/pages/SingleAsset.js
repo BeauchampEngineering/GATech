@@ -23,7 +23,7 @@ const initialData = []
 // this is temporary - get rid of me
 var idNum = 2
 
-export default function SingleAsset() {
+export default function SingleAsset({ goBackToBrowseAssets }) {
   const [logData, setLogData] = useState(initialData)
   const [modalVisible, setModalVisible] = useState(false)
 
@@ -48,6 +48,12 @@ export default function SingleAsset() {
           }}
           title='Add Entry'
           color='#841584'
+          accessibilityLabel='Learn more about this purple button'
+        />
+        <Button
+          onPress={goBackToBrowseAssets}
+          title='Go Back'
+          color={colors.blue}
           accessibilityLabel='Learn more about this purple button'
         />
       </View>

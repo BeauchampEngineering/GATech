@@ -12,18 +12,18 @@ import SingleAsset from './components/pages/SingleAsset'
 
 const App = () => {
   return (
-    <SingleAsset />
-    // <AuthProvider>
-    //   <StyleProvider>
-    //     <NativeRouter>
-    //       <Switch>
-    //         <PublicRoute path='/login' component={LoginPage} />
-    //         <PrivateRoute path='/logout' component={LogoutPage} />
-    //         <PrivateRoute exact path={['/', '/home']} component={BasePage} />
-    //       </Switch>
-    //     </NativeRouter>
-    //   </StyleProvider>
-    // </AuthProvider>
+    // <SingleAsset />
+    <AuthProvider>
+      <StyleProvider>
+        <NativeRouter>
+          <Switch>
+            <PublicRoute path='/login' component={LoginPage} />
+            <PrivateRoute path='/logout' component={LogoutPage} />
+            <PrivateRoute exact path={['/', '/home']} component={BasePage} />
+          </Switch>
+        </NativeRouter>
+      </StyleProvider>
+    </AuthProvider>
   )
 }
 

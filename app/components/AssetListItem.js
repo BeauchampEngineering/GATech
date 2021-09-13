@@ -1,9 +1,9 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function AssetListItem({ name, date, image }) {
+export default function AssetListItem({ name, date, image, onPress }) {
   return (
-    <TouchableOpacity style={styles.container} onPress={(params) => {}}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.imageContainer}>
         <Image source={image} style={styles.image} />
       </View>
