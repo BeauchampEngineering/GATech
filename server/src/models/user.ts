@@ -1,7 +1,5 @@
-import { Association, DataTypes, HasManyAddAssociationMixin, HasManyGetAssociationsMixin, Model, Optional } from 'sequelize';
-import sequelize from '../databases/sql';
-import UserNotFoundError from '../errors/user-not-found-error';
-import Asset from '../models/asset'
+import { DataTypes, Model, Optional } from 'sequelize'
+import sequelize from '../databases/sql'
 
 interface UserAttributes {
     id: number
