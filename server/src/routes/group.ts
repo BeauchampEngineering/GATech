@@ -63,6 +63,21 @@ router.get('/api/users/:userId/groups/:groupId', async (req: Request, res: Respo
     res.status(200).json(group)
 })
 
+router.get('/api/users/:userId/groups/:groupId/messages', async (req: Request, res: Response) => {
+    const {userId, groupId} = req.params
+    const user = await User.findByPk(userId)
+    if (!user) {
+        throw new UserNotFoundError()
+    }
+    const group = await Group.findByPk(groupId)
+    if (!group) {
+        throw new GroupNotFoundError()
+    }
+    //@ts-ignore
+    const messages = await group.getMessages()
+    res.status(200).json(messages)
+})
+
 export default router 
 
 

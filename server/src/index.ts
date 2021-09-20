@@ -1,5 +1,7 @@
 import 'express-async-errors'
 import express from 'express'
+import {createServer} from 'http'
+import {Server} from 'socket.io'
 import cors from 'cors'
 import bcrypt from 'bcryptjs'
 import sequelize from './databases/sql'
@@ -39,6 +41,39 @@ Message.belongsTo(Group)
 User.hasMany(Message)
 Message.belongsTo(User)
 
+const httpServer = createServer(app)
+const io = new Server(httpServer, {cors: {origin: '*'}})
+io.on('connection', (socket) => {
+    socket.on('join', async room => {
+        const group = await Group.findByPk(room)
+        if (!group) {
+            console.log('Group not found')
+        } else {
+            socket.join(room) 
+        }
+    })
+    socket.on('message', async packet => {
+        const message = await Message.create({
+            message: packet.message,
+            //@ts-ignore
+            userId: packet.userId,
+            groupId: packet.room
+        })
+        socket.to(packet.room).emit('message', message)
+    })
+    socket.on('leave', async room => {
+        const group = await Group.findByPk(room)
+        if (!group) {
+            console.log('Group not found')
+        } else {
+            socket.leave(room) 
+        }
+    })
+    socket.on('disconnect', (msg) => {
+        console.log(msg)
+    })
+})
+
 
 const populate = async () => {
     const isAdmin = true
@@ -59,7 +94,7 @@ const start = async () => {
         console.error(err);
     }
     await populate()
-    app.listen(3000, () => console.log('Listening on 3000'))
+    httpServer.listen(3000, () => console.log('Listening on 3000'))
 };
 
 start()
