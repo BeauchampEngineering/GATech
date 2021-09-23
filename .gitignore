@@ -3,3 +3,4 @@ node_modules
 package-lock.json
 app/package-lock.json
 app/yarn.lock
+app/.idea
