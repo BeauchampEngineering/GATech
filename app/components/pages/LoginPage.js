@@ -5,8 +5,6 @@ import LoginForm from '../forms/LoginForm'
 import { StyleSheet } from 'react-native'
 
 const LoginPage = () => {
-  const { page } = useStyles()
-
   return (
     <View style={newpage.container}>
       <View style={newpage.subContainer}>

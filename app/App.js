@@ -14,15 +14,13 @@ const App = () => {
   return (
     // <SingleAsset />
     <AuthProvider>
-      <StyleProvider>
-        <NativeRouter>
-          <Switch>
-            <PublicRoute path='/login' component={LoginPage} />
-            <PrivateRoute path='/logout' component={LogoutPage} />
-            <PrivateRoute exact path={['/', '/home']} component={BasePage} />
-          </Switch>
-        </NativeRouter>
-      </StyleProvider>
+      <NativeRouter>
+        <Switch>
+          <PublicRoute path='/login' component={LoginPage} />
+          <PrivateRoute path='/logout' component={LogoutPage} />
+          <PrivateRoute exact path={['/', '/home']} component={BasePage} />
+        </Switch>
+      </NativeRouter>
     </AuthProvider>
   )
 }
