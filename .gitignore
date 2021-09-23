@@ -1,2 +1,8 @@
 node_modules
 .vscode
+package.json
+package-lock.json
+
+app/.expo
+app/package-lock.json
+app/yarn.lock

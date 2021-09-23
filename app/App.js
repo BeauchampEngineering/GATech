@@ -1,29 +1,27 @@
 import React from 'react'
-import { NativeRouter, Switch } from 'react-router-native'
-import AuthProvider from './contexts/AuthContext'
-import StyleProvider from './contexts/StyleContext'
-import PublicRoute from './routes/PublicRoute'
-import PrivateRoute from './routes/PrivateRoute'
-import LoginPage from './components/pages/LoginPage'
-import LogoutPage from './components/pages/LogoutPage'
 
-import BasePage from './components/pages/BasePage'
-import SingleAsset from './components/pages/SingleAsset'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import AuthNavigation from './navigation/AuthNavigation'
+import AppNavigation from './navigation/AppNavigation'
+import Screen from './components/pages/Screen'
+
+const Stack = createNativeStackNavigator()
 
 const App = () => {
   return (
-    // <SingleAsset />
-    <AuthProvider>
-      <StyleProvider>
-        <NativeRouter>
-          <Switch>
-            <PublicRoute path='/login' component={LoginPage} />
-            <PrivateRoute path='/logout' component={LogoutPage} />
-            <PrivateRoute exact path={['/', '/home']} component={BasePage} />
-          </Switch>
-        </NativeRouter>
-      </StyleProvider>
-    </AuthProvider>
+    <Screen>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name='AuthNavigation' component={AuthNavigation} />
+          <Stack.Screen name='AppNavigation' component={AppNavigation} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Screen>
   )
 }
 

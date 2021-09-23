@@ -4,75 +4,69 @@ import { StyleSheet, Text, View } from 'react-native'
 import AssetListItem from '../AssetListItem'
 import colors from '../../config/colors'
 import SingleAsset from './SingleAsset'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useNavigation } from '@react-navigation/core'
+import routes from '../../navigation/routes'
+
+const Stack = createNativeStackNavigator()
 
 const assets = [
   {
     id: 1,
-    name: 'Machine',
+    name: 'Machine 1',
     date: '10-20-2020',
     image: require('../../assets/machine.jpg'),
   },
   {
     id: 2,
-    name: 'Machine',
+    name: 'Machine 2',
     date: '10-20-2020',
     image: require('../../assets/machine.jpg'),
   },
   {
     id: 3,
-    name: 'Machine',
+    name: 'Machine 3',
     date: '10-20-2020',
     image: require('../../assets/machine.jpg'),
   },
   {
     id: 4,
-    name: 'Machine',
+    name: 'Machine 4',
     date: '10-20-2020',
     image: require('../../assets/machine.jpg'),
   },
   {
     id: 5,
-    name: 'Machine',
+    name: 'Machine 5',
     date: '10-20-2020',
     image: require('../../assets/machine.jpg'),
   },
   {
     id: 6,
-    name: 'Machine',
+    name: 'Machine 6',
     date: '10-20-2020',
     image: require('../../assets/machine.jpg'),
   },
 ]
 
-export default function BrowseAssetsScreen() {
-  const [showBrowseScreen, setShowBrowseScreen] = useState(true)
+export default function BrowseAssetsScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      {showBrowseScreen && (
-        <FlatList
-          data={assets}
-          renderItem={({ item }) => {
-            return (
-              <AssetListItem
-                name={item.name}
-                date={item.date}
-                image={item.image}
-                onPress={() => setShowBrowseScreen(false)}
-              />
-            )
-          }}
-          keyExtractor={(item) => item.id}
-          numColumns={2}
-        ></FlatList>
-      )}
-
-      {!showBrowseScreen && (
-        <SingleAsset
-          goBackToBrowseAssets={() => {
-            setShowBrowseScreen(true)
-          }}
-        />
-      )}
+      <FlatList
+        data={assets}
+        renderItem={({ item }) => {
+          return (
+            <AssetListItem
+              name={item.name}
+              date={item.date}
+              image={item.image}
+              onPress={() => navigation.navigate(routes.SINGLE_ASSET, item)}
+            />
+          )
+        }}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+      ></FlatList>
     </View>
   )
 }

@@ -8,7 +8,7 @@ export default function BasePage() {
   return (
     <View style={styles.container}>
       <Header />
-      <TabNavigation />
+      {/* <TabNavigation /> */}
     </View>
   )
 }
