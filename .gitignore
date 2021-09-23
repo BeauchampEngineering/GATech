@@ -1,2 +1,6 @@
 node_modules
 .vscode
+package-lock.json
+app/package-lock.json
+app/yarn.lock
+app/.idea
