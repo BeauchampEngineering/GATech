@@ -1,25 +1,20 @@
 import React, { useState } from 'react'
 import { Text, View, TextInput, TouchableOpacity } from 'react-native'
-import { useHistory } from 'react-router-native'
-import { useAuth } from '../../contexts/AuthContext'
-import { useStyles } from '../../contexts/StyleContext'
 
 import { StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
+import routes from '../../navigation/routes'
 
 const LoginForm = () => {
-  const { loginUser } = useAuth()
+  const navigation = useNavigation()
   const [email, onChangeEmail] = useState('')
   const [password, onChangePassword] = useState('')
-  const history = useHistory()
 
-  const handlePress = async () => {
-    try {
-      //send request to server
-      await loginUser(email, password)
-      history.push('/')
-    } catch (err) {
-      console.log(err.message)
-    }
+  const verifyLogin = (params) => {
+    const verified = true
+    verified
+      ? navigation.navigate(routes.APP_NAVIGATION)
+      : console.log('not verified')
   }
 
   return (
@@ -46,15 +41,18 @@ const LoginForm = () => {
         </View>
       </View>
       <View style={newbutton.buttonContainer}>
-        <TouchableOpacity style={newbutton.fill} onPress={handlePress}>
+        <TouchableOpacity style={newbutton.fill} onPress={verifyLogin}>
           <Text style={newbutton.text}>Log in</Text>
         </TouchableOpacity>
       </View>
       <View style={otherbutton.buttonContainer}>
-        <TouchableOpacity style={otherbutton.fill} onPress={handlePress}>
+        <TouchableOpacity
+          style={otherbutton.fill}
+          onPress={() => navigation.navigate(routes.FORGOT_PASSWORD)}
+        >
           <Text style={otherbutton.text}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={otherbutton.fill} onPress={handlePress}>
+        <TouchableOpacity style={otherbutton.fill}>
           <Text style={otherbutton.text}>Back</Text>
         </TouchableOpacity>
       </View>

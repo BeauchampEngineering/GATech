@@ -24,14 +24,14 @@ export default function Header() {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    marginTop: 30, // this is temporary. todo-sprint-1: fix me
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 8,
+    backgroundColor: colors.white,
   },
   text: {
-    fontSize: 30,
+    fontSize: 26,
     fontWeight: 'bold',
     color: colors.blue,
   },

@@ -1,15 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import { useStyles } from '../../contexts/StyleContext'
 import LoginForm from '../forms/LoginForm'
 import { StyleSheet } from 'react-native'
 
-const LoginPage = () => {
+const LoginPage = ({ navigation }) => {
   return (
     <View style={newpage.container}>
-      <View style={newpage.subContainer}>
-        <Text style={newpage.title}>PM</Text>
-      </View>
+      <Text style={newpage.title}>PM</Text>
       <LoginForm />
     </View>
   )
@@ -24,12 +21,8 @@ const newpage = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 100,
+    marginTop: 10,
     width: '100%',
-  },
-
-  subContainer: {
-    padding: 100,
   },
 })
 
