@@ -11,7 +11,6 @@ import RouteNotFoundError from './errors/route-not-found-error'
 import errorHandler from './middlewares/error-handler'
 import Message from './models/message'
 
-
 const app = express()
 
 app.use(cors())
