@@ -56,7 +56,7 @@ router.get('/api/users/:userId/groups/:groupId', async (req: Request, res: Respo
         throw new UserNotFoundError()
     }
     //@ts-ignore
-    const group = await Group.findOne({where: {userId, groupId}})
+    const group = (await user.getGroups({where: {id: groupId}})).find(g => g)
     if (!group) {
         throw new GroupNotFoundError()
     }
