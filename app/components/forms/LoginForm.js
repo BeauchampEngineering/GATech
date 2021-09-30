@@ -4,17 +4,40 @@ import { Text, View, TextInput, TouchableOpacity } from 'react-native'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import routes from '../../navigation/routes'
+import axios from 'axios'
+import endpoints from '../../connections/endpoints'
+import GLOBAL from '../../state/global'
 
 const LoginForm = () => {
   const navigation = useNavigation()
   const [email, onChangeEmail] = useState('')
   const [password, onChangePassword] = useState('')
 
-  const verifyLogin = (params) => {
-    const verified = true
-    verified
-      ? navigation.navigate(routes.APP_NAVIGATION)
-      : console.log('not verified')
+  const verifyLogin = (email, password) => {
+    const authLoginEndpoint = endpoints.AUTHENTICATE_LOGIN
+
+    axios
+      .post(authLoginEndpoint, {
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        GLOBAL.userId = response.data.id
+        // this is only called when authentication is successful
+        navigation.navigate(routes.APP_NAVIGATION, {
+          userId: response.data.id,
+        })
+      })
+      .catch(function (error) {
+        // todo: error handling (update the UI depending on the console.error();)
+        console.log(error.response.data)
+      })
+
+    // const verified = true
+
+    // verified
+    //   ? navigation.navigate(routes.APP_NAVIGATION)
+    //   : console.log('not verified')
   }
 
   return (
@@ -41,7 +64,10 @@ const LoginForm = () => {
         </View>
       </View>
       <View style={newbutton.buttonContainer}>
-        <TouchableOpacity style={newbutton.fill} onPress={verifyLogin}>
+        <TouchableOpacity
+          style={newbutton.fill}
+          onPress={() => verifyLogin(email, password)}
+        >
           <Text style={newbutton.text}>Log in</Text>
         </TouchableOpacity>
       </View>
