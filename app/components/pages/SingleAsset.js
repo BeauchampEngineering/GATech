@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   StyleSheet,
   Text,
@@ -7,21 +7,51 @@ import {
   Alert,
   Modal,
   Image,
+  FlatList,
 } from 'react-native'
 import colors from '../../config/colors'
 import LogEntryModal from '../LogEntryModal'
 import LogMessage from '../LogMessage'
+import axios from 'axios'
+import endpoints from '../../connections/endpoints'
 
 export default function SingleAsset({ route }) {
   const { id, name, date, image } = route.params
   const [logData, setLogData] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
 
-  const newLogEntry = (message) => {
-    if (message !== '') {
-      setLogData((oldArray) => [...oldArray, { id: 2, message }])
+  const userId = 1 // this needs to be changed
+  const logsEndpoint = endpoints.LOGS.replace(':userId', userId).replace(
+    ':assetId',
+    id
+  )
+
+  const newLogEntry = (newMessage) => {
+    if (newMessage !== '') {
+      axios
+        .post(logsEndpoint, {
+          message: newMessage,
+        })
+        .then(() => {
+          console.log('Log successful')
+          setLogData((oldArray) => [
+            ...oldArray,
+            { id: 2, message: newMessage },
+          ])
+        })
+        .catch((err) => console.log(err))
     }
   }
+
+  useEffect(() => {
+    axios
+      .get(logsEndpoint)
+      .then((data) => {
+        setLogData(data.data)
+        data.data
+      })
+      .catch((err) => console.log('Error ' + err))
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -51,9 +81,13 @@ export default function SingleAsset({ route }) {
         />
       </Modal>
       <Text style={styles.previousLogs}>Previous Logs</Text>
-      {logData.map((item) => (
-        <LogMessage title={item.message} subtitle={item.message} />
-      ))}
+      <FlatList
+        data={logData}
+        renderItem={({ item }) => {
+          return <LogMessage title={item.message} subtitle={item.message} />
+        }}
+        keyExtractor={(item) => item.id.toString()}
+      ></FlatList>
     </View>
   )
 }

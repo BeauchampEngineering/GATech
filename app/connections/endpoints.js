@@ -3,4 +3,5 @@ const baseUrl = 'https://portal-manager-server.herokuapp.com/'
 
 export default {
   GET_ASSETS: baseUrl + 'api/assets',
+  LOGS: baseUrl + 'api/users/:userId/assets/:assetId/logs',
 }
