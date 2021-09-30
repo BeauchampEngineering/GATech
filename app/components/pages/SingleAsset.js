@@ -4,23 +4,23 @@ import {
   Text,
   View,
   Button,
-  Alert,
   Modal,
   Image,
   FlatList,
 } from 'react-native'
-import colors from '../../config/colors'
 import LogEntryModal from '../LogEntryModal'
 import LogMessage from '../LogMessage'
 import axios from 'axios'
 import endpoints from '../../connections/endpoints'
+import GLOBAL from '../../state/global'
 
 export default function SingleAsset({ route }) {
   const { id, name, date, image } = route.params
   const [logData, setLogData] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
 
-  const userId = 1 // this needs to be changed
+  const userId = GLOBAL.userId
+  console.log('Single Asset userId is ' + userId)
   const logsEndpoint = endpoints.LOGS.replace(':userId', userId).replace(
     ':assetId',
     id
