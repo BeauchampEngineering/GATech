@@ -78,7 +78,9 @@ const LoginForm = () => {
         >
           <Text style={otherbutton.text}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={otherbutton.fill}>
+      </View>
+      <View style ={otherbutton.buttonContainer}>
+      <TouchableOpacity style={otherbutton.fill}>
           <Text style={otherbutton.text}>Back</Text>
         </TouchableOpacity>
       </View>
@@ -134,6 +136,7 @@ const newbutton = StyleSheet.create({
 const otherbutton = StyleSheet.create({
   buttonContainer: {
     alignSelf: 'stretch',
+    paddingBottom: 5,
   },
   text: {
     color: '#1e90ff',
@@ -143,7 +146,7 @@ const otherbutton = StyleSheet.create({
     fontSize: 16,
   },
   fill: {
-    padding: 0,
+    padding: 5,
     borderRadius: 7,
     backgroundColor: 'white',
     height: 30,

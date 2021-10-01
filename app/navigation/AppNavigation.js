@@ -8,7 +8,7 @@ import AssetsNavigation from './AssetsNavigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import routes from './routes'
 import Header from '../components/Header'
-import GroupNavigation from './GroupNavigation'
+import QRscanner from '../components/pages/QRscanner'
 
 const Tabs = createMaterialTopTabNavigator()
 const iconSize = 25
@@ -26,8 +26,10 @@ export default function AppNavigation() {
               iconName = 'home'
             } else if (route.name == routes.BROWSE_ASSETS) {
               iconName = 'screwdriver'
-            } else {
+            } else if (route.name === routes.GROUPS) {
               iconName = 'account-group'
+            } else {
+              iconName = 'qrcode'
             }
 
             return (
@@ -44,7 +46,8 @@ export default function AppNavigation() {
       >
         <Tabs.Screen name='Home' component={HomePage} />
         <Tabs.Screen name='AssetsNavigation' component={AssetsNavigation} />
-        <Tabs.Screen name='Groups' component={GroupNavigation} />
+        <Tabs.Screen name='Groups' component={GroupPage} />
+        <Tabs.Screen name='QRscanner' component={QRscanner} />
       </Tabs.Navigator>
     </View>
   )

@@ -6,6 +6,7 @@ import HomeScreen from './pages/HomePage'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import BrowseAssetsScreen from './pages/BrowseAssetsScreen'
 import GroupScreen from './pages/GroupPage'
+import QRscanner from './pages/QRscanner'
 
 const tabIconSize = 25
 
@@ -21,6 +22,11 @@ export default function TabNavigation() {
           }
         />
         <Tab.Item icon={<Ionicons name='people' size={tabIconSize} />} />
+        <Tab.Item
+          icon={
+            <MaterialCommunityIcons name='qrcode' size={tabIconSize} />
+          }
+        />
       </Tab>
 
       <TabView value={index} onChange={setIndex}>
@@ -32,6 +38,9 @@ export default function TabNavigation() {
         </TabView.Item>
         <TabView.Item style={{ backgroundColor: 'green', width: '100%' }}>
           <GroupScreen />
+        </TabView.Item>
+        <TabView.Item style={{ backgroundColor: 'green', width: '100%' }}>
+          <QRscanner />
         </TabView.Item>
       </TabView>
     </View>
