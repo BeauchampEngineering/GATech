@@ -48,10 +48,16 @@ const AssetPage = () => {
             {!show &&
                 <View style={header.container}>
                     <View style={header.right}>
+                    <SearchBar
+                        placeholder="Type Here..."
+                        onChangeText={this.updateSearch}
+                        value={search}
+                    />
+                    console.log("hi")
                         <Icon
-                            name='search'
+                            /*name='search'
                             type='feather'
-                            onPress={() => setShow(true)}
+                            onPress={() => setShow(true)}*/
                         />
                     </View>
                 </View>
