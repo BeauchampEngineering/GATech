@@ -15,7 +15,6 @@ const GroupPage = () => {
       .get(usersGroupsEndpoint)
       .then((response) => {
         setGroups(response.data)
-        console.log('Groups ' + groups[0].name)
       })
       .catch((err) => console.log(err))
   }, [])
@@ -28,7 +27,14 @@ const GroupPage = () => {
       <FlatList
         data={groups}
         renderItem={({ item }) => {
-          return <GroupsListItem title={item.name} numMembers='n memebers' />
+          return (
+            <GroupsListItem
+              title={item.name}
+              numMembers='n memebers'
+              showArrow={true}
+              groupId={item.id}
+            />
+          )
         }}
       ></FlatList>
     </View>
@@ -40,6 +46,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     textAlign: 'center',
     fontSize: 20,
+    fontWeight: 'bold',
   },
 })
 

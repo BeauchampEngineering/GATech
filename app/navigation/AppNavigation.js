@@ -8,6 +8,7 @@ import AssetsNavigation from './AssetsNavigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import routes from './routes'
 import Header from '../components/Header'
+import GroupNavigation from './GroupNavigation'
 
 const Tabs = createMaterialTopTabNavigator()
 const iconSize = 25
@@ -43,7 +44,7 @@ export default function AppNavigation() {
       >
         <Tabs.Screen name='Home' component={HomePage} />
         <Tabs.Screen name='AssetsNavigation' component={AssetsNavigation} />
-        <Tabs.Screen name='Groups' component={GroupPage} />
+        <Tabs.Screen name='Groups' component={GroupNavigation} />
       </Tabs.Navigator>
     </View>
   )
