@@ -1,85 +1,46 @@
 import React, { useEffect, useState } from 'react'
-import { View, TextInput, Pressable, FlatList, Text } from 'react-native'
-import { Icon } from 'react-native-elements'
-import { useStyles } from '../../contexts/StyleContext'
-import NavBar from '../bars/NavBar'
-import GroupCard from '../cards/GroupCard'
+import { View, FlatList, Text, StyleSheet } from 'react-native'
+import axios from 'axios'
+import endpoints from '../../connections/endpoints'
+import GLOBAL from '../../state/global'
+import GroupsListItem from '../GroupsListItem'
 
 const GroupPage = () => {
-  return <Text>Group Page</Text>
+  useEffect(() => {
+    const usersGroupsEndpoint = endpoints.GET_USERS_GROUPS.replace(
+      ':userId',
+      GLOBAL.userId
+    )
+    axios
+      .get(usersGroupsEndpoint)
+      .then((response) => {
+        setGroups(response.data)
+        console.log('Groups ' + groups[0].name)
+      })
+      .catch((err) => console.log(err))
+  }, [])
 
-  // const {page, header, input} = useStyles();
-  // const [search, setSearch] = useState('');
-  // const [show, setShow] = useState(false);
-  // const [groups, setGroups] = useState([]);
+  const [groups, setGroups] = useState([])
 
-  // useEffect(() => {
-  //     // grab groups from server
-  //     /*
-  //         group = {
-  //             id:
-  //             members:
-  //             lastMessage:
-  //         }
-  //     */
-  //    const lst = [];
-  //    for(let i = 0; i < 20; i++) {
-  //        lst.push({
-  //            id: i,
-  //            members: 'Kanye, Cudi, Frank',
-  //            lastMessage: 'I miss the old Kanye'
-  //        });
-  //    }
-  //    setGroups(lst);
-  // }, []);
-
-  // const handleCancel = () => {
-  //     setShow(false);
-  //     setSearch('');
-  // }
-
-  // const renderGroup = ({item}) => {
-  //     return <GroupCard group={item}/>
-  // };
-
-  // return (
-  //     <View style={page.container}>
-  //         {!show &&
-  //             <View style={header.container}>
-  //                 <View style={header.right}>
-  //                         <Icon
-  //                             name='search'
-  //                             type='feather'
-  //                             onPress={() => setShow(true)}
-  //                         />
-  //                 </View>
-  //             </View>
-  //         }
-  //         {show &&
-  //             <View style={header.container}>
-  //                     <Icon
-  //                         name='chevron-left'
-  //                         type='feather'
-  //                         onPress={handleCancel}
-  //                     />
-  //                 <View style={input.container}>
-  //                     <TextInput
-  //                         value={search}
-  //                         placeholder='Search'
-  //                         onChangeText={setSearch}
-  //                     />
-  //                 </View>
-  //             </View>
-  //         }
-  //         <FlatList
-  //             data={groups}
-  //             renderItem={renderGroup}
-  //             keyExtractor={group => group.id.toString()}
-  //             showsVerticalScrollIndicator={false}
-  //         />
-  //         <NavBar selected='groups'/>
-  //     </View>
-  // );
+  return (
+    <View>
+      <Text style={styles.title}>Your Groups</Text>
+      <FlatList
+        data={groups}
+        renderItem={({ item }) => {
+          return <GroupsListItem title={item.name} numMembers='n memebers' />
+        }}
+      ></FlatList>
+    </View>
+  )
 }
+
+const styles = StyleSheet.create({
+  title: {
+    marginVertical: 10,
+    textAlign: 'center',
+    fontSize: 20,
+  },
+})
 
 export default GroupPage
