@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button, Dimensions,Image} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import axios from "axios";
+import { color } from 'react-native-elements/dist/helpers';
 
-
-export default function App() {
+export default function App({navigation}){
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  
+  const [data, setData] = useState([])
 
   useEffect(() => {
     (async () => {
@@ -17,7 +18,13 @@ export default function App() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    axios
+    .get(`https://portal-manager-server.herokuapp.com/api/assets/${data}`)
+    .then((response) => {
+      console.log(response);
+      navigation.navigate('SingleAsset',{id: data, name: response.data.name, date: response.data.updatedAt, image: require('../../assets/machine.jpg')})
+    })
+    .catch((error) => alert(error))
     
   };
 
@@ -34,15 +41,15 @@ export default function App() {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={[StyleSheet.absoluteFill, styles.container]}>
         <Text style={styles.description}>Scan your QR code</Text>
-        <Image
-          style={styles.qr}
-          source={require('../../assets/qrscan.png')}
-        />
-        <Text
-          onPress={() => this.props.navigation.pop()}
-          style={styles.cancel}>
-          Cancel
-        </Text>
+        <View style={styles.layerTop} />
+        <View style={styles.layerCenter}>
+          <View style={styles.layerLeft} />
+          <View style={styles.focused} />
+          <View style={styles.layerRight} />
+        </View>
+        
+        <View style={styles.layerBottom} />
+        {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
       </BarCodeScanner>
       
   );
@@ -52,29 +59,39 @@ const { width } = Dimensions.get('window')
 const qrSize = width * 0.7
 const opacity = 'rgba(0, 0, 0, .6)';
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-      },
-      qr: {
-        marginTop: '20%',
-        marginBottom: '20%',
-        width: qrSize,
-        height: qrSize,
-      },
-      description: {
-        fontSize: width * 0.09,
-        marginTop: '10%',
-        textAlign: 'center',
-        width: '70%',
-        color: 'white',
-      },
-      cancel: {
-        fontSize: width * 0.05,
-        textAlign: 'center',
-        width: '70%',
-        color: 'white',
-      },
+  description: {
+    textAlign: 'center',
+    color: "#3399FF",
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  layerTop: {
+    flex: 0.5,
+    backgroundColor: opacity
+  },
+  layerCenter: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  layerLeft: {
+    flex: 1,
+    backgroundColor: opacity
+  },
+  focused: {
+    flex: 10
+  },
+  layerRight: {
+    flex: 1,
+    backgroundColor: opacity
+  },
+  layerBottom: {
+    flex: .5,
+    backgroundColor: opacity
+  },
 });
 // const QRscanner = () => {
 //   return (
