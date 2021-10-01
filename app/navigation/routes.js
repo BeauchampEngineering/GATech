@@ -7,4 +7,5 @@ export default Object.freeze({
   SINGLE_ASSET: 'SingleAsset',
   GROUPS: 'Groups',
   APP_NAVIGATION: 'AppNavigation',
+  QR_SCANNER: 'QRccanner'
 })
