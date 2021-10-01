@@ -6,3 +6,5 @@ package-lock.json
 app/.expo
 app/package-lock.json
 app/yarn.lock
+.DS_Store
+.expo/
