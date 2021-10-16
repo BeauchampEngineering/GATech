@@ -6,15 +6,16 @@ import { StyleSheet } from 'react-native'
 const LoginPage = ({ navigation }) => {
   return (
     <View style={newpage.container}>
-      <Text style={newpage.title}>PM</Text>
+      <Text style={newpage.title}>Portal Manager</Text>
       <LoginForm />
     </View>
   )
 }
 const newpage = StyleSheet.create({
   title: {
-    fontSize: 50,
+    fontSize: 42,
     textAlign: 'center',
+    marginBottom: 15,
   },
   container: {
     flex: 1,
