@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 import '../component-styles/NewUserForm.css'
+import enpoints from '../enpoints'
 
 const NewUserForm = () => {
   const [email, setEmail] = useState('')
@@ -14,6 +16,17 @@ const NewUserForm = () => {
     // email not already registered and password == confirm password
     if (password === confirmPassword) {
       console.log('Creating New User')
+      axios
+        .post(enpoints.CREATE_NEW_USER, {
+          email: email,
+          password,
+          confirmPassword,
+        })
+        .then((response) => {
+          console.log(response)
+          alert('user added')
+        })
+        .catch((err) => console.log(err))
     } else {
       setErrorMessage('Passwords do not match')
       setPassword('')
