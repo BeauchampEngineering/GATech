@@ -1,5 +1,6 @@
 import './App.css'
 import AddAsset from './components/AddAsset'
+import AddUsersToGroup from './components/AddUsersToGroup'
 import NewUserForm from './components/NewUserForm'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className='App'>
       <NewUserForm />
       <AddAsset />
+      <AddUsersToGroup />
     </div>
   )
 }
