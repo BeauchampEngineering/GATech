@@ -44,19 +44,32 @@ const AddUsersToGroup = () => {
     setSelectedGroup(index)
   }
 
-  const assignUsersToGroup = () => {
+  const getUsersAndGroups = () => {
     const newUsers = allUsers.filter((element, index) => {
       return checkBoxes[index] === true
     })
     const groupToAddTo = allGroups[selectedGroup]
 
-    console.log('selected group ' + groupToAddTo.name + ' ' + groupToAddTo.id)
+    return { newUsers, groupToAddTo }
+  }
+
+  const removeUsersFromGroup = () => {
+    const { newUsers, groupToAddTo } = getUsersAndGroups()
+
+    console.log('Remove Group ' + groupToAddTo.name + ' ' + groupToAddTo.id)
+    newUsers.forEach((e) => console.log(e.email + ' ' + e.id))
+  }
+
+  const assignUsersToGroup = () => {
+    const { newUsers, groupToAddTo } = getUsersAndGroups()
+
+    console.log('Add Group ' + groupToAddTo.name + ' ' + groupToAddTo.id)
     newUsers.forEach((e) => console.log(e.email + ' ' + e.id))
   }
 
   return (
     <div>
-      <h4>Add Users to Group</h4>
+      <h4>Add/Remove Users to Group</h4>
       <div className='UsersAndGroups alignItems'>
         <div>
           {allUsers.map((item, index) => (
@@ -82,9 +95,22 @@ const AddUsersToGroup = () => {
           ))}
         </div>
       </div>
-      <button type='button' onClick={assignUsersToGroup}>
-        Assign Users to Group
-      </button>
+      <div className='addRemoveButtonContainer'>
+        <button
+          type='button'
+          className='addRemoveButton'
+          onClick={removeUsersFromGroup}
+        >
+          Remove Users to Group
+        </button>
+        <button
+          type='button'
+          className='addRemoveButton'
+          onClick={assignUsersToGroup}
+        >
+          Assign Users to Group
+        </button>
+      </div>
     </div>
   )
 }
