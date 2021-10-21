@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Text, View, TextInput, TouchableOpacity } from 'react-native'
+import Loader from 'react-loader-spinner'
 
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
@@ -12,16 +13,24 @@ const LoginForm = () => {
   const navigation = useNavigation()
   const [email, onChangeEmail] = useState('')
   const [password, onChangePassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const clearErrorMessage = () => {
+    setErrorMessage('')
+  }
 
   const verifyLogin = (email, password) => {
     const authLoginEndpoint = endpoints.AUTHENTICATE_LOGIN
 
+    setLoading(true)
     axios
       .post(authLoginEndpoint, {
         email: email,
         password: password,
       })
       .then(function (response) {
+        setLoading(false)
         GLOBAL.userId = response.data.id
         // this is only called when authentication is successful
         navigation.navigate(routes.APP_NAVIGATION, {
@@ -29,26 +38,26 @@ const LoginForm = () => {
         })
       })
       .catch(function (error) {
-        // todo: error handling (update the UI depending on the console.error();)
-        console.log(error.response.data)
+        setLoading(false)
+        error.response.data.length > 0
+          ? setErrorMessage(error.response.data[0].message)
+          : setErrorMessage('Invalid Credentials')
       })
-
-    // const verified = true
-
-    // verified
-    //   ? navigation.navigate(routes.APP_NAVIGATION)
-    //   : console.log('not verified')
   }
 
   return (
     <View style={newInput.form}>
+      <Loader type='Puff' height={100} width={100} />
       <View style={newInput.container}>
         <View style={newInput.border}>
           <TextInput
             style={newInput.box}
             value={email}
             placeholder='  Email'
-            onChangeText={onChangeEmail}
+            onChangeText={(text) => {
+              onChangeEmail(text)
+              clearErrorMessage()
+            }}
           />
         </View>
       </View>
@@ -59,10 +68,15 @@ const LoginForm = () => {
             value={password}
             secureTextEntry={true}
             placeholder='  Password'
-            onChangeText={onChangePassword}
+            onChangeText={(text) => {
+              onChangePassword(text)
+              clearErrorMessage()
+            }}
           />
         </View>
       </View>
+      <Text style={newInput.errorMessage}>{errorMessage}</Text>
+      {loading && <Text>Loading</Text>}
       <View style={newbutton.buttonContainer}>
         <TouchableOpacity
           style={newbutton.fill}
@@ -79,8 +93,8 @@ const LoginForm = () => {
           <Text style={otherbutton.text}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
-      <View style ={otherbutton.buttonContainer}>
-      <TouchableOpacity style={otherbutton.fill}>
+      <View style={otherbutton.buttonContainer}>
+        <TouchableOpacity style={otherbutton.fill}>
           <Text style={otherbutton.text}>Back</Text>
         </TouchableOpacity>
       </View>
@@ -108,6 +122,10 @@ const newInput = StyleSheet.create({
   },
   box: {
     flex: 1,
+  },
+  errorMessage: {
+    color: '#cc0000',
+    fontSize: 16,
   },
 })
 
