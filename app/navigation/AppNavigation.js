@@ -9,6 +9,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import routes from './routes'
 import Header from '../components/Header'
 import QRscanner from '../components/pages/QRscanner'
+import GroupNavigation from './GroupNavigation'
 
 const Tabs = createMaterialTopTabNavigator()
 const iconSize = 25
@@ -46,7 +47,7 @@ export default function AppNavigation() {
       >
         <Tabs.Screen name='Home' component={HomePage} />
         <Tabs.Screen name='AssetsNavigation' component={AssetsNavigation} />
-        <Tabs.Screen name='Groups' component={GroupPage} />
+        <Tabs.Screen name='Groups' component={GroupNavigation} />
         <Tabs.Screen name='QRscanner' component={QRscanner} />
       </Tabs.Navigator>
     </View>
