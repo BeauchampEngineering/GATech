@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Text, View, TextInput, TouchableOpacity } from 'react-native'
-import Loader from 'react-loader-spinner'
 
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
@@ -47,7 +46,6 @@ const LoginForm = () => {
 
   return (
     <View style={newInput.form}>
-      <Loader type='Puff' height={100} width={100} />
       <View style={newInput.container}>
         <View style={newInput.border}>
           <TextInput
