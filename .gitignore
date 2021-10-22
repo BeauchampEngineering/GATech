@@ -8,3 +8,5 @@ app/package-lock.json
 app/yarn.lock
 .DS_Store
 .expo/
+
+admin-web/yarn.lock

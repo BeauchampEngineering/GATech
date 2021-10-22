@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin-top: 3px;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.8em;
+  height: 20px;
+}
