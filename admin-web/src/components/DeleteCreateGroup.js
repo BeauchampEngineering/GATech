@@ -1,27 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import endpoints from '../enpoints'
 import '../component-styles/AddUsersToGroup.css'
 import TextAndButton from './helper/TextAndButton'
 import '../component-styles/DeleteCreateGroup.css'
 
 const AddUsersToGroup = () => {
-  const [allGroups, setAllGroups] = useState([
-    {
-      id: 1,
-      name: 'Early shift',
-      updatedAt: '2021-10-19T20:47:04.756Z',
-      createdAt: '2021-10-19T20:47:04.756Z',
-    },
-    {
-      id: 2,
-      name: 'Middle Shift',
-      updatedAt: '2021-10-19T20:47:04.756Z',
-      createdAt: '2021-10-19T20:47:04.756Z',
-    },
-  ])
+  const [allGroups, setAllGroups] = useState([])
   const [checkBoxes, setCheckBoxes] = useState([])
+
+  useEffect(() => {
+    axios
+      .get(endpoints.GET_ALL_GROUPS)
+      .then((resp) => setAllGroups(resp.data))
+      .catch((err) => console.log(err))
+  }, [])
 
   const createGroup = (groupName) => {
     console.log('creating group with name ' + groupName)
+    axios
+      .post(endpoints.CREATE_NEW_GROUP, {
+        name: groupName,
+        userIds: [],
+      })
+      .then((resp) => {
+        console.log('Group created')
+        setAllGroups([...allGroups, resp.data])
+      })
+      .catch((err) => console.log(err))
   }
 
   const handleGroupsOnChange = (index) => {
@@ -35,9 +41,21 @@ const AddUsersToGroup = () => {
       return checkBoxes[index] === true
     })
 
-    groupsToDelete.forEach((e) =>
+    groupsToDelete.forEach((e) => {
       console.log('todo: remove ' + e.name + ' ' + e.id)
-    )
+      axios
+        .delete(endpoints.DELETE_A_GROUP.replace(':groupId', e.id))
+        .then((response) => {
+          console.log('deleted group ' + e.id)
+
+          setAllGroups(
+            allGroups.filter((g) => {
+              return g.id !== e.id
+            })
+          )
+        })
+        .catch((err) => console.log(err))
+    })
   }
 
   return (
