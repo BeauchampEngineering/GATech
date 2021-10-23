@@ -41,9 +41,21 @@ const AddUsersToGroup = () => {
       return checkBoxes[index] === true
     })
 
-    groupsToDelete.forEach((e) =>
+    groupsToDelete.forEach((e) => {
       console.log('todo: remove ' + e.name + ' ' + e.id)
-    )
+      axios
+        .delete(endpoints.DELETE_A_GROUP.replace(':groupId', e.id))
+        .then((response) => {
+          console.log('deleted group ' + e.id)
+
+          setAllGroups(
+            allGroups.filter((g) => {
+              return g.id !== e.id
+            })
+          )
+        })
+        .catch((err) => console.log(err))
+    })
   }
 
   return (
