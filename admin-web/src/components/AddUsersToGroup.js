@@ -6,20 +6,7 @@ import '../component-styles/AddUsersToGroup.css'
 const AddUsersToGroup = () => {
   const [selectedGroup, setSelectedGroup] = useState(0)
   const [allUsers, setallUsers] = useState([])
-  const [allGroups, setAllGroups] = useState([
-    {
-      id: 1,
-      name: 'Early shift',
-      updatedAt: '2021-10-19T20:47:04.756Z',
-      createdAt: '2021-10-19T20:47:04.756Z',
-    },
-    {
-      id: 2,
-      name: 'Middle Shift',
-      updatedAt: '2021-10-19T20:47:04.756Z',
-      createdAt: '2021-10-19T20:47:04.756Z',
-    },
-  ])
+  const [allGroups, setAllGroups] = useState([])
   const [checkBoxes, setCheckBoxes] = useState([])
 
   useEffect(() => {
@@ -31,6 +18,13 @@ const AddUsersToGroup = () => {
         setallUsers(response.data)
         setCheckBoxes(new Array(response.data.length).fill(false))
       })
+      .catch((err) => console.log(err))
+
+    // get groups
+
+    axios
+      .get(endpoints.GET_ALL_GROUPS)
+      .then((resp) => setAllGroups(resp.data))
       .catch((err) => console.log(err))
   }, [])
 
@@ -64,7 +58,24 @@ const AddUsersToGroup = () => {
     const { newUsers, groupToAddTo } = getUsersAndGroups()
 
     console.log('Add Group ' + groupToAddTo.name + ' ' + groupToAddTo.id)
-    newUsers.forEach((e) => console.log(e.email + ' ' + e.id))
+    let allSuccessful = true
+    newUsers.forEach((e) => {
+      console.log(e.email + ' ' + e.id)
+      const addSingleUserEndpoint = endpoints.ADD_SINGLE_USER_TO_GROUP.replace(
+        ':groupId',
+        groupToAddTo.id
+      )
+
+      console.log(addSingleUserEndpoint)
+      axios
+        .post(addSingleUserEndpoint, {
+          userId: e.id.toString(),
+        })
+        .catch((err) => {
+          console.log(err)
+          allSuccessful = false
+        })
+    })
   }
 
   return (
