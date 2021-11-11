@@ -16,38 +16,49 @@ export default function GroupsListItem({
 }) {
   const navigation = useNavigation()
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => {
-        console.log('on press')
-        navigation.navigate(routes.GROUP_MEMBERS, {
-          groupId: groupId,
-        })
-      }}
-    >
-      <View style={styles.leftSideContainer}>
-        <View
-          style={[
-            styles.iconContainer,
-            {
-              width: iconSize * 2,
-              height: iconSize * 2,
-              borderRadius: iconSize,
-            },
-          ]}
-        >
-          <Ionicons name='people' size={iconSize} style={styles.iconStyle} />
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.rowContent}
+        onPress={() => {
+          console.log('on press')
+          navigation.navigate(routes.GROUP_MEMBERS, {
+            groupId: groupId,
+          })
+        }}
+      >
+        <View style={styles.leftSideContainer}>
+          <View
+            style={[
+              styles.iconContainer,
+              {
+                width: iconSize * 2,
+                height: iconSize * 2,
+                borderRadius: iconSize,
+              },
+            ]}
+          >
+            <Ionicons name='people' size={iconSize} style={styles.iconStyle} />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.titleText}>{title}</Text>
+            {numMembers !== null && (
+              <Text style={styles.numMembersText}>{numMembers}</Text>
+            )}
+          </View>
         </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.titleText}>{title}</Text>
-          {numMembers !== null && (
-            <Text style={styles.numMembersText}>{numMembers}</Text>
-          )}
-        </View>
-      </View>
 
-      {showArrow && <Ionicons name='arrow-forward' size={iconSize} />}
-    </TouchableOpacity>
+        {showArrow && <Ionicons name='arrow-forward' size={iconSize} />}
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate(routes.GROUP_MESSAGING, {
+            groupId: groupId,
+          })
+        }
+      >
+        <Text style={styles.messagingText}>Messaging</Text>
+      </TouchableOpacity>
+    </View>
   )
 }
 
@@ -58,15 +69,17 @@ GroupsListItem.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     backgroundColor: colors.lightGrey,
     marginVertical: 5,
     paddingVertical: 5,
     paddingHorizontal: 20,
     marginHorizontal: 10,
     borderRadius: 10,
+  },
+  rowContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   leftSideContainer: {
     flexDirection: 'row',
@@ -82,5 +95,10 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 20,
+  },
+  messagingText: {
+    fontSize: 16,
+    marginTop: 5,
+    textDecorationLine: 'underline',
   },
 })
