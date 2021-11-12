@@ -44,7 +44,7 @@ export default function Example({ route }) {
           'Updating from axios get ' + JSON.stringify(res.data, null, 4)
         )
 
-        const oldMessages = res.data.reverse().map((serverM) => {
+        const oldMessages = res.data.map((serverM) => {
           displayMessageUI(serverM)
         })
         console.log('old messages ' + JSON.stringify(oldMessages, null, 4))
