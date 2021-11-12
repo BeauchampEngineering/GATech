@@ -23,10 +23,25 @@ export default function Example({ route }) {
       console.log(
         'Received msg from server ' + JSON.stringify(message, null, 4)
       )
-      setMessages((oldArray) => [
-        ...oldArray,
-        mapServerMessageToUIMessage(message),
-      ])
+
+      if (message.userId === userId) {
+        // message this user sent
+        console.log('from this user')
+        setMessages((previousMessages) =>
+          GiftedChat.append(
+            previousMessages,
+            mapServerMessageToUIMessage(message)
+          )
+        )
+      } else {
+        // message a different user sent
+        console.log('from a different user')
+        setMessages((oldArray) => [
+          mapServerMessageToUIMessage(message),
+          ...oldArray,
+        ])
+      }
+
       console.log('after update messages is ' + messages)
       // console.log('messages is ' + JSON.stringify(messages, null, 4))
     })
@@ -60,7 +75,7 @@ export default function Example({ route }) {
       text: serverMessage.message,
       createdAt: serverMessage.createdAt,
       user: {
-        _id: serverMessage.userId == userId,
+        _id: serverMessage.userId,
         name: 'PLACEHOLDER',
         avatar: 'https://placeimg.com/140/140/any',
       },
@@ -71,10 +86,6 @@ export default function Example({ route }) {
   }
 
   const onSend = useCallback((newMessage = []) => {
-    // setMessages((previousMessages) =>
-    //   GiftedChat.append(previousMessages, newMessage)
-    // )
-
     console.log('iosm messages is ' + JSON.stringify(newMessage, null, 4))
     const formattedMessage = {
       // database properties
@@ -102,7 +113,7 @@ export default function Example({ route }) {
       messages={messages}
       onSend={(messages) => onSend(messages)}
       user={{
-        _id: 1,
+        _id: userId,
       }}
     />
   )
