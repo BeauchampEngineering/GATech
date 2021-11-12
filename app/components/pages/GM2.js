@@ -24,49 +24,53 @@ export default function Example({ route }) {
         'Received msg from server ' + JSON.stringify(message, null, 4)
       )
 
-      if (message.userId === userId) {
-        // message this user sent
-        console.log('from this user')
-        setMessages((previousMessages) =>
-          GiftedChat.append(
-            previousMessages,
-            mapServerMessageToUIMessage(message)
-          )
-        )
-      } else {
-        // message a different user sent
-        console.log('from a different user')
-        setMessages((oldArray) => [
-          mapServerMessageToUIMessage(message),
-          ...oldArray,
-        ])
-      }
+      displayMessageUI(message)
 
       console.log('after update messages is ' + messages)
       // console.log('messages is ' + JSON.stringify(messages, null, 4))
     })
 
-    // console.log('Running axios get')
-    // axios
-    //   .get(
-    //     endpoints.GET_GROUP_MESSAGES.replace(':userId', userId).replace(
-    //       ':groupId',
-    //       groupId
-    //     )
-    //   )
-    //   .then((res) => {
-    //     // console.log('Res is ' + JSON.stringify(res.data, null, 4))
-    //     console.log(
-    //       'Updating from axios get ' + JSON.stringify(res.data, null, 4)
-    //     )
-    //     setMessages([
-    //       res.data.map((serverM) => {
-    //         return mapServerMessageToUIMessage(serverM)
-    //       }),
-    //     ])
-    //   })
-    //   .catch((err) => console.log(err))
+    console.log('Running axios get')
+    axios
+      .get(
+        endpoints.GET_GROUP_MESSAGES.replace(':userId', userId).replace(
+          ':groupId',
+          groupId
+        )
+      )
+      .then((res) => {
+        // console.log('Res is ' + JSON.stringify(res.data, null, 4))
+        console.log(
+          'Updating from axios get ' + JSON.stringify(res.data, null, 4)
+        )
+
+        const oldMessages = res.data.reverse().map((serverM) => {
+          displayMessageUI(serverM)
+        })
+        console.log('old messages ' + JSON.stringify(oldMessages, null, 4))
+      })
+      .catch((err) => console.log(err))
   }, [])
+
+  function displayMessageUI(message) {
+    if (message.userId === userId) {
+      // message this user sent
+      console.log('from this user')
+      setMessages((previousMessages) =>
+        GiftedChat.append(
+          previousMessages,
+          mapServerMessageToUIMessage(message)
+        )
+      )
+    } else {
+      // message a different user sent
+      console.log('from a different user')
+      setMessages((oldArray) => [
+        mapServerMessageToUIMessage(message),
+        ...oldArray,
+      ])
+    }
+  }
 
   function mapServerMessageToUIMessage(serverMessage) {
     console.log('mapServer message starts')
