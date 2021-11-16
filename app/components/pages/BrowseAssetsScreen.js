@@ -3,6 +3,7 @@ import { FlatList } from 'react-native'
 import { StyleSheet, Text, View } from 'react-native'
 import AssetListItem from '../AssetListItem'
 import colors from '../../config/colors'
+import {SearchBar } from "react-native-elements";
 import SingleAsset from './SingleAsset'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useNavigation } from '@react-navigation/core'
@@ -15,24 +16,46 @@ const Stack = createNativeStackNavigator()
 export default function BrowseAssetsScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true)
   const [data, setData] = useState([])
+  const [search, setSearch] = useState("")
+  const [filteredData, setfilteredData] = useState([])
+  
+  function onSearch(text) {
+    setSearch(text)
+    setfilteredData(filterAssets(text))
+  }
+  
+  function filterAssets(text) {
+    return data.filter(function(e) {
+      return e.name.includes(String(text).toLowerCase())
+    });
+  }
 
   useEffect(() => {
     const getAssestsEndPoint = endpoints.GET_ASSETS
     axios
       .get(getAssestsEndPoint)
       .then((response) => response.data)
-      .then((data) => setData(data))
+      .then((data) => {setData(data)
+        setfilteredData(data)})
       .catch((error) => alert(error))
       .finally(() => setLoading(false))
   }, [])
 
   return (
     <View style={styles.container}>
+      <SearchBar
+          placeholder="Search Here..."
+          lightTheme
+          round
+          value={search}
+          onChangeText={(text) => onSearch(text)}
+        />
       {isLoading ? (
         <Text>Loading</Text>
       ) : (
+        
         <FlatList
-          data={data}
+          data={filteredData}
           renderItem={({ item }) => {
             return (
               <AssetListItem

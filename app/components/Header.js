@@ -8,7 +8,7 @@ import colors from '../config/colors'
 export default function Header() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>facebook</Text>
+      <Text style={styles.text}>Portal Manager</Text>
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={(params) => {}}>
           <Ionicons style={styles.icon} name='search' size={30} />
