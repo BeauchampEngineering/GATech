@@ -9,4 +9,5 @@ export default Object.freeze({
   APP_NAVIGATION: 'AppNavigation',
   QR_SCANNER: 'QRccanner',
   GROUP_MEMBERS: 'GroupMembers',
+  GROUP_MESSAGING: 'GroupMessaging',
 })
