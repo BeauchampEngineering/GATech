@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react';
+import axios from 'axios';
 
 const AuthContext = React.createContext();
 
@@ -10,14 +11,17 @@ const AuthProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')) || null);
 
     const loginUser = async (email, password) => {
-        // go to server and verify user and respond with token
-        const user = {email, password};
-        sessionStorage.setItem('user', JSON.stringify(user));
-        setCurrentUser(user);
+        const {data} = await axios.post('http://portal-manager.com/auth/login', {
+            email: email,
+            password: password
+        });
+        sessionStorage.setItem('user', JSON.stringify(data));
+        setCurrentUser(data);
     };
 
     const logoutUser = async () => {
-        // go to server and blacklist user's token
+        const {data} = await axios.get('http://portal-manager.com/auth/logout');
+        console.log(data);
         sessionStorage.setItem('user', null);
         setCurrentUser(null);
     }

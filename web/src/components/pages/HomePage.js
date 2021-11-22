@@ -1,5 +1,5 @@
-import './styles/HomePage.css';
-import React from 'react';
+import './styles/HomePage.css'
+import React from 'react'
 import Container from 'react-bootstrap/Container'
 import NavBar from '../bars/NavBar'
 import Sidebar from '../bars/Sidebar'

@@ -1,0 +1,14 @@
+.UsersAndGroups {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.addRemoveButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.addRemoveButtonContainer .addRemoveButton {
+  margin: 0px 5px;
+}

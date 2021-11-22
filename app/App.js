@@ -1,34 +1,28 @@
-import React from 'react';
-import {NativeRouter, Switch, Route} from 'react-router-native';
-import AuthProvider from './contexts/AuthContext';
-import StyleProvider from './contexts/StyleContext';
-import PublicRoute from './routes/PublicRoute';
-import PrivateRoute from './routes/PrivateRoute';
-import LoginPage from './components/pages/LoginPage';
-import LogoutPage from './components/pages/LogoutPage';
-import HomePage from './components/pages/HomePage';
-import UserPage from './components/pages/UserPage';
-import AssetPage from './components/pages/AssetPage';
-import GroupPage from './components/pages/GroupPage';
+import React from 'react'
 
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import AuthNavigation from './navigation/AuthNavigation'
+import AppNavigation from './navigation/AppNavigation'
+import Screen from './components/pages/Screen'
+
+const Stack = createNativeStackNavigator()
 
 const App = () => {
-    return (
-        <AuthProvider>
-            <StyleProvider>
-                <NativeRouter>
-                    <Switch>
-                        <PublicRoute path='/login' component={LoginPage}/>
-                        <PrivateRoute path='/logout' component={LogoutPage}/>
-                        <PrivateRoute exact path={['/', '/home']} component={HomePage}/>
-                        <PrivateRoute path='/users' component={UserPage}/>
-                        <PrivateRoute path='/assets' component={AssetPage}/>
-                        <PrivateRoute path='/groups' component={GroupPage}/>
-                    </Switch>
-                </NativeRouter>
-            </StyleProvider>
-        </AuthProvider>
-    );
-};
+  return (
+    <Screen>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name='AuthNavigation' component={AuthNavigation} />
+          <Stack.Screen name='AppNavigation' component={AppNavigation} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Screen>
+  )
+}
 
-export default App;
+export default App

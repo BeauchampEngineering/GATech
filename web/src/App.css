@@ -1,8 +1,8 @@
 body {
   overflow-y: scroll;
+  background-color: var(--background-color);
 }
 
 .PageContainer {
-  background-color: var(--background-color);
   padding: 0;
 }

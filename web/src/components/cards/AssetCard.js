@@ -13,14 +13,11 @@ const badgeColor = (category) => {
   }
 }
 
-const AssetCard = ({ name, lastModified, categories }) => {
+const AssetCard = ({ name, lastModified, categories, imgSrc }) => {
   return (
     <Link to={`/assets/${name.toLowerCase()}`}>
       <div id='Asset'>
-        <img
-          src='https://upload.wikimedia.org/wikipedia/commons/4/49/Fann_Mountains_vertical_2013.jpg'
-          alt='mountain'
-        />
+        <img src={imgSrc} alt='mountain' />
         <h4>{name}</h4>
         {categories.map((category, i) => (
           <Badge key={i} variant={badgeColor(category)}>
@@ -36,6 +33,8 @@ const AssetCard = ({ name, lastModified, categories }) => {
 AssetCard.defaultProps = {
   name: 'Mountain',
   lastModified: '4/12/2021',
+  imgSrc:
+    'https://upload.wikimedia.org/wikipedia/commons/4/49/Fann_Mountains_vertical_2013.jpg',
 }
 
-export default AssetCard;
+export default AssetCard
