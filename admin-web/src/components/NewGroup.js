@@ -1,18 +1,61 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAutocomplete } from '@mui/material/useAutocomplete'
 import { Autocomplete, TextField } from '@mui/material'
+import axios from 'axios'
+import endpoints from '../enpoints'
 
 const NewGroup = () => {
-  const [selectedItems, setSelectedItems] = useState([])
+  const [selectedUsers, setSelectedUsers] = useState([])
   const [groupName, setGroupName] = useState('')
+  const [users, setAllUsers] = useState([])
+  const [errorMessage, setErrorMessage] = useState('')
+  const [autoCompleteKey, setAutoCompleteKey] = useState(0) // to clear contents of autocomplete
+
   const data = ['Edward', 'Aarun', 'Slacker']
 
-  function onChange({ value }) {
-    setSelectedItems(value)
+  useEffect(() => {
+    const getAllUsersEndPoint = endpoints.GET_ALL_USERS
+    axios
+      .get(getAllUsersEndPoint)
+      .then((response) => {
+        console.log(response)
+        setAllUsers(response.data)
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
+  function onChange(event, value, details) {
+    setErrorMessage('')
+    setSelectedUsers(value)
   }
 
-  function createGroup(name) {
-    console.log('TODO: create group')
+  function createGroup(groupName) {
+    console.log('TODO: create group ' + selectedUsers)
+    const newUserEmails = new Set(selectedUsers)
+    const usersInGroup = users
+      .filter((user) => newUserEmails.has(user.email))
+      .map((user) => user.id)
+    console.log('Users in Group ' + usersInGroup)
+
+    if (groupName.trim().length > 0) {
+      axios
+        .post(endpoints.CREATE_NEW_GROUP, {
+          name: groupName,
+          userIds: usersInGroup,
+        })
+        .then((response) => {
+          alert('Group Created Successfully')
+          setGroupName('')
+          setSelectedUsers([])
+          setAutoCompleteKey(autoCompleteKey + 1)
+        })
+        .catch((err) => {
+          alert('Group Creation Failed')
+          console.log(err)
+        })
+    } else {
+      setErrorMessage('Please add a Group Name')
+    }
   }
 
   return (
@@ -29,8 +72,9 @@ const NewGroup = () => {
       />
       <Autocomplete
         multiple
-        id='combo-box-demo'
-        options={data}
+        key={autoCompleteKey}
+        id='user-select'
+        options={users.map((user) => user.email)}
         filterSelectedOptions={true}
         fullWidth={true}
         onChange={onChange}
@@ -43,6 +87,7 @@ const NewGroup = () => {
       >
         Create Group
       </button>
+      <p>{errorMessage}</p>
     </div>
   )
 }
