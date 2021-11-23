@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { newUser } from './state/UserState'
 
 import '../component-styles/NewUserForm.css'
 import enpoints from '../enpoints'
@@ -23,8 +24,11 @@ const NewUserForm = () => {
           confirmPassword,
         })
         .then((response) => {
-          console.log(response)
           alert('user added')
+          setEmail('')
+          setPassword('')
+          setConfirmPassword('')
+          newUser(response.data)
         })
         .catch((err) => console.log(err))
     } else {
