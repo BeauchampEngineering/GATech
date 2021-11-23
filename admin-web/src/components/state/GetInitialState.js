@@ -8,7 +8,6 @@ export const saveUsersToState = () => {
   axios
     .get(getAllUsersEndPoint)
     .then((response) => {
-      console.log(response)
       setAllUsers(response.data)
     })
     .catch((err) => console.log(err))
