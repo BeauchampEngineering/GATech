@@ -60,7 +60,7 @@ const AddUsersToGroup = () => {
 
   return (
     <div>
-      <h4>Delete/Create New Group(s)</h4>
+      <h4>Delete Group(s)</h4>
       <div className='deleteOrCreateGroups'>
         <div className='groups'>
           <div>
@@ -75,14 +75,6 @@ const AddUsersToGroup = () => {
             ))}
           </div>
           <button onClick={deleteGroups}>Delete Groups</button>
-        </div>
-        <div>
-          <TextAndButton
-            title='Create New Group'
-            placeholder='New Group Name'
-            buttonText='Create Group'
-            onClick={createGroup}
-          />
         </div>
       </div>
     </div>

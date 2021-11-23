@@ -2,7 +2,7 @@ import './App.css'
 import AddAsset from './components/AddAsset'
 import AddUsersToGroup from './components/AddUsersToGroup'
 import NewUserForm from './components/NewUserForm'
-import DeleteOrCreateGroup from './components/DeleteCreateGroup'
+import DeleteGroup from './components/DeleteGroup'
 import NewGroup from './components/NewGroup'
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <NewUserForm />
       <AddAsset />
       <AddUsersToGroup />
-      <DeleteOrCreateGroup />
+      <DeleteGroup />
     </div>
   )
 }
