@@ -21,13 +21,12 @@ export default function BrowseAssetsScreen({ navigation }) {
   
   function onSearch(text) {
     setSearch(text)
-    setfilteredData(filterAssets(text))
-  }
-  
-  function filterAssets(text) {
-    return data.filter(function(e) {
-      return e.name.includes(String(text).toLowerCase())
-    });
+    console.log('hi')
+    const logsEndpoint = endpoints.SEARCH_ASSETS.replace('{query}', String(text).toLowerCase())
+    axios
+      .get(logsEndpoint)
+      .then((response) => response.data)
+      .then((data) => {setfilteredData(data)}) 
   }
 
   useEffect(() => {
