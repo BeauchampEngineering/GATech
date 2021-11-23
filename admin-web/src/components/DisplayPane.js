@@ -26,7 +26,6 @@ const DisplayPane = () => {
   const [currentMember, setCurrentMembers] = useState([])
 
   useEffect(() => {
-    console.log('use effect isGroup ' + isGroup)
     if (isGroup) {
       // get users in the group
       axios
@@ -41,13 +40,10 @@ const DisplayPane = () => {
         .get(endpoints.GET_USERS_GROUPS.replace(':userId', userId))
         .then((response) => {
           setCurrentMembers(response.data)
-          console.log(response.data)
         })
         .catch((err) => console.log(err))
     }
   }, [displayPaneTitle])
-
-  console.log('current Members ' + currentMember)
 
   const handleUsersOnChange = (index) => {
     let tempCheckBoxes = [...checkBoxes]
@@ -99,12 +95,25 @@ const DisplayPane = () => {
     })
   }
 
+  function getGroupsUserNotIn() {
+    const groupIdsUserIn = currentMember.map((g) => g.id)
+    return allGroups.filter((g) => !groupIdsUserIn.includes(g.id))
+  }
+
+  function getUsersNotInGroup() {
+    const usersIdsInGroup = currentMember.map((u) => u.id)
+    return allUsers.filter((u) => !usersIdsInGroup.includes(u.id))
+  }
+
   return (
     <div
       style={{
         backgroundColor: '#e1b74d',
       }}
     >
+      <button onClick={() => setEditMode(!editMode)}>
+        {editMode ? 'Done' : 'Edit'}
+      </button>
       <h4>{displayPaneTitle}</h4>
       <div className='UsersAndGroups alignItems'>
         <div>
@@ -117,35 +126,37 @@ const DisplayPane = () => {
             ))}
           </ul>
         </div>
-        <div className='UsersAndGroups alignItems'>
-          {isGroup ? (
-            // if displaying a group, show users to add
-            <div>
-              {allUsers.map((item, index) => (
-                <div className='displayRow alignItems' key={index.toString()}>
-                  <input
-                    type='checkbox'
-                    onChange={() => handleUsersOnChange(index)}
-                  />
-                  <h5>{item.email}</h5>
-                </div>
-              ))}
-            </div>
-          ) : (
-            // if showing a user, display groups to add
-            <div>
-              {allGroups.map((item, index) => (
-                <div className='displayRow alignItems' key={index.toString()}>
-                  <input
-                    type='checkbox'
-                    onChange={() => handleGroupsOnChange(index)}
-                  />
-                  <h5>{item.name}</h5>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        {editMode && (
+          <div className='UsersAndGroups alignItems'>
+            {isGroup ? (
+              // if displaying a group, show users to add
+              <div>
+                {getUsersNotInGroup().map((item, index) => (
+                  <div className='displayRow alignItems' key={index.toString()}>
+                    <input
+                      type='checkbox'
+                      onChange={() => handleUsersOnChange(index)}
+                    />
+                    <h5>{item.email}</h5>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              // if showing a user, display groups to add
+              <div>
+                {getGroupsUserNotIn().map((item, index) => (
+                  <div className='displayRow alignItems' key={index.toString()}>
+                    <input
+                      type='checkbox'
+                      onChange={() => handleGroupsOnChange(index)}
+                    />
+                    <h5>{item.name}</h5>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       <div className='addRemoveButtonContainer'>
