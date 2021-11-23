@@ -15,7 +15,11 @@ const NewUserForm = () => {
     // TODO: email validation
 
     // email not already registered and password == confirm password
-    if (password === confirmPassword) {
+    if (email.length === 0) {
+      setErrorMessage('A new user requires an email')
+    } else if (password.length === 0) {
+      setErrorMessage('Please enter a password')
+    } else if (password === confirmPassword) {
       console.log('Creating New User')
       axios
         .post(enpoints.CREATE_NEW_USER, {
