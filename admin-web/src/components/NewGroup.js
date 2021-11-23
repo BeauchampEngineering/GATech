@@ -37,7 +37,11 @@ const NewGroup = () => {
       .map((user) => user.id)
     console.log('Users in Group ' + usersInGroup)
 
-    if (groupName.trim().length > 0) {
+    if (groupName.trim().length === 0) {
+      setErrorMessage('Please add a Group Name')
+    } else if (selectedUsers.length < 2) {
+      setErrorMessage('All groups need at least two users')
+    } else if (groupName.trim().length > 0) {
       axios
         .post(endpoints.CREATE_NEW_GROUP, {
           name: groupName,
@@ -53,8 +57,6 @@ const NewGroup = () => {
           alert('Group Creation Failed')
           console.log(err)
         })
-    } else {
-      setErrorMessage('Please add a Group Name')
     }
   }
 
