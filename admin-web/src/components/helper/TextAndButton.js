@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import '../../component-styles/AddAsset.css'
-import enpoints from '../../enpoints'
+import endpoints from '../../endpoints'
 
 const TextAndButton = ({ placeholder, buttonText, title, onClick }) => {
   const [text, setText] = useState('')
@@ -9,7 +9,7 @@ const TextAndButton = ({ placeholder, buttonText, title, onClick }) => {
   const addAsset = (name) => {
     console.log('Adding asset')
     axios
-      .post(enpoints.CREATE_NEW_ASSET, {
+      .post(endpoints.CREATE_NEW_ASSET, {
         name,
       })
       .then((response) => alert('Successfully added asset'))

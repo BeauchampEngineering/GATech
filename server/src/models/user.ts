@@ -2,9 +2,9 @@ import { DataTypes, Model, Optional } from 'sequelize'
 import sequelize from '../databases/sql'
 
 interface UserAttributes {
-    id: number
+    id: string | number
     email: string
-    passwordHash: string
+    passwordHash?: string
     isAdmin?: boolean
 }
 
@@ -15,7 +15,7 @@ interface UserInstance extends Model<UserAttributes, UserCreationAttributes>,
 
 const User = sequelize.define<UserInstance>('user', {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
@@ -26,13 +26,13 @@ const User = sequelize.define<UserInstance>('user', {
     },
     passwordHash: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 'default'
     },
     isAdmin: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
     }
 })
-
 
 export default User 

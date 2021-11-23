@@ -1,9 +1,12 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../databases/sql';
+import { v4 as uuid } from 'uuid';
 
 interface AssetAttributes {
-    id: number
+    id: string | number
+    identifier?: string
     name: string
+    fault?: boolean
 }
 
 interface AssetCreationAttributes extends Optional<AssetAttributes, 'id'> {}
@@ -13,13 +16,22 @@ interface AssetInstance extends Model<AssetAttributes, AssetCreationAttributes>,
 
 const Asset = sequelize.define<AssetInstance>('asset', {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
+    },
+    identifier: {
+        type: DataTypes.UUID,
+        unique: true,
+        defaultValue: () => uuid()
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    fault: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     }
 })
 

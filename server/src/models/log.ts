@@ -2,8 +2,8 @@ import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../databases/sql';
 
 interface LogAttributes {
-    id: number
-    userId: number
+    id: string | number
+    userId: string
     message: string
     deleted?: boolean
 }
@@ -15,12 +15,12 @@ interface LogInstance extends Model<LogAttributes, LogCreationAttributes>,
 
 const Log = sequelize.define<LogInstance>('log', {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     userId: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     message: {

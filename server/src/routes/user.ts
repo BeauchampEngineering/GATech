@@ -78,6 +78,9 @@ router.put('/api/users/:userId', [
 router.delete('/api/users/:userId', async (req: Request, res: Response) => {
     const userId = req.params!.userId
     const user = await User.findByPk(userId)
+    if (!user) {
+        throw new UserNotFoundError()
+    }
     await user?.destroy()
     res.status(200).json({message: 'User successfully deleted'})
 })

@@ -1,8 +1,10 @@
 import { DataTypes, Model, Optional } from 'sequelize'
 import sequelize from '../databases/sql'
+import { v4 as uuid } from 'uuid'
 
 interface GroupAttributes {
-    id: number
+    id: string | number
+    identifier?: string
     name: string
 }
 
@@ -13,9 +15,14 @@ interface GroupInstance extends Model<GroupAttributes, GroupCreationAttributes>,
 
 const Group = sequelize.define<GroupInstance>('group', {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
+    },
+    identifier: {
+        type: DataTypes.UUID,
+        unique: true,
+        defaultValue: () => uuid()
     },
     name: {
         type: DataTypes.STRING,

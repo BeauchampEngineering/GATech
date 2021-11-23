@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 import '../component-styles/NewUserForm.css'
-import enpoints from '../enpoints'
+import endpoints from '../endpoints'
 
 const NewUserForm = () => {
   const [email, setEmail] = useState('')
@@ -17,7 +17,7 @@ const NewUserForm = () => {
     if (password === confirmPassword) {
       console.log('Creating New User')
       axios
-        .post(enpoints.CREATE_NEW_USER, {
+        .post(endpoints.CREATE_NEW_USER, {
           email: email,
           password,
           confirmPassword,

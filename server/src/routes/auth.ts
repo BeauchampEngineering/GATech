@@ -17,7 +17,7 @@ router.post('/auth/login', [
 ], validateRequest, async (req: Request, res: Response) => {
     const {email, password} = req.body
     const user = await User.findOne({where: {email}})
-    if(!user || !await bcrypt.compare(password, user.passwordHash)) {
+    if(!user || !(await bcrypt.compare(password, user.passwordHash!))) {
         throw new Error('Invalid credentials')
     }
     res.status(200).json(user)

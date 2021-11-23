@@ -3,6 +3,8 @@ import AddAsset from './components/AddAsset'
 import AddUsersToGroup from './components/AddUsersToGroup'
 import NewUserForm from './components/NewUserForm'
 import DeleteOrCreateGroup from './components/DeleteCreateGroup'
+import ImportSapForm from './components/ImportSapForm'
+import ExportSapForm from './components/ExportSapForm'
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <AddAsset />
       <AddUsersToGroup />
       <DeleteOrCreateGroup />
+      <ImportSapForm />
+      <ExportSapForm />
     </div>
   )
 }

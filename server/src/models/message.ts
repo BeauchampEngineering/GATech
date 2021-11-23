@@ -2,7 +2,7 @@ import { DataTypes, Model, Optional } from 'sequelize'
 import sequelize from '../databases/sql'
 
 interface MessageAttributes {
-    id: number
+    id: string | number
     message: string
 }
 
@@ -13,7 +13,7 @@ interface MessageInstance extends Model<MessageAttributes, MessageCreationAttrib
 
 const Message = sequelize.define<MessageInstance>('Message', {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },

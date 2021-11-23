@@ -1,16 +1,54 @@
 import express, {Request, Response} from 'express'
+import {Op} from 'sequelize'
 import {body} from 'express-validator'
-import User from '../models/user'
 import UserNotFoundError from '../errors/user-not-found-error'
-import Asset from '../models/asset'
 import AssetNotFoundError from '../errors/asset-not-found-error'
 import validateRequest from '../middlewares/validate-request'
+import {User, Asset, Log} from '../models'
 
 const router = express.Router()
 
 router.get('/api/assets', async (req: Request, res: Response) => {
-    const assets = await Asset.findAll()
+    let assets
+    const search = req.query.search
+    if (search) {
+        const logs = await Log.findAll({
+            where: {
+                message: {
+                    [Op.substring]: search + ''
+                }
+            },
+            attributes: ['assetId']
+        })
+        //@ts-ignore
+        const assetIds = logs.map(l => l.assetId)
+        assets = await Asset.findAll({
+            where: {
+                [Op.or]: [
+                    {name: {[Op.substring]: search + ''}},
+                    {id: {[Op.or]: assetIds}}
+                ]
+            }
+        })
+    } else {
+        assets = await Asset.findAll()
+    }
     res.status(200).json(assets)
+})
+
+router.post('/api/assets', [
+    body('name')
+    .notEmpty()
+], validateRequest, async (req: Request, res: Response) => {
+    const {name} = req.body
+    const asset = await Asset.create({name})
+    res.status(201).json(asset)
+})
+
+router.get('/api/assets/:assetId', async (req: Request, res: Response) => {
+    const assetId = req.params.assetId
+    const asset = await Asset.findByPk(assetId)
+    res.status(200).json(asset)
 })
 
 router.get('/api/assets/:assetId/users', async (req: Request, res: Response) => {
