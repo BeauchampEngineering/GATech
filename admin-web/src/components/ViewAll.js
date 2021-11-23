@@ -13,10 +13,12 @@ const ViewAll = () => {
   const allUsers = userList.use()
 
   function getListComponent(data, isGroup) {
-    console.log('data is ' + JSON.stringify(data, null, 4))
-
     return data.map((d) => (
-      <p className='itemList' onClick={() => setDisplayPane(d, isGroup)}>
+      <p
+        className='itemList'
+        key={isGroup ? d.id : d.userId}
+        onClick={() => setDisplayPane(d, isGroup)}
+      >
         {isGroup ? d.name : d.email}
       </p>
     ))

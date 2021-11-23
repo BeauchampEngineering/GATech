@@ -10,6 +10,7 @@ import NewUserForm from './components/NewUserForm'
 import DeleteGroup from './components/DeleteGroup'
 import NewGroup from './components/NewGroup'
 import ViewAll from './components/ViewAll'
+import DisplayPane from './components/DisplayPane'
 
 function App() {
   useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
       <AddUsersToGroup />
       <DeleteGroup />
       <ViewAll />
+      <DisplayPane />
     </div>
   )
 }
