@@ -6,6 +6,7 @@ import {
   groupIdState,
   userIdState,
   isGroupState,
+  setTitle,
 } from './state/DisplayPaneState'
 import { userList } from './state/UserState'
 import endpoints from '../enpoints'
@@ -24,7 +25,9 @@ const DisplayPane = () => {
   const [selectedGroup, setSelectedGroup] = useState(0)
   const [checkBoxes, setCheckBoxes] = useState([])
   const [currentMember, setCurrentMembers] = useState([])
+  const [rerenderHelper, setRerenderHelper] = useState(false) // toggle this when want to 'force' refresh
 
+  console.log('rerendering')
   useEffect(() => {
     if (isGroup) {
       // get users in the group
@@ -43,7 +46,7 @@ const DisplayPane = () => {
         })
         .catch((err) => console.log(err))
     }
-  }, [displayPaneTitle])
+  }, [displayPaneTitle, rerenderHelper])
 
   const handleUsersOnChange = (index) => {
     let tempCheckBoxes = [...checkBoxes]
@@ -71,6 +74,10 @@ const DisplayPane = () => {
     newUsers.forEach((e) => console.log(e.email + ' ' + e.id))
   }
 
+  const assignGroupsToUsers = () => {
+    // TODO need backend methods for this
+  }
+
   const assignUsersToGroup = () => {
     const newUsers = getUsersNotInGroup().filter((element, index) => {
       return checkBoxes[index] === true
@@ -85,9 +92,11 @@ const DisplayPane = () => {
         groupId,
         userIds: userIds,
       })
-      .then((response) =>
-        console.log('response ' + JSON.stringify(response, null, 4))
-      )
+      .then((response) => {
+        // update the state locally. This works most of the time. Not always
+        console.log(response)
+        setRerenderHelper(!rerenderHelper)
+      })
       .catch((err) => console.log(err))
   }
 

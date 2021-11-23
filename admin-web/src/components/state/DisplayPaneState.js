@@ -5,6 +5,10 @@ export const title = entity('')
 export const groupIdState = entity(-1)
 export const userIdState = entity(-1)
 
+export const setTitle = (newTitle) => {
+  title.set(newTitle)
+}
+
 export const setDisplayGroup = (g) => {
   isGroupState.set(true)
   title.set(g.name)
