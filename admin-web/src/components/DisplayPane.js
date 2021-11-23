@@ -72,27 +72,23 @@ const DisplayPane = () => {
   }
 
   const assignUsersToGroup = () => {
-    const { newUsers, groupToAddTo } = getUsersAndGroups()
-
-    console.log('Add Group ' + groupToAddTo.name + ' ' + groupToAddTo.id)
-    let allSuccessful = true
-    newUsers.forEach((e) => {
-      console.log(e.email + ' ' + e.id)
-      const addSingleUserEndpoint = endpoints.ADD_SINGLE_USER_TO_GROUP.replace(
-        ':groupId',
-        groupToAddTo.id
-      )
-
-      console.log(addSingleUserEndpoint)
-      axios
-        .post(addSingleUserEndpoint, {
-          userId: e.id.toString(),
-        })
-        .catch((err) => {
-          console.log(err)
-          allSuccessful = false
-        })
+    const newUsers = getUsersNotInGroup().filter((element, index) => {
+      return checkBoxes[index] === true
     })
+    const userIds = [
+      ...currentMember.map((u) => u.id),
+      ...newUsers.map((u) => u.id),
+    ]
+
+    axios
+      .put(endpoints.UPDATE_GROUP.replace(':groupId', groupId), {
+        groupId,
+        userIds: userIds,
+      })
+      .then((response) =>
+        console.log('response ' + JSON.stringify(response, null, 4))
+      )
+      .catch((err) => console.log(err))
   }
 
   function getGroupsUserNotIn() {
