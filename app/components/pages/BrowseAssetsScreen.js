@@ -70,7 +70,7 @@ export default function BrowseAssetsScreen({ navigation }) {
               />
             )
           }}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
           numColumns={2}
         ></FlatList>
       )}
