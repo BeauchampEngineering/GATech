@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { groups, setAllGroups } from './state/GroupState'
 import endpoints from '../enpoints'
 import '../component-styles/AddUsersToGroup.css'
 
 const AddUsersToGroup = () => {
   const [selectedGroup, setSelectedGroup] = useState(0)
   const [allUsers, setallUsers] = useState([])
-  const [allGroups, setAllGroups] = useState([])
+  // const [allGroups, setAllGroups] = useState([])
   const [checkBoxes, setCheckBoxes] = useState([])
+
+  var allGroups = groups.use()
+  console.log('all groups is ' + allGroups)
 
   useEffect(() => {
     const getAllUsersEndPoint = endpoints.GET_ALL_USERS

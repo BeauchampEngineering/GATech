@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useAutocomplete } from '@mui/material/useAutocomplete'
+import { addGroup } from './state/GroupState'
 import { Autocomplete, TextField } from '@mui/material'
 import axios from 'axios'
 import endpoints from '../enpoints'
@@ -52,6 +52,7 @@ const NewGroup = () => {
           setGroupName('')
           setSelectedUsers([])
           setAutoCompleteKey(autoCompleteKey + 1)
+          addGroup(response.data)
         })
         .catch((err) => {
           alert('Group Creation Failed')
