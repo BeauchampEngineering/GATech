@@ -36,6 +36,7 @@ const GroupPage = () => {
             />
           )
         }}
+        keyExtractor={(item) => item.id.toString()}
       ></FlatList>
     </View>
   )
