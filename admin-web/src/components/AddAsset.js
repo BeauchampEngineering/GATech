@@ -12,8 +12,14 @@ const AddAsset = () => {
       .post(enpoints.CREATE_NEW_ASSET, {
         name,
       })
-      .then((response) => alert('Successfully added asset'))
-      .catch((err) => console.log(err))
+      .then((response) => {
+        alert('Successfully added asset')
+        setassetName('')
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('Failed to add an asset')
+      })
   }
 
   return (
