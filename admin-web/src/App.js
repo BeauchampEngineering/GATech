@@ -9,6 +9,7 @@ import AddUsersToGroup from './components/AddUsersToGroup'
 import NewUserForm from './components/NewUserForm'
 import DeleteGroup from './components/DeleteGroup'
 import NewGroup from './components/NewGroup'
+import ViewAll from './components/ViewAll'
 
 function App() {
   useEffect(() => {
@@ -22,6 +23,7 @@ function App() {
       <AddAsset />
       <AddUsersToGroup />
       <DeleteGroup />
+      <ViewAll />
     </div>
   )
 }
