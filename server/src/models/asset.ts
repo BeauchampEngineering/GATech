@@ -7,6 +7,7 @@ interface AssetAttributes {
     identifier?: string
     name: string
     fault?: boolean
+    image?: Blob
 }
 
 interface AssetCreationAttributes extends Optional<AssetAttributes, 'id'> {}
@@ -32,6 +33,9 @@ const Asset = sequelize.define<AssetInstance>('asset', {
     fault: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+    },
+    image: {
+        type: DataTypes.BLOB('long')
     }
 })
 

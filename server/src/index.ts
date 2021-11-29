@@ -7,10 +7,11 @@ import cors from 'cors'
 import bcrypt from 'bcryptjs'
 import sequelize from './databases/sql'
 import {User, Asset, Log, Group, UserAsset, UserGroup} from './models'
-import {authRoutes, userRoutes, assetRoutes, logRoutes, groupRoutes, sapRoutes} from './routes'
+import {authRoutes, userRoutes, assetRoutes, logRoutes, groupRoutes, sapRoutes, streamRoutes} from './routes'
 import RouteNotFoundError from './errors/route-not-found-error'
 import errorHandler from './middlewares/error-handler'
 import Message from './models/message'
+
 
 dotenv.config()
 
@@ -29,6 +30,7 @@ app.use(assetRoutes)
 app.use(logRoutes)
 app.use(groupRoutes)
 app.use(sapRoutes)
+app.use(streamRoutes)
 
 app.all('*', async () => {
     throw new RouteNotFoundError()
@@ -56,7 +58,7 @@ io.on('connection', (socket: Socket) => {
         if (!asset) {
             console.log('Asset not found')
         } else {
-            socket.join(room)
+            socket.join(asset.identifier!)
         }
     })
     socket.on('join-group', async (room: string) => {
@@ -64,7 +66,7 @@ io.on('connection', (socket: Socket) => {
         if (!group) {
             console.log('Group not found')
         } else {
-            socket.join(room) 
+            socket.join(group.identifier!) 
         }
     })
     socket.on('message', async (packet: {room: string, message: string, userId: number}) => {
@@ -149,6 +151,11 @@ const populate = async () => {
     await asset1.createLog({
         userId: user1.id, 
         message: 'test message'
+    })
+    //@ts-ignore
+    await asset1.createLog({
+        userId: user1.id, 
+        message: 'test message2'
     })
     const group = await Group.create({name: 'test group'})
     //@ts-ignore

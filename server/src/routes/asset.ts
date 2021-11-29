@@ -1,12 +1,16 @@
+//@ts-nocheck
+import fs from 'fs'
 import express, {Request, Response} from 'express'
 import {Op} from 'sequelize'
 import {body} from 'express-validator'
+import multer from 'multer'
 import UserNotFoundError from '../errors/user-not-found-error'
 import AssetNotFoundError from '../errors/asset-not-found-error'
 import validateRequest from '../middlewares/validate-request'
 import {User, Asset, Log} from '../models'
 
 const router = express.Router()
+const upload = multer({dest: 'src/tmp/img/'})
 
 router.get('/api/assets', async (req: Request, res: Response) => {
     let assets
@@ -49,6 +53,31 @@ router.get('/api/assets/:assetId', async (req: Request, res: Response) => {
     const assetId = req.params.assetId
     const asset = await Asset.findByPk(assetId)
     res.status(200).json(asset)
+})
+
+router.put('/api/assets/:assetId', async (req: Request, res: Response) => {
+    const {name} = req.body
+    const assetId = req.params.assetId
+    const asset = await Asset.findByPk(assetId)
+    if (!asset) {
+        throw new AssetNotFoundError()
+    }
+    asset.name = name
+    await asset.save()
+    res.status(200).json(asset)
+})
+
+router.put('/api/assets/:assetId/images', upload.single('file'), async (req: Request, res: Response) => {
+    const image = fs.readFileSync(req.file.path)
+    fs.unlinkSync(req.file.path)
+    const assetId = req.params.assetId
+    const asset = await Asset.findByPk(assetId)
+    if (!asset) {
+        throw new AssetNotFoundError()
+    }
+    asset.image = image
+    await asset.save()
+    res.status(200).json({message: 'Image Uploaded Successfully'})
 })
 
 router.get('/api/assets/:assetId/users', async (req: Request, res: Response) => {

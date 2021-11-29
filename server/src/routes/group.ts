@@ -86,7 +86,7 @@ router.get('/api/groups/:groupId', async (req: Request, res: Response) => {
         throw new GroupNotFoundError()
     }
     //@ts-ignore
-    const users = group.getUsers()
+    const users = await group.getUsers()
     res.status(200).json(users)
 })
 

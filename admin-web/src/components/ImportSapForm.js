@@ -14,13 +14,13 @@ const ImportSapForm = () => {
         reader.onload = async e => {
             const sap = {}
             const data = e.target.result
-            const readedData = XLSX.read(data, {type: 'binary'})
+            const readedData = XLSX.read(data, {type: 'binary', sheetStubs: true})
+
             for (const wsname of readedData.SheetNames) {
                 const ws = readedData.Sheets[wsname]
-                sap[wsname] = XLSX.utils.sheet_to_json(ws, {blankrows: false})
+                sap[wsname] = XLSX.utils.sheet_to_json(ws)
             }
-            const res = await axios.post('http://localhost:3000/sap/import', sap)
-            console.log(res.data)
+            await axios.post(endpoints.IMPORT_SAP, sap)
         }
         reader.readAsBinaryString(file)
     }

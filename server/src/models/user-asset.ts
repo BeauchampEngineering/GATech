@@ -1,4 +1,4 @@
-import { DataTypes, Model, Optional } from 'sequelize'
+import { Model } from 'sequelize'
 import sequelize from '../databases/sql'
 
 interface UserAssetAttributes {}

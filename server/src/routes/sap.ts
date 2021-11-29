@@ -4,19 +4,10 @@ import { Asset, Log, User, UserAsset } from '../models'
 const router = express.Router()
 router.post('/sap/import', async (req: Request, res: Response) => {
     const {users, assets, logs, userAssets} = req.body
-    try {
-        console.log(req.body)
-        await User.bulkCreate(users)
-        console.log(1)
-        await Asset.bulkCreate(assets)
-        console.log(2)
-        await Log.bulkCreate(logs)
-        console.log(3)
-        // await UserAsset.bulkCreate(userAssets)
-        // console.log(45)
-    } catch(e) {
-        console.error(e)
-    }
+    await User.bulkCreate(users)
+    await Asset.bulkCreate(assets)
+    await Log.bulkCreate(logs)
+    await UserAsset.bulkCreate(userAssets)
     res.status(201).json({message: 'SAP Imported Successfully'})
 })
 
