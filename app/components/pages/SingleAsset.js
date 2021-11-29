@@ -83,7 +83,13 @@ export default function SingleAsset({ route }) {
       <FlatList
         data={logData}
         renderItem={({ item }) => {
-          return <LogMessage message={item.message} />
+          return (
+            <LogMessage
+              message={item.message}
+              user={item.userId}
+              date={item.updatedAt}
+            />
+          )
         }}
         keyExtractor={(item) => item.id.toString()}
       ></FlatList>
