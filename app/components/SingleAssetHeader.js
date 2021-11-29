@@ -1,17 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 
-export default function SingleAssetHeader({ id, name, date, image }) {
+export default function SingleAssetHeader({ name, image }) {
   return (
     <View style={styles.container}>
+      <View style={styles.detailsContainer}>
+        <Text style={styles.name}>{name}</Text>
+      </View>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={image} />
       </View>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.date}>{date}</Text>
-      </View>
-
       <Text style={styles.previousLogs}>Previous Logs</Text>
     </View>
   )
@@ -20,12 +18,11 @@ export default function SingleAssetHeader({ id, name, date, image }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 5,
   },
   imageContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 40,
+    marginTop: 5,
   },
   image: {
     width: 300,
@@ -33,7 +30,7 @@ const styles = StyleSheet.create({
     resizeMode: 'center',
   },
   detailsContainer: {
-    marginTop: 20,
+    marginTop: 5,
   },
   name: {
     fontSize: 20,
