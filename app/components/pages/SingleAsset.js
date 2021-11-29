@@ -32,11 +32,10 @@ export default function SingleAsset({ route }) {
         .post(logsEndpoint, {
           message: newMessage,
         })
-        .then(() => {
-          console.log('Log successful')
+        .then((response) => {
           setLogData((oldArray) => [
             ...oldArray,
-            { id: 2, message: newMessage },
+            { id: response.data.id, message: response.data.message },
           ])
         })
         .catch((err) => console.log(err))
@@ -84,7 +83,7 @@ export default function SingleAsset({ route }) {
       <FlatList
         data={logData}
         renderItem={({ item }) => {
-          return <LogMessage title={item.message} subtitle={item.message} />
+          return <LogMessage message={item.message} />
         }}
         keyExtractor={(item) => item.id.toString()}
       ></FlatList>
