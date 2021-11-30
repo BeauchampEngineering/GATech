@@ -9,9 +9,9 @@ export default function GroupMemebers({ route }) {
   const groupId = route.params.groupId
   useEffect(() => {
     const groupMemebersEndpoint = endpoints.GET_USERS_IN_GROUP.replace(
-      ':userId',
-      GLOBAL.userId
-    ).replace(':groupId', groupId)
+      ':groupId',
+      groupId
+    )
     axios
       .get(groupMemebersEndpoint)
       .then((response) => {
