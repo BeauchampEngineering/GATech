@@ -3,7 +3,7 @@ import { FlatList } from 'react-native'
 import { StyleSheet, Text, View } from 'react-native'
 import AssetListItem from '../AssetListItem'
 import colors from '../../config/colors'
-import {SearchBar } from "react-native-elements";
+import { SearchBar } from 'react-native-elements'
 import SingleAsset from './SingleAsset'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useNavigation } from '@react-navigation/core'
@@ -16,18 +16,21 @@ const Stack = createNativeStackNavigator()
 export default function BrowseAssetsScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true)
   const [data, setData] = useState([])
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState('')
   const [filteredData, setfilteredData] = useState([])
-  
+
   function onSearch(text) {
     setSearch(text)
-    setfilteredData(filterAssets(text))
-  }
-  
-  function filterAssets(text) {
-    return data.filter(function(e) {
-      return e.name.includes(String(text).toLowerCase())
-    });
+    const logsEndpoint = endpoints.SEARCH_ASSETS.replace(
+      '{query}',
+      String(text).toLowerCase()
+    )
+    axios
+      .get(logsEndpoint)
+      .then((response) => response.data)
+      .then((data) => {
+        setfilteredData(data)
+      })
   }
 
   useEffect(() => {
@@ -35,8 +38,10 @@ export default function BrowseAssetsScreen({ navigation }) {
     axios
       .get(getAssestsEndPoint)
       .then((response) => response.data)
-      .then((data) => {setData(data)
-        setfilteredData(data)})
+      .then((data) => {
+        setData(data)
+        setfilteredData(data)
+      })
       .catch((error) => alert(error))
       .finally(() => setLoading(false))
   }, [])
@@ -44,16 +49,15 @@ export default function BrowseAssetsScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <SearchBar
-          placeholder="Search Here..."
-          lightTheme
-          round
-          value={search}
-          onChangeText={(text) => onSearch(text)}
-        />
+        placeholder='Search Here...'
+        lightTheme
+        round
+        value={search}
+        onChangeText={(text) => onSearch(text)}
+      />
       {isLoading ? (
         <Text>Loading</Text>
       ) : (
-        
         <FlatList
           data={filteredData}
           renderItem={({ item }) => {
@@ -71,7 +75,7 @@ export default function BrowseAssetsScreen({ navigation }) {
               />
             )
           }}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
           numColumns={2}
         ></FlatList>
       )}

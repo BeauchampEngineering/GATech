@@ -2,12 +2,14 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import colors from '../config/colors'
 
-export default function LogMessage({ title, subtitle }) {
+export default function LogMessage({ message, user, date }) {
+  const formattedDate = new Date(date).toLocaleDateString('en-US')
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>{subtitle}</Text>
+        <Text style={styles.message}>{message}</Text>
+        <Text style={styles.user}>UserId: {user}</Text>
+        <Text style={styles.date}>{formattedDate}</Text>
       </View>
     </View>
   )
@@ -18,13 +20,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightGrey,
     borderRadius: 5,
     elevation: 6,
+    marginBottom: 3,
   },
   content: {
     paddingVertical: 5,
     paddingHorizontal: 10,
   },
-  title: {
+  message: {
     fontSize: 18,
-    fontWeight: 'bold',
+  },
+  user: {
+    fontStyle: 'italic',
   },
 })
