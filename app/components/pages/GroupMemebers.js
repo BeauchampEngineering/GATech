@@ -29,7 +29,7 @@ export default function GroupMemebers({ route }) {
         data={groupMembers}
         keyExtractor={(person) => person.id.toString()}
         renderItem={({ item }) => {
-          return <GroupsListItem title={item.email} />
+          return <GroupsListItem title={item.email} showMessaging={false} />
         }}
       ></FlatList>
     </View>
