@@ -13,6 +13,7 @@ export default function GroupsListItem({
   numMembers,
   showArrow,
   groupId,
+  showMessaging = true,
 }) {
   const navigation = useNavigation()
   return (
@@ -48,19 +49,21 @@ export default function GroupsListItem({
         </View>
 
         <View style={styles.icons}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate(routes.GROUP_MESSAGING, {
-                groupId: groupId,
-              })
-            }
-          >
-            <FontAwesome5
-              name='facebook-messenger'
-              size={iconSize}
-              style={styles.icon}
-            />
-          </TouchableOpacity>
+          {showMessaging && (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(routes.GROUP_MESSAGING, {
+                  groupId: groupId,
+                })
+              }
+            >
+              <FontAwesome5
+                name='facebook-messenger'
+                size={iconSize}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+          )}
 
           {showArrow && (
             <Ionicons
