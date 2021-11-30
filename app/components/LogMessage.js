@@ -1,9 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import colors from '../config/colors'
+import { formatDate } from '../utils/DateUtils'
 
 export default function LogMessage({ message, user, date }) {
-  const formattedDate = new Date(date).toLocaleDateString('en-US')
+  const formattedDate = formatDate(date)
   return (
     <View style={styles.container}>
       <View style={styles.content}>

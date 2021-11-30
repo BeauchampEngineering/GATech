@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useNavigation } from '@react-navigation/core'
 import routes from '../../navigation/routes'
 import endpoints from '../../connections/endpoints'
+import { formatDate } from '../../utils/DateUtils'
 const axios = require('axios')
 
 const Stack = createNativeStackNavigator()
@@ -64,7 +65,7 @@ export default function BrowseAssetsScreen({ navigation }) {
             return (
               <AssetListItem
                 name={item.name}
-                date={item.updatedAt}
+                date={formatDate(item.updatedAt)}
                 image={require('../../assets/machine.jpg')}
                 onPress={() =>
                   navigation.navigate(routes.SINGLE_ASSET, {
