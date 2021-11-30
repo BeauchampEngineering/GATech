@@ -27,7 +27,7 @@ const DisplayPane = () => {
   const [currentMember, setCurrentMembers] = useState([])
   const [rerenderHelper, setRerenderHelper] = useState(false) // toggle this when want to 'force' refresh
 
-  console.log('rerendering')
+  console.log('rerendering checkbox ' + checkBoxes)
   useEffect(() => {
     if (isGroup) {
       // get users in the group
@@ -95,19 +95,31 @@ const DisplayPane = () => {
       .then((response) => {
         // update the state locally. This works most of the time. Not always
         console.log(response)
-        setRerenderHelper(!rerenderHelper)
+        // add the users locally
+        setCurrentMembers([...currentMember, ...newUsers])
+        setCheckBoxes([null])
       })
       .catch((err) => console.log(err))
   }
 
   function getGroupsUserNotIn() {
     const groupIdsUserIn = currentMember.map((g) => g.id)
+    setCheckBoxes(Array.apply(false, allUsers.length - groupIdsUserIn.length))
     return allGroups.filter((g) => !groupIdsUserIn.includes(g.id))
   }
 
   function getUsersNotInGroup() {
     const usersIdsInGroup = currentMember.map((u) => u.id)
-    return allUsers.filter((u) => !usersIdsInGroup.includes(u.id))
+    const usersNotInGroup = allUsers.filter(
+      (u) => !usersIdsInGroup.includes(u.id)
+    )
+
+    if (checkBoxes.length === 1 && checkBoxes[0] === null) {
+      console.log('here')
+      setCheckBoxes(Array(usersNotInGroup.length).fill(false))
+    }
+
+    return usersNotInGroup
   }
 
   return (
@@ -139,6 +151,7 @@ const DisplayPane = () => {
                 {getUsersNotInGroup().map((item, index) => (
                   <div className='displayRow alignItems' key={index.toString()}>
                     <input
+                      checked={checkBoxes[index] === true}
                       type='checkbox'
                       onChange={() => handleUsersOnChange(index)}
                     />
@@ -152,6 +165,7 @@ const DisplayPane = () => {
                 {getGroupsUserNotIn().map((item, index) => (
                   <div className='displayRow alignItems' key={index.toString()}>
                     <input
+                      checked={checkBoxes[index] === true}
                       type='checkbox'
                       onChange={() => handleGroupsOnChange(index)}
                     />
