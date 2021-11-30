@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import endpoints from '../enpoints'
+import endpoints from '../endpoints'
 import '../component-styles/AddUsersToGroup.css'
 
 const AddUsersToGroup = () => {
