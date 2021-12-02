@@ -4,21 +4,21 @@ import { StyleSheet, Text, View } from 'react-native'
 import AssetListItem from '../AssetListItem'
 import colors from '../../config/colors'
 import { SearchBar } from 'react-native-elements'
-import SingleAsset from './SingleAsset'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { useNavigation } from '@react-navigation/core'
 import routes from '../../navigation/routes'
 import endpoints from '../../connections/endpoints'
 import { formatDate } from '../../utils/DateUtils'
-const axios = require('axios')
+import axios from 'axios'
+import GLOBAL from '../../state/global'
 
 const Stack = createNativeStackNavigator()
 
 export default function BrowseAssetsScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true)
-  const [data, setData] = useState([])
   const [search, setSearch] = useState('')
   const [filteredData, setfilteredData] = useState([])
+
+  const userId = GLOBAL.userId
 
   function onSearch(text) {
     setSearch(text)
@@ -35,12 +35,14 @@ export default function BrowseAssetsScreen({ navigation }) {
   }
 
   useEffect(() => {
-    const getAssestsEndPoint = endpoints.GET_ASSETS
+    const getUsersAssests = endpoints.GET_SPECIFIC_USERS_ASSETS.replace(
+      ':userId',
+      userId
+    )
     axios
-      .get(getAssestsEndPoint)
+      .get(getUsersAssests)
       .then((response) => response.data)
       .then((data) => {
-        setData(data)
         setfilteredData(data)
       })
       .catch((error) => alert(error))
@@ -59,26 +61,32 @@ export default function BrowseAssetsScreen({ navigation }) {
       {isLoading ? (
         <Text>Loading</Text>
       ) : (
-        <FlatList
-          data={filteredData}
-          renderItem={({ item }) => {
-            return (
-              <AssetListItem
-                name={item.name}
-                date={formatDate(item.updatedAt)}
-                image={require('../../assets/machine.jpg')}
-                onPress={() =>
-                  navigation.navigate(routes.SINGLE_ASSET, {
-                    ...item,
-                    image: require('../../assets/machine.jpg'),
-                  })
-                }
-              />
-            )
-          }}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-        ></FlatList>
+        <View>
+          {filteredData.length == 0 ? (
+            <Text>No Assets assinged to this User</Text>
+          ) : (
+            <FlatList
+              data={filteredData}
+              renderItem={({ item }) => {
+                return (
+                  <AssetListItem
+                    name={item.name}
+                    date={formatDate(item.updatedAt)}
+                    image={require('../../assets/machine.jpg')}
+                    onPress={() =>
+                      navigation.navigate(routes.SINGLE_ASSET, {
+                        ...item,
+                        image: require('../../assets/machine.jpg'),
+                      })
+                    }
+                  />
+                )
+              }}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+            ></FlatList>
+          )}
+        </View>
       )}
     </View>
   )

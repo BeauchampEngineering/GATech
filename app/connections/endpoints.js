@@ -5,6 +5,7 @@ export default {
   BASE_URL: baseUrl,
   AUTHENTICATE_LOGIN: baseUrl + 'auth/login',
   GET_ASSETS: baseUrl + 'api/assets',
+  GET_SPECIFIC_USERS_ASSETS: baseUrl + 'api/users/:userId/assets',
   SEARCH_ASSETS: baseUrl + 'api/assets?search={query}',
   LOGS: baseUrl + 'api/users/:userId/assets/:assetId/logs',
   STREAM: baseUrl + 'api/streams/:userID',
