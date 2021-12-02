@@ -48,6 +48,16 @@ const HomePage = () => {
       ) : (
         <FlatList
           style={styles.flatList}
+          ListHeaderComponent={
+            <View>
+              <Text style={styles.title}>Recent updates to your Assets</Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(routes.BROWSE_ASSETS)}
+              >
+                <Text style={styles.seeAll}>See All Assets</Text>
+              </TouchableOpacity>
+            </View>
+          }
           ListFooterComponent={<View style={styles.footer}></View>}
           data={streamData}
           refreshing={refresh}
@@ -81,7 +91,22 @@ const HomePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 5,
+    padding: 5,
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  seeAll: {
+    fontSize: 16,
+    backgroundColor: '#abddfc',
+    alignSelf: 'flex-start',
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    borderRadius: 6,
+    marginBottom: 10,
   },
   footer: {
     paddingBottom: 10,
