@@ -13,5 +13,6 @@ export default {
   GET_ASSETS: baseUrl + 'api/assets',
   LOGS: baseUrl + 'api/users/:userId/assets/:assetId/logs',
   GET_USERS_GROUPS: baseUrl + 'api/users/:userId/groups',
-  GET_USERS_IN_GROUP: baseUrl + 'api/users/:userId/groups/:groupId/users',
+  GET_USERS_IN_GROUP: baseUrl + 'api/groups/:groupId',
+  UPDATE_GROUP: baseUrl + 'api/groups/:groupId',
 }

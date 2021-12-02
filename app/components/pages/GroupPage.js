@@ -30,12 +30,13 @@ const GroupPage = () => {
           return (
             <GroupsListItem
               title={item.name}
-              numMembers='n memebers'
+              numMembers={`${item.users.length} members`}
               showArrow={true}
               groupId={item.id}
             />
           )
         }}
+        keyExtractor={(item) => item.id.toString()}
       ></FlatList>
     </View>
   )

@@ -8,6 +8,7 @@ import {
   Image,
   FlatList,
 } from 'react-native'
+import SingleAssetHeader from '../SingleAssetHeader'
 import LogEntryModal from '../LogEntryModal'
 import LogMessage from '../LogMessage'
 import axios from 'axios'
@@ -20,7 +21,6 @@ export default function SingleAsset({ route }) {
   const [modalVisible, setModalVisible] = useState(false)
 
   const userId = GLOBAL.userId
-  console.log('Single Asset userId is ' + userId)
   const logsEndpoint = endpoints.LOGS.replace(':userId', userId).replace(
     ':assetId',
     id
@@ -32,11 +32,18 @@ export default function SingleAsset({ route }) {
         .post(logsEndpoint, {
           message: newMessage,
         })
-        .then(() => {
-          console.log('Log successful')
+        .then((response) => {
           setLogData((oldArray) => [
             ...oldArray,
-            { id: 2, message: newMessage },
+            {
+              id: response.data.id,
+              message: response.data.message,
+              user: {
+                email: GLOBAL.userEmail,
+              },
+              userId: response.data.userId,
+              updatedAt: response.data.updatedAt,
+            },
           ])
         })
         .catch((err) => console.log(err))
@@ -46,21 +53,15 @@ export default function SingleAsset({ route }) {
   useEffect(() => {
     axios
       .get(logsEndpoint)
-      .then((data) => {
-        setLogData(data.data)
-        data.data
+      .then((response) => {
+        setLogData(response.data)
       })
       .catch((err) => console.log('Error ' + err))
   }, [])
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={image} />
-      </View>
       <View style={styles.detailsContainer}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.date}>{date}</Text>
         <Button
           onPress={() => {
             setModalVisible(!modalVisible)
@@ -80,11 +81,19 @@ export default function SingleAsset({ route }) {
           cancelAction={() => setModalVisible(false)}
         />
       </Modal>
-      <Text style={styles.previousLogs}>Previous Logs</Text>
       <FlatList
+        style={styles.flatList}
+        ListHeaderComponent={<SingleAssetHeader image={image} name={name} />}
+        ListFooterComponent={<View style={styles.footer}></View>}
         data={logData}
         renderItem={({ item }) => {
-          return <LogMessage title={item.message} subtitle={item.message} />
+          return (
+            <LogMessage
+              message={item.message}
+              user={item.user.email}
+              date={item.updatedAt}
+            />
+          )
         }}
         keyExtractor={(item) => item.id.toString()}
       ></FlatList>
@@ -97,28 +106,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 5,
   },
-  imageContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 40,
-  },
-  image: {
-    width: 300,
-    height: 200,
-    resizeMode: 'center',
-  },
-  detailsContainer: {
-    marginTop: 20,
-  },
-  name: {
-    fontSize: 20,
-  },
-  date: {
-    fontSize: 16,
-  },
-  previousLogs: {
-    fontSize: 20,
-    marginTop: 5,
-    marginBottom: 5,
+  footer: {
+    paddingBottom: 10,
   },
 })

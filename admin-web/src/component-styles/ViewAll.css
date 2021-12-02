@@ -1,0 +1,16 @@
+#viewAllContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.viewAll {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 12px;
+  color: #0645ad;
+}
+.itemList {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 3px 0px;
+  cursor: pointer;
+}
