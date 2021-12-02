@@ -1,6 +1,7 @@
 const baseUrl = 'https://portal-manager-server.herokuapp.com/'
 
 export default {
+  BASE_URL: baseUrl,
   CREATE_NEW_USER: baseUrl + 'api/users',
   CREATE_NEW_ASSET: baseUrl + 'api/assets',
   GET_ALL_USERS: baseUrl + 'api/users',
