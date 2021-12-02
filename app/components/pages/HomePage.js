@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Text, FlatList } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native'
 import endpoints from '../../connections/endpoints'
 import GLOBAL from '../../state/global'
 import LogMessage from '../LogMessage'
 import axios from 'axios'
+import { useNavigation } from '@react-navigation/core'
+import routes from '../../navigation/routes'
 
 const HomePage = () => {
   const userId = GLOBAL.userId
@@ -12,6 +20,8 @@ const HomePage = () => {
   const [streamData, setStreamData] = useState([])
   const [isLoading, setLoading] = useState(true)
   const [refresh, setrefresh] = useState(false)
+
+  const navigation = useNavigation()
 
   useEffect(() => {
     stream()
@@ -38,17 +48,37 @@ const HomePage = () => {
       ) : (
         <FlatList
           style={styles.flatList}
+          ListHeaderComponent={
+            <View>
+              <Text style={styles.title}>Recent updates to your Assets</Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(routes.BROWSE_ASSETS)}
+              >
+                <Text style={styles.seeAll}>See All Assets</Text>
+              </TouchableOpacity>
+            </View>
+          }
           ListFooterComponent={<View style={styles.footer}></View>}
           data={streamData}
           refreshing={refresh}
           onRefresh={() => onRefresh()}
           renderItem={({ item }) => {
             return (
-              <LogMessage
-                message={item.message}
-                user={item.userId}
-                date={item.updatedAt}
-              />
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(routes.SINGLE_ASSET, {
+                    ...item.asset,
+                    image: require('../../assets/machine.jpg'),
+                  })
+                }
+              >
+                <LogMessage
+                  message={item.message}
+                  user={item.user.email}
+                  date={item.updatedAt}
+                  assetName={item.asset.name}
+                />
+              </TouchableOpacity>
             )
           }}
           keyExtractor={(item) => item.id.toString()}
@@ -61,7 +91,22 @@ const HomePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 5,
+    padding: 5,
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  seeAll: {
+    fontSize: 16,
+    backgroundColor: '#abddfc',
+    alignSelf: 'flex-start',
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    borderRadius: 6,
+    marginBottom: 10,
   },
   footer: {
     paddingBottom: 10,
