@@ -1,32 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { groups, setAllGroups } from './state/GroupState'
+import { userList } from './state/UserState'
 import endpoints from '../enpoints'
 import '../component-styles/AddUsersToGroup.css'
 
 const AddUsersToGroup = () => {
   const [selectedGroup, setSelectedGroup] = useState(0)
-  const [allUsers, setallUsers] = useState([])
-  const [allGroups, setAllGroups] = useState([])
   const [checkBoxes, setCheckBoxes] = useState([])
 
-  useEffect(() => {
-    const getAllUsersEndPoint = endpoints.GET_ALL_USERS
-    axios
-      .get(getAllUsersEndPoint)
-      .then((response) => {
-        console.log(response)
-        setallUsers(response.data)
-        setCheckBoxes(new Array(response.data.length).fill(false))
-      })
-      .catch((err) => console.log(err))
-
-    // get groups
-
-    axios
-      .get(endpoints.GET_ALL_GROUPS)
-      .then((resp) => setAllGroups(resp.data))
-      .catch((err) => console.log(err))
-  }, [])
+  const allGroups = groups.use()
+  const allUsers = userList.use()
 
   const handleUsersOnChange = (index) => {
     let tempCheckBoxes = [...checkBoxes]

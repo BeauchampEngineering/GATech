@@ -31,6 +31,7 @@ const LoginForm = () => {
       .then(function (response) {
         setLoading(false)
         GLOBAL.userId = response.data.id
+        GLOBAL.userEmail = email
         // this is only called when authentication is successful
         navigation.navigate(routes.APP_NAVIGATION, {
           userId: response.data.id,
