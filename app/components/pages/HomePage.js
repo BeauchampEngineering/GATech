@@ -46,7 +46,7 @@ const HomePage = () => {
             return (
               <LogMessage
                 message={item.message}
-                user={item.userId}
+                user={item.user.email}
                 date={item.updatedAt}
               />
             )
