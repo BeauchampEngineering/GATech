@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Text, FlatList } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native'
 import endpoints from '../../connections/endpoints'
 import GLOBAL from '../../state/global'
 import LogMessage from '../LogMessage'
 import axios from 'axios'
+import { useNavigation } from '@react-navigation/core'
+import routes from '../../navigation/routes'
 
 const HomePage = () => {
   const userId = GLOBAL.userId
@@ -12,6 +20,8 @@ const HomePage = () => {
   const [streamData, setStreamData] = useState([])
   const [isLoading, setLoading] = useState(true)
   const [refresh, setrefresh] = useState(false)
+
+  const navigation = useNavigation()
 
   useEffect(() => {
     stream()
@@ -44,11 +54,20 @@ const HomePage = () => {
           onRefresh={() => onRefresh()}
           renderItem={({ item }) => {
             return (
-              <LogMessage
-                message={item.message}
-                user={item.user.email}
-                date={item.updatedAt}
-              />
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(routes.SINGLE_ASSET, {
+                    ...item.asset,
+                    image: require('../../assets/machine.jpg'),
+                  })
+                }
+              >
+                <LogMessage
+                  message={item.message}
+                  user={item.user.email}
+                  date={item.updatedAt}
+                />
+              </TouchableOpacity>
             )
           }}
           keyExtractor={(item) => item.id.toString()}
