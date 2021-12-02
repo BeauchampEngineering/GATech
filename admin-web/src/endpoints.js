@@ -12,12 +12,9 @@ export default {
   GET_ASSETS: baseUrl + 'api/assets',
   LOGS: baseUrl + 'api/users/:userId/assets/:assetId/logs',
   GET_USERS_GROUPS: baseUrl + 'api/users/:userId/groups',
-<<<<<<< Updated upstream:admin-web/src/enpoints.js
   GET_USERS_IN_GROUP: baseUrl + 'api/groups/:groupId',
   UPDATE_GROUP: baseUrl + 'api/groups/:groupId',
-=======
   GET_USERS_IN_GROUP: baseUrl + 'api/users/:userId/groups/:groupId/users',
   IMPORT_SAP: baseUrl + 'sap/import',
   EXPORT_SAP: baseUrl + 'sap/export'
->>>>>>> Stashed changes:admin-web/src/endpoints.js
 }
