@@ -66,6 +66,7 @@ const HomePage = () => {
                   message={item.message}
                   user={item.user.email}
                   date={item.updatedAt}
+                  assetName={item.asset.name}
                 />
               </TouchableOpacity>
             )
