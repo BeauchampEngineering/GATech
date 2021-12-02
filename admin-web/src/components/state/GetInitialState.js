@@ -1,5 +1,5 @@
 import axios from 'axios'
-import endpoints from '../../enpoints'
+import endpoints from '../../endpoints'
 import { setAllGroups } from './GroupState'
 import { setAllUsers } from './UserState'
 

@@ -11,7 +11,6 @@ import DeleteGroup from './components/DeleteGroup'
 import NewGroup from './components/NewGroup'
 import ViewAll from './components/ViewAll'
 import DisplayPane from './components/DisplayPane'
-import DeleteOrCreateGroup from './components/DeleteCreateGroup'
 import ImportSapForm from './components/ImportSapForm'
 import ExportSapForm from './components/ExportSapForm'
 
@@ -29,7 +28,6 @@ function App() {
       <DeleteGroup />
       <ViewAll />
       <DisplayPane />
-      <DeleteOrCreateGroup />
       <ImportSapForm />
       <ExportSapForm />
     </div>
