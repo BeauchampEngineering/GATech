@@ -19,18 +19,18 @@ const App = () => {
 
   var socket
   useEffect(() => {
-    // console.log("useEffect for the app")
+    console.log("useEffect for the app")
     socket = io(endpoints.BASE_URL)
     axios
       .get(endpoints.GET_ASSETS)
       .then((resp) => {
-        // console.log(resp.data)
+        console.log(resp.data)
         Array.from(resp.data).forEach(element => {
-        // console.log(element)
+        console.log(element)
         socket.emit('join-asset', element["id"])
       });})
     socket.on("fault", (m) => {
-      // console.log(m)
+      console.log(m)
       showMessage({
         message: m,
         type: "info",
@@ -39,12 +39,12 @@ const App = () => {
       });
     })
     socket.on("fix", (m) => {
-      // console.log(m)
+      console.log(m)
       showMessage({
         message: m,
         type: "info",
         hideOnPress: true,
-        backgroundColor: "#3256a8",
+        backgroundColor: "#4287f5",
       });
     })
   }, [socket])
