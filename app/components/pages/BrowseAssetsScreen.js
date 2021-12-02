@@ -24,7 +24,7 @@ export default function BrowseAssetsScreen({ navigation }) {
     setSearch(text)
     const logsEndpoint = endpoints.SEARCH_ASSETS.replace(
       '{query}',
-      String(text).toLowerCase()
+      String(text)
     )
     axios
       .get(logsEndpoint)
