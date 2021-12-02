@@ -9,7 +9,7 @@ export default function LogMessage({ message, user, date }) {
     <View style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.message}>{message}</Text>
-        <Text style={styles.user}>UserId: {user}</Text>
+        <Text style={styles.user}>{user}</Text>
         <Text style={styles.date}>{formattedDate}</Text>
       </View>
     </View>
