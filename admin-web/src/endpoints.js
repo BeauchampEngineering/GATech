@@ -16,7 +16,6 @@ export default {
   GET_USERS_GROUPS: baseUrl + 'api/users/:userId/groups',
   GET_USERS_IN_GROUP: baseUrl + 'api/groups/:groupId',
   UPDATE_GROUP: baseUrl + 'api/groups/:groupId',
-  GET_USERS_IN_GROUP: baseUrl + 'api/users/:userId/groups/:groupId/users',
   IMPORT_SAP: baseUrl + 'sap/import',
-  EXPORT_SAP: baseUrl + 'sap/export'
+  EXPORT_SAP: baseUrl + 'sap/export',
 }
