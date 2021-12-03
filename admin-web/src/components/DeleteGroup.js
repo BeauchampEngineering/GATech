@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import endpoints from '../enpoints'
+import endpoints from '../endpoints'
 import { groups, removeGroup } from './state/GroupState'
 import '../component-styles/AddUsersToGroup.css'
 import '../component-styles/DeleteCreateGroup.css'

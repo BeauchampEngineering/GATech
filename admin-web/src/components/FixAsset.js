@@ -1,23 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import '../component-styles/AddAsset.css'
-import enpoints from '../enpoints'
+import endpoints from '../endpoints'
 import io from 'socket.io-client'
 
 const FixAsset = () => {
-  
-  const [assetId, setassetId ] = useState('')
+  const [assetId, setassetId] = useState('')
   var socket = useRef()
-  
+
   useEffect(() => {
-    socket.current = io(enpoints.BASE_URL)
+    socket.current = io(endpoints.BASE_URL)
   }, [])
 
-  
   const fixAsset = (name) => {
     socket.current.emit('join-asset', name)
-    socket.current.emit("fix",{id: name, userId: 1})
-    socket.current.on("fix", (m) => {
+    socket.current.emit('fix', { id: name, userId: 1 })
+    socket.current.on('fix', (m) => {
       console.log(m)
     })
   }

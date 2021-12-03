@@ -9,7 +9,7 @@ import {
   setTitle,
 } from './state/DisplayPaneState'
 import { userList } from './state/UserState'
-import endpoints from '../enpoints'
+import endpoints from '../endpoints'
 import '../component-styles/AddUsersToGroup.css'
 
 const DisplayPane = () => {

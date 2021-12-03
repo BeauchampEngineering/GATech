@@ -5,7 +5,7 @@ import { assets as assetState } from './state/AssetState'
 import { groups as groupState } from './state/GroupState'
 import { Autocomplete, TextField } from '@mui/material'
 import axios from 'axios'
-import endpoints from '../enpoints'
+import endpoints from '../endpoints'
 
 const AssignGroupsToAssets = () => {
   const [selectedAsset, setSelectedAsset] = useState({})
