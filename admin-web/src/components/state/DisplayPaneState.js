@@ -1,6 +1,6 @@
 import { entity } from 'simpler-state'
 
-export const isGroupState = entity(false)
+export const isGroupState = entity(true)
 export const title = entity('')
 export const groupIdState = entity(-1)
 export const userIdState = entity(-1)
