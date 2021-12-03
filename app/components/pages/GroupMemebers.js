@@ -9,9 +9,9 @@ export default function GroupMemebers({ route }) {
   const groupId = route.params.groupId
   useEffect(() => {
     const groupMemebersEndpoint = endpoints.GET_USERS_IN_GROUP.replace(
-      ':userId',
-      GLOBAL.userId
-    ).replace(':groupId', groupId)
+      ':groupId',
+      groupId
+    )
     axios
       .get(groupMemebersEndpoint)
       .then((response) => {
@@ -29,7 +29,7 @@ export default function GroupMemebers({ route }) {
         data={groupMembers}
         keyExtractor={(person) => person.id.toString()}
         renderItem={({ item }) => {
-          return <GroupsListItem title={item.email} />
+          return <GroupsListItem title={item.email} showMessaging={false} />
         }}
       ></FlatList>
     </View>

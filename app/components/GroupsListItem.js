@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import colors from '../config/colors'
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons, FontAwesome5 } from '@expo/vector-icons'
 
 import { useNavigation } from '@react-navigation/core'
 import routes from '../navigation/routes'
@@ -13,6 +13,7 @@ export default function GroupsListItem({
   numMembers,
   showArrow,
   groupId,
+  showMessaging = true,
 }) {
   const navigation = useNavigation()
   return (
@@ -47,16 +48,31 @@ export default function GroupsListItem({
           </View>
         </View>
 
-        {showArrow && <Ionicons name='arrow-forward' size={iconSize} />}
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate(routes.GROUP_MESSAGING, {
-            groupId: groupId,
-          })
-        }
-      >
-        <Text style={styles.messagingText}>Messaging</Text>
+        <View style={styles.icons}>
+          {showMessaging && (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(routes.GROUP_MESSAGING, {
+                  groupId: groupId,
+                })
+              }
+            >
+              <FontAwesome5
+                name='facebook-messenger'
+                size={iconSize}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+          )}
+
+          {showArrow && (
+            <Ionicons
+              name='arrow-forward'
+              size={iconSize}
+              style={styles.icon}
+            />
+          )}
+        </View>
       </TouchableOpacity>
     </View>
   )
@@ -100,5 +116,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
     textDecorationLine: 'underline',
+  },
+  icons: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  icon: {
+    padding: 5,
   },
 })
