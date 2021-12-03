@@ -80,7 +80,7 @@ const AssignGroupsToAssets = () => {
           assignUsersToGroup()
         }}
       >
-        Assign Users to Group
+        Assign Group Members to Asset
       </button>
       <p>{errorMessage}</p>
     </div>
