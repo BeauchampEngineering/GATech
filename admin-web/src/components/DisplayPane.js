@@ -128,9 +128,9 @@ const DisplayPane = () => {
         backgroundColor: '#e1b74d',
       }}
     >
-      <button onClick={() => setEditMode(!editMode)}>
+      {/* <button onClick={() => setEditMode(!editMode)}>
         {editMode ? 'Done' : 'Edit'}
-      </button>
+      </button> */}
       <h4>{displayPaneTitle}</h4>
       <div className='UsersAndGroups alignItems'>
         <div>
@@ -178,7 +178,7 @@ const DisplayPane = () => {
         )}
       </div>
 
-      <div className='addRemoveButtonContainer'>
+      {/* <div className='addRemoveButtonContainer'>
         <button
           type='button'
           className='addRemoveButton'
@@ -193,7 +193,7 @@ const DisplayPane = () => {
         >
           Assign Users to Group
         </button>
-      </div>
+      </div> */}
     </div>
   )
 }
