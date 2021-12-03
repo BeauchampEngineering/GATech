@@ -22,11 +22,10 @@ function App() {
   }, [])
   return (
     <div className='App'>
+      <NewUserForm />
       <NewGroup />
       <AssignGroupsToAssets />
-      <NewUserForm />
       <AddAsset />
-      <AddUsersToGroup />
       <DeleteGroup />
       <ViewAll />
       <DisplayPane />
