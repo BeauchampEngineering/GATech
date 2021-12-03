@@ -1,5 +1,3 @@
-import React, { useState } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
 import Header from '../Header'
 import React, { useState, useEffect } from 'react'
 import {
@@ -45,57 +43,57 @@ const HomePage = () => {
     setrefresh(false)
   }
   return (
-    <View style={styles.container}>
+    <View>
       <Header title='Portal Manager' />
-      <Text>Home page</Text>
-      {isLoading ? (
-        <Text>Loading</Text>
-      ) : (
-        <FlatList
-          style={styles.flatList}
-          ListHeaderComponent={
-            <View>
-              <Text style={styles.title}>Recent updates to your Assets</Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate(routes.BROWSE_ASSETS)}
-              >
-                <Text style={styles.seeAll}>See All Assets</Text>
-              </TouchableOpacity>
-            </View>
-          }
-          ListFooterComponent={<View style={styles.footer}></View>}
-          data={streamData}
-          refreshing={refresh}
-          onRefresh={() => onRefresh()}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate(routes.SINGLE_ASSET, {
-                    ...item.asset,
-                    image: require('../../assets/machine.jpg'),
-                  })
-                }
-              >
-                <LogMessage
-                  message={item.message}
-                  user={item.user.email}
-                  date={item.updatedAt}
-                  assetName={item.asset.name}
-                />
-              </TouchableOpacity>
-            )
-          }}
-          keyExtractor={(item) => item.id.toString()}
-        ></FlatList>
-      )}
+      <View style={styles.container}>
+        {isLoading ? (
+          <Text>Loading</Text>
+        ) : (
+          <FlatList
+            style={styles.flatList}
+            ListHeaderComponent={
+              <View>
+                <Text style={styles.title}>Recent updates to your Assets</Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate(routes.BROWSE_ASSETS)}
+                >
+                  <Text style={styles.seeAll}>See All Assets</Text>
+                </TouchableOpacity>
+              </View>
+            }
+            ListFooterComponent={<View style={styles.footer}></View>}
+            data={streamData}
+            refreshing={refresh}
+            onRefresh={() => onRefresh()}
+            renderItem={({ item }) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate(routes.SINGLE_ASSET, {
+                      ...item.asset,
+                      image: require('../../assets/machine.jpg'),
+                    })
+                  }
+                >
+                  <LogMessage
+                    message={item.message}
+                    user={item.user.email}
+                    date={item.updatedAt}
+                    assetName={item.asset.name}
+                  />
+                </TouchableOpacity>
+              )
+            }}
+            keyExtractor={(item) => item.id.toString()}
+          ></FlatList>
+        )}
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 5,
   },
   title: {
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   footer: {
-    paddingBottom: 10,
+    paddingBottom: 200,
   },
 })
 
