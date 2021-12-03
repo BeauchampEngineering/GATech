@@ -8,6 +8,7 @@ export default {
   GET_ALL_GROUPS: baseUrl + 'api/groups',
   DELETE_A_GROUP: baseUrl + 'api/groups/:groupId',
   ADD_SINGLE_USER_TO_GROUP: baseUrl + 'api/groups/:groupId/users',
+  ASSIGN_USER_TO_ASSET: baseUrl + 'api/users/:userId/assets',
   AUTHENTICATE_LOGIN: baseUrl + 'auth/login',
   GET_ASSETS: baseUrl + 'api/assets',
   LOGS: baseUrl + 'api/users/:userId/assets/:assetId/logs',

@@ -8,20 +8,49 @@ import axios from 'axios'
 import endpoints from '../enpoints'
 
 const AssignGroupsToAssets = () => {
-  const [selectedUsers, setSelectedUsers] = useState([])
-  const [groupName, setGroupName] = useState('')
+  const [selectedAsset, setSelectedAsset] = useState({})
+  const [selectedGroup, setSelectedGroup] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
   const [autoCompleteKey, setAutoCompleteKey] = useState(0) // to clear contents of autocomplete
 
   const groups = groupState.use()
   const assets = assetState.use()
 
-  function onChange(event, value, details) {
-    setErrorMessage('')
-    setSelectedUsers(value)
+  function groupSelected(event, value, details) {
+    setSelectedGroup(value)
   }
 
-  function assignUsersToGroup() {}
+  function assetSelected(event, value, details) {
+    setSelectedAsset(value)
+  }
+
+  function assignUsersToGroup() {
+    // this is grossly ineffiecient
+
+    //find the asset
+    const assetId = assets.filter((a) => a.name === selectedAsset)[0].id
+
+    // find the group
+    const groupObject = groups.filter((g) => g.name === selectedGroup)
+
+    const errorCount = 0
+    // assign each user to the the asset in question
+    groupObject[0].users.forEach((u) => {
+      axios
+        .post(endpoints.ASSIGN_USER_TO_ASSET.replace(':userId', u.id), {
+          assetId: assetId,
+        })
+        .catch((err) => {
+          errorCount += 1
+          alert('Failed')
+          console.log('adding user err ' + err)
+        })
+    })
+
+    if (errorCount === 0) {
+      alert('Success')
+    }
+  }
 
   return (
     <div>
@@ -33,7 +62,7 @@ const AssignGroupsToAssets = () => {
         options={groups.map((group) => group.name)}
         filterSelectedOptions={true}
         fullWidth={true}
-        onChange={onChange}
+        onChange={groupSelected}
         renderInput={(params) => <TextField {...params} label='Group' />}
       />
       <Autocomplete
@@ -42,7 +71,7 @@ const AssignGroupsToAssets = () => {
         options={assets.map((asset) => asset.name)}
         filterSelectedOptions={true}
         fullWidth={true}
-        onChange={onChange}
+        onChange={assetSelected}
         renderInput={(params) => <TextField {...params} label='Asset' />}
       />
 
