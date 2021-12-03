@@ -33,19 +33,25 @@ const ViewAll = () => {
   }
 
   return (
-    <div id='viewAllContainer'>
-      <div id='groupsContainer'>
-        <p className='viewAll' onClick={() => setShowAllGroups(!showAllGroups)}>
-          View All Groups
-        </p>
-        {showAllGroups && getListComponent(allGroups, true)}
-      </div>
+    <div>
+      <p>View Details</p>
+      <div id='viewAllContainer'>
+        <div id='groupsContainer'>
+          {showAllGroups && getListComponent(allGroups, true)}
+          <p
+            className='viewAll'
+            onClick={() => setShowAllGroups(!showAllGroups)}
+          >
+            View All Groups
+          </p>
+        </div>
 
-      <div id='usersContainer'>
-        <p className='viewAll' onClick={() => setShowAllUsers(!showAllUsers)}>
-          View All Users
-        </p>
-        {showAllUsers && getListComponent(allUsers, false)}
+        <div id='usersContainer'>
+          {showAllUsers && getListComponent(allUsers, false)}
+          <p className='viewAll' onClick={() => setShowAllUsers(!showAllUsers)}>
+            View All Users
+          </p>
+        </div>
       </div>
     </div>
   )
