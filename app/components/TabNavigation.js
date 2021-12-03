@@ -30,7 +30,7 @@ export default function TabNavigation() {
       </Tab>
 
       <TabView value={index} onChange={setIndex}>
-        <TabView.Item style={{ backgroundColor: 'red', width: '100%' }}>
+        <TabView.Item style={{ backgroundColor: 'red', width: '100' }}>
           <HomeScreen />
         </TabView.Item>
         <TabView.Item style={{ backgroundColor: 'grey', width: '100%' }}>

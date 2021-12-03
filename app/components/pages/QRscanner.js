@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Button, Dimensions,Image} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from "axios";
 import { color } from 'react-native-elements/dist/helpers';
+import Header from '../Header'
 
 export default function App({navigation}){
   const [hasPermission, setHasPermission] = useState(null);
@@ -36,8 +37,11 @@ export default function App({navigation}){
   }
 
   return (
-
-      <BarCodeScanner
+      <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+        <View>
+          <Header title = "Portal Manager" />
+        </View>
+        <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={[StyleSheet.absoluteFill, styles.container]}>
         <Text style={styles.description}>Scan your QR code</Text>
@@ -51,6 +55,7 @@ export default function App({navigation}){
         <View style={styles.layerBottom} />
         {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
       </BarCodeScanner>
+      </View>
       
   );
 }

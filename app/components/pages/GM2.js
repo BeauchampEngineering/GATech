@@ -18,7 +18,7 @@ export default function Example({ route }) {
   var socket
   useEffect(() => {
     socket = io(endpoints.BASE_URL)
-    socket.emit('join', groupId)
+    socket.emit('join-group', groupId)
     socket.on('message', (message) => {
       console.log(
         'Received msg from server ' + JSON.stringify(message, null, 4)
@@ -80,7 +80,6 @@ export default function Example({ route }) {
       createdAt: serverMessage.createdAt,
       user: {
         _id: serverMessage.userId,
-        name: 'PLACEHOLDER',
         avatar: 'https://placeimg.com/140/140/any',
       },
     }
@@ -119,6 +118,7 @@ export default function Example({ route }) {
       user={{
         _id: userId,
       }}
+      // renderUsernameOnMessage={true}
     />
   )
 }
