@@ -1,3 +1,6 @@
+import React, { useState } from 'react'
+import { View, StyleSheet, Text } from 'react-native'
+import Header from '../Header'
 import React, { useState, useEffect } from 'react'
 import {
   View,
@@ -43,6 +46,8 @@ const HomePage = () => {
   }
   return (
     <View style={styles.container}>
+      <Header title='Portal Manager' />
+      <Text>Home page</Text>
       {isLoading ? (
         <Text>Loading</Text>
       ) : (
