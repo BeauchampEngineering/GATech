@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { groups, setAllGroups } from './state/GroupState'
 import { userList } from './state/UserState'
-import endpoints from '../enpoints'
+import endpoints from '../endpoints'
 import '../component-styles/AddUsersToGroup.css'
 
 const AddUsersToGroup = () => {

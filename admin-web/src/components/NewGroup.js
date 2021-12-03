@@ -3,7 +3,7 @@ import { addGroup } from './state/GroupState'
 import { userList } from './state/UserState'
 import { Autocomplete, TextField } from '@mui/material'
 import axios from 'axios'
-import endpoints from '../enpoints'
+import endpoints from '../endpoints'
 
 const NewGroup = () => {
   const [selectedUsers, setSelectedUsers] = useState([])

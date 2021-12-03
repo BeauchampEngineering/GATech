@@ -38,6 +38,9 @@ export default function SingleAsset({ route }) {
             {
               id: response.data.id,
               message: response.data.message,
+              user: {
+                email: GLOBAL.userEmail,
+              },
               userId: response.data.userId,
               updatedAt: response.data.updatedAt,
             },
@@ -50,9 +53,8 @@ export default function SingleAsset({ route }) {
   useEffect(() => {
     axios
       .get(logsEndpoint)
-      .then((data) => {
-        setLogData(data.data)
-        data.data
+      .then((response) => {
+        setLogData(response.data)
       })
       .catch((err) => console.log('Error ' + err))
   }, [])
@@ -88,7 +90,7 @@ export default function SingleAsset({ route }) {
           return (
             <LogMessage
               message={item.message}
-              user={item.userId}
+              user={item.user.email}
               date={item.updatedAt}
             />
           )
