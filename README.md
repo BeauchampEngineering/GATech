@@ -51,7 +51,7 @@ Team 1133: Edward Jahoda, Aarun Srinivas, Himanish Reddy, Craig Nyazema, Ryan Di
     
     # (optional) follow terminal instructions to build .ipa or .apk
     # for ios, see: https://docs.expo.dev/classic/building-standalone-apps/#if-you-choose-to-build-for-ios
-    expo build:\[ios:android\]
+    expo build:[ios:android]
     ```
  **Installation** <br />
    - To install mobile application on physical or virutal hardware, follow the installation instructions for your operating system and hardware. 
