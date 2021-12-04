@@ -152,5 +152,6 @@ Team 1133: Edward Jahoda, Aarun Srinivas, Himanish Reddy, Craig Nyazema, Ryan Di
   - A logged-in user is unable to log out.
   - New data (new users, groups) occasionally is lost after disconnection.
 
+*Note: Sample QR codes for assets are found under app/qrcodes
 
 
