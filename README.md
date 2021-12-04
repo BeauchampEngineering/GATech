@@ -78,7 +78,7 @@ Team 1133: Edward Jahoda, Aarun Srinivas, Himanish Reddy, Craig Nyazema, Ryan Di
      # (phone) install Expo Go from app store
      # (phone) scan QR code with camera and open link in Expo Go
      
-     # running on emulator (Andriod Studio, computer)
+     # running on emulator (Android Studio, computer)
      
      # If not done already, create virtual machine:
      # Configure -> AVD Manager -> Create Virtual Device
