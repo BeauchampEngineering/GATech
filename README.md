@@ -137,7 +137,7 @@ Team 1133: Edward Jahoda, Aarun Srinivas, Himanish Reddy, Craig Nyazema, Ryan Di
       - Be redirected to page for asset after scanning corresponding QR code.
 
 - Server (server subdirectory)
-  1. Backend support for all of the above using persistant data storage and management.
+  1. Backend support for all of the above using persistent data storage and management.
 
 **Bug Fixes:**
   - Adjusted fonts and colors for mobile application.
