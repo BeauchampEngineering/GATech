@@ -59,12 +59,12 @@ Team 1133: Edward Jahoda, Aarun Srinivas, Himanish Reddy, Craig Nyazema, Ryan Di
    - *To run application (and not necessarily install), see below*
 
  **Running the Application** <br />
-   - Administrative Server 
+   - Administrative Website 
    
       ```
       # cd into the directory ../GATech/admin-web/src
     
-      # install dependencies
+      # start
       npm start
       ```
       
